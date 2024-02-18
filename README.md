@@ -2,9 +2,9 @@
 ### | Contributers: [Liviru-Nava](https://github.com/Liviru-Nava) & [MR.NHIP](https://github.com/8hirantha)
 
 # Table of Contents 📂
-- [Overview](https://github.com/Liviru-Nava/Self-Ordering-Application-for-Restaurant/edit/main/README.md#overview-of-the-project)
-- [Features of the project](https://github.com/Liviru-Nava/Self-Ordering-Application-for-Restaurant/edit/main/README.md#features-of-the-project)
-- [Implementation](https://github.com/Liviru-Nava/Self-Ordering-Application-for-Restaurant/edit/main/README.md#implementation)
+- [Overview](https://github.com/Liviru-Nava/Self-Ordering-Application-for-Restaurant/main/README.md#overview-of-the-project)
+- [Features of the project](https://github.com/Liviru-Nava/Self-Ordering-Application-for-Restaurant/main/README.md#features-of-the-project)
+- [Implementation](https://github.com/Liviru-Nava/Self-Ordering-Application-for-Restaurant/main/README.md#implementation)
 
 ## Overview of the project 🔍
 This is a Java Swing project which is related to a Self Ordering system available in restaurants which is implemented using data structures and graphs.

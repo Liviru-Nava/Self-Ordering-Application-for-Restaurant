@@ -4,14 +4,21 @@
  */
 package selfordering.apllication;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 /**
  *
  * @author Hirantha perera
  */
-public class Kicthen extends javax.swing.JFrame {
+public class Kicthen extends javax.swing.JFrame implements Runnable{
+    int hour,second,minute;
 
     public Kicthen() {
         initComponents();
+        Thread t=new Thread(this);
+        t.start();
     }
 
     /**
@@ -23,31 +30,39 @@ public class Kicthen extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        jLabel22 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        rSButtonHover2 = new rojeru_san.complementos.RSButtonHover();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         tbl_cart = new javax.swing.JTable();
         jScrollPane4 = new javax.swing.JScrollPane();
         tbl_kicthenOrder = new javax.swing.JTable();
-        lbl_timeshow = new java.awt.Label();
-        rSButtonHover1 = new rojeru_san.complementos.RSButtonHover();
-        rSButtonHover5 = new rojeru_san.complementos.RSButtonHover();
-        jLabel23 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        rSButtonHover2 = new rojeru_san.complementos.RSButtonHover();
+        jLabel22 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        lbl_timeshow1 = new java.awt.Label();
+        rSButtonHover7 = new rojeru_san.complementos.RSButtonHover();
+        rSButtonHover9 = new rojeru_san.complementos.RSButtonHover();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Kitchen UI");
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel22.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
-        jLabel22.setForeground(new java.awt.Color(156, 150, 150));
-        jLabel22.setText("copyright ©PDSA | Develop By Hirantha And Liviru");
-        jPanel1.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 990, -1, -1));
+        rSButtonHover2.setBackground(new java.awt.Color(0, 153, 51));
+        rSButtonHover2.setText("View Orders");
+        rSButtonHover2.setColorHover(new java.awt.Color(204, 0, 51));
+        rSButtonHover2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jPanel2.add(rSButtonHover2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 140, 70));
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel3.setText("Order Item");
+        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(1160, 50, 160, 40));
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/selfordering/apllication/output-onlinepngtools.png"))); // NOI18N
+        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, -20, 320, 140));
 
         tbl_cart.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         tbl_cart.setModel(new javax.swing.table.DefaultTableModel(
@@ -67,7 +82,7 @@ public class Kicthen extends javax.swing.JFrame {
         tbl_cart.setShowVerticalLines(false);
         jScrollPane3.setViewportView(tbl_cart);
 
-        jPanel1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(1110, 100, 780, 880));
+        jPanel2.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 100, 650, 680));
 
         tbl_kicthenOrder.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         tbl_kicthenOrder.setModel(new javax.swing.table.DefaultTableModel(
@@ -87,74 +102,39 @@ public class Kicthen extends javax.swing.JFrame {
         tbl_kicthenOrder.setShowVerticalLines(false);
         jScrollPane4.setViewportView(tbl_kicthenOrder);
 
-        jPanel1.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 910, 880));
+        jPanel2.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 660, 680));
 
-        lbl_timeshow.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
-        lbl_timeshow.setForeground(new java.awt.Color(204, 0, 0));
-        lbl_timeshow.setText("11.07.00AM");
-        jPanel1.add(lbl_timeshow, new org.netbeans.lib.awtextra.AbsoluteConstraints(1700, 10, -1, 40));
+        jLabel22.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
+        jLabel22.setForeground(new java.awt.Color(156, 150, 150));
+        jLabel22.setText("copyright ©PDSA | Develop By Hirantha And Liviru");
+        jPanel2.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 790, -1, -1));
 
-        rSButtonHover1.setBackground(new java.awt.Color(255, 255, 255));
-        rSButtonHover1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/selfordering/apllication/chef (2).png"))); // NOI18N
-        rSButtonHover1.setColorHover(new java.awt.Color(255, 255, 255));
-        rSButtonHover1.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/selfordering/apllication/chef (3).png"))); // NOI18N
-        rSButtonHover1.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/selfordering/apllication/chef (3).png"))); // NOI18N
-        jPanel1.add(rSButtonHover1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1800, 10, 60, -1));
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel4.setText("Orders");
+        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 50, 160, 40));
 
-        rSButtonHover5.setBackground(new java.awt.Color(255, 255, 255));
-        rSButtonHover5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/selfordering/apllication/setting (2).png"))); // NOI18N
-        rSButtonHover5.setColorHover(new java.awt.Color(255, 255, 255));
-        rSButtonHover5.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/selfordering/apllication/setting (3).png"))); // NOI18N
-        jPanel1.add(rSButtonHover5, new org.netbeans.lib.awtextra.AbsoluteConstraints(1850, 10, 60, -1));
+        lbl_timeshow1.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        lbl_timeshow1.setForeground(new java.awt.Color(204, 0, 0));
+        lbl_timeshow1.setText("11.07.00AM");
+        jPanel2.add(lbl_timeshow1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1320, 10, -1, 40));
 
-        jLabel23.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
-        jLabel23.setForeground(new java.awt.Color(204, 204, 204));
-        jLabel23.setText("copyright ©PDSA | Develop By Hirantha And Liviru");
-        jPanel1.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 1060, -1, -1));
+        rSButtonHover7.setBackground(new java.awt.Color(255, 255, 255));
+        rSButtonHover7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/selfordering/apllication/chef (2).png"))); // NOI18N
+        rSButtonHover7.setColorHover(new java.awt.Color(255, 255, 255));
+        rSButtonHover7.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/selfordering/apllication/chef (3).png"))); // NOI18N
+        rSButtonHover7.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/selfordering/apllication/chef (3).png"))); // NOI18N
+        jPanel2.add(rSButtonHover7, new org.netbeans.lib.awtextra.AbsoluteConstraints(1420, 10, 60, -1));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/selfordering/apllication/output-onlinepngtools.png"))); // NOI18N
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, -10, 320, 140));
+        rSButtonHover9.setBackground(new java.awt.Color(255, 255, 255));
+        rSButtonHover9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/selfordering/apllication/setting (2).png"))); // NOI18N
+        rSButtonHover9.setColorHover(new java.awt.Color(255, 255, 255));
+        rSButtonHover9.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/selfordering/apllication/setting (3).png"))); // NOI18N
+        jPanel2.add(rSButtonHover9, new org.netbeans.lib.awtextra.AbsoluteConstraints(1470, 10, 60, -1));
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel1.setText("Order Items");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1470, 50, 160, 40));
-
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel3.setText("Orders");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 50, 160, 40));
-
-        rSButtonHover2.setBackground(new java.awt.Color(0, 153, 51));
-        rSButtonHover2.setText("View Orders");
-        rSButtonHover2.setColorHover(new java.awt.Color(204, 0, 51));
-        rSButtonHover2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        rSButtonHover2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rSButtonHover2ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(rSButtonHover2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, -1, 70));
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1920, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1540, 820));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void rSButtonHover2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rSButtonHover2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_rSButtonHover2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -192,19 +172,43 @@ public class Kicthen extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel22;
-    private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
-    private java.awt.Label lbl_timeshow;
-    private rojeru_san.complementos.RSButtonHover rSButtonHover1;
+    private java.awt.Label lbl_timeshow1;
     private rojeru_san.complementos.RSButtonHover rSButtonHover2;
-    private rojeru_san.complementos.RSButtonHover rSButtonHover5;
+    private rojeru_san.complementos.RSButtonHover rSButtonHover7;
+    private rojeru_san.complementos.RSButtonHover rSButtonHover9;
     private javax.swing.JTable tbl_cart;
     private javax.swing.JTable tbl_kicthenOrder;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void run() {
+         while (true)
+        {
+            Calendar cal=Calendar.getInstance();
+            hour=cal.get(Calendar.HOUR_OF_DAY);
+            minute=cal.get(Calendar.MINUTE);
+            second=cal.get(Calendar.SECOND);
+            
+            SimpleDateFormat sdf12 =new SimpleDateFormat("hh:mm:ss aa");
+            
+            Date dat =cal.getTime();
+            
+            
+            
+            String time12=sdf12.format(dat);
+            
+            
+            lbl_timeshow1.setText(time12);
+            
+            
+            
+        }
+    }
 }

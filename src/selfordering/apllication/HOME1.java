@@ -4,25 +4,34 @@
  */
 package selfordering.apllication;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import javax.swing.table.TableColumnModel;
 
 /**
  *
  * @author Hirantha perera
  */
-public class HOME1 extends javax.swing.JFrame {
+public class HOME1 extends javax.swing.JFrame implements Runnable{
 
-    /**
-     * Creates new form kitchen
-     */
+    // implement runneble to run didgital clock inside the program while proagm is running
+    int hour,second,minute;
+    
     public HOME1() {
         initComponents();
+        // these code for adjest coloum width
          TableColumnModel columnModel = tbl_showOrders1.getColumnModel();
-      columnModel.getColumn(0).setPreferredWidth(200); // First Name column
-        columnModel.getColumn(1).setPreferredWidth(10); // Last Name column
-        TableColumnModel columnMode2 = tbl_cart.getColumnModel();
-        columnMode2.getColumn(0).setPreferredWidth(180); // First Name column
-       columnMode2.getColumn(1).setPreferredWidth(10); // Last Name column
+         columnModel.getColumn(0).setPreferredWidth(200); // First Name column
+         columnModel.getColumn(1).setPreferredWidth(10); // Last Name column
+         TableColumnModel columnMode2 = tbl_cart.getColumnModel();
+         columnMode2.getColumn(0).setPreferredWidth(180); // First Name column
+         columnMode2.getColumn(1).setPreferredWidth(10); // Last Name column
+         
+         
+           // this codes for the digital clock
+        Thread t=new Thread(this);
+        t.start();
     }
 
     /**
@@ -69,11 +78,16 @@ public class HOME1 extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jComboBox2 = new javax.swing.JComboBox<>();
         jLabel6 = new javax.swing.JLabel();
+        lbl_timeshow1 = new java.awt.Label();
+        rSButtonHover7 = new rojeru_san.complementos.RSButtonHover();
+        rSButtonHover9 = new rojeru_san.complementos.RSButtonHover();
+        jLabel24 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Home UI");
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setPreferredSize(new java.awt.Dimension(1080, 1080));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel22.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
@@ -89,7 +103,7 @@ public class HOME1 extends javax.swing.JFrame {
                 jComboBox1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 350, 410, 50));
+        jPanel1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 290, 280, 50));
 
         btn_pizza.setBackground(new java.awt.Color(204, 0, 51));
         btn_pizza.setText("Beverage");
@@ -101,7 +115,7 @@ public class HOME1 extends javax.swing.JFrame {
                 btn_pizzaActionPerformed(evt);
             }
         });
-        jPanel1.add(btn_pizza, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 10, 190, 150));
+        jPanel1.add(btn_pizza, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 10, 130, 50));
 
         tbl_cart.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         tbl_cart.setModel(new javax.swing.table.DefaultTableModel(
@@ -121,7 +135,7 @@ public class HOME1 extends javax.swing.JFrame {
         tbl_cart.setShowVerticalLines(false);
         jScrollPane3.setViewportView(tbl_cart);
 
-        jPanel1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(1400, 80, 500, 630));
+        jPanel1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(1050, 70, 460, 500));
 
         billvalue.setBackground(new java.awt.Color(255, 255, 255));
         billvalue.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -129,7 +143,7 @@ public class HOME1 extends javax.swing.JFrame {
 
         lbl_netTotal.setFont(new java.awt.Font("Segoe UI", 1, 26)); // NOI18N
         lbl_netTotal.setText("0.00");
-        billvalue.add(lbl_netTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 50, 120, -1));
+        billvalue.add(lbl_netTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 40, 120, -1));
 
         btn_paynow.setBackground(new java.awt.Color(204, 0, 0));
         btn_paynow.setText("Order Now");
@@ -141,13 +155,13 @@ public class HOME1 extends javax.swing.JFrame {
                 btn_paynowActionPerformed(evt);
             }
         });
-        billvalue.add(btn_paynow, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 140, 240, 74));
+        billvalue.add(btn_paynow, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 120, 240, 74));
 
         jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 26)); // NOI18N
         jLabel12.setText("Total");
-        billvalue.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 50, -1, -1));
+        billvalue.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 40, -1, -1));
 
-        jPanel1.add(billvalue, new org.netbeans.lib.awtextra.AbsoluteConstraints(1400, 730, 500, 250));
+        jPanel1.add(billvalue, new org.netbeans.lib.awtextra.AbsoluteConstraints(1050, 580, 460, 220));
 
         jPanel2.setBackground(new java.awt.Color(235, 232, 232));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -161,7 +175,7 @@ public class HOME1 extends javax.swing.JFrame {
                 rSButtonHover2ActionPerformed(evt);
             }
         });
-        jPanel2.add(rSButtonHover2, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 90, 160, 50));
+        jPanel2.add(rSButtonHover2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 90, 120, 50));
 
         rSButtonHover3.setBackground(new java.awt.Color(0, 153, 0));
         rSButtonHover3.setText("Max - Min");
@@ -172,7 +186,7 @@ public class HOME1 extends javax.swing.JFrame {
                 rSButtonHover3ActionPerformed(evt);
             }
         });
-        jPanel2.add(rSButtonHover3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 90, 160, 50));
+        jPanel2.add(rSButtonHover3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 120, 50));
 
         rSButtonHover4.setBackground(new java.awt.Color(0, 153, 0));
         rSButtonHover4.setText("Popular");
@@ -183,7 +197,7 @@ public class HOME1 extends javax.swing.JFrame {
                 rSButtonHover4ActionPerformed(evt);
             }
         });
-        jPanel2.add(rSButtonHover4, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 30, 160, 50));
+        jPanel2.add(rSButtonHover4, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 30, 120, 50));
 
         rSButtonHover6.setBackground(new java.awt.Color(0, 153, 0));
         rSButtonHover6.setText("A - Z");
@@ -194,13 +208,13 @@ public class HOME1 extends javax.swing.JFrame {
                 rSButtonHover6ActionPerformed(evt);
             }
         });
-        jPanel2.add(rSButtonHover6, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 30, 160, 50));
+        jPanel2.add(rSButtonHover6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 120, 50));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel3.setText("Filter By");
-        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 0, -1, -1));
+        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 0, -1, -1));
 
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 440, 510, 150));
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 360, 330, 150));
 
         jPanel3.setBackground(new java.awt.Color(241, 237, 237));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -209,13 +223,13 @@ public class HOME1 extends javax.swing.JFrame {
         jTextArea1.setRows(5);
         jScrollPane1.setViewportView(jTextArea1);
 
-        jPanel3.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 500, 340));
+        jPanel3.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 400, 240));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel1.setText("Display");
-        jPanel3.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 0, -1, -1));
+        jPanel3.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 0, -1, -1));
 
-        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 610, 520, 380));
+        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 520, 420, 280));
 
         txt_cusTel.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         txt_cusTel.setText("+94");
@@ -224,7 +238,7 @@ public class HOME1 extends javax.swing.JFrame {
                 txt_cusTelActionPerformed(evt);
             }
         });
-        jPanel1.add(txt_cusTel, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 180, 430, 50));
+        jPanel1.add(txt_cusTel, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 130, 320, 50));
 
         tbl_showOrders1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         tbl_showOrders1.setModel(new javax.swing.table.DefaultTableModel(
@@ -244,7 +258,7 @@ public class HOME1 extends javax.swing.JFrame {
         tbl_showOrders1.setShowVerticalLines(false);
         jScrollPane4.setViewportView(tbl_showOrders1);
 
-        jPanel1.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 180, 800, 810));
+        jPanel1.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 580, 740));
 
         lbl_timeshow.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         lbl_timeshow.setForeground(new java.awt.Color(204, 0, 0));
@@ -274,7 +288,7 @@ public class HOME1 extends javax.swing.JFrame {
                 btn_pizza1ActionPerformed(evt);
             }
         });
-        jPanel1.add(btn_pizza1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 190, 150));
+        jPanel1.add(btn_pizza1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 140, 50));
 
         btn_pizza2.setBackground(new java.awt.Color(204, 0, 51));
         btn_pizza2.setText("Appetizer");
@@ -286,7 +300,7 @@ public class HOME1 extends javax.swing.JFrame {
                 btn_pizza2ActionPerformed(evt);
             }
         });
-        jPanel1.add(btn_pizza2, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 10, 190, 150));
+        jPanel1.add(btn_pizza2, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 10, 140, 50));
 
         btn_pizza3.setBackground(new java.awt.Color(204, 0, 51));
         btn_pizza3.setText("Dessert");
@@ -298,32 +312,55 @@ public class HOME1 extends javax.swing.JFrame {
                 btn_pizza3ActionPerformed(evt);
             }
         });
-        jPanel1.add(btn_pizza3, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 10, 190, 150));
+        jPanel1.add(btn_pizza3, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 10, 140, 50));
 
         jLabel23.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
         jLabel23.setForeground(new java.awt.Color(204, 204, 204));
         jLabel23.setText("copyright ©PDSA | Develop By Hirantha And Liviru");
         jPanel1.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 1060, -1, -1));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/selfordering/apllication/output-onlinepngtools (2).png"))); // NOI18N
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 0, 320, 140));
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/selfordering/apllication/output-onlinepngtools.png"))); // NOI18N
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 0, 210, 100));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel4.setText("Location");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 330, -1, -1));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 270, -1, -1));
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel5.setText("Customer Telephone");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 160, -1, -1));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 110, -1, -1));
 
         jComboBox2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jComboBox2.setForeground(new java.awt.Color(204, 0, 0));
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Dine In", "Take Away", "Delivery", " " }));
-        jPanel1.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 260, 410, 50));
+        jPanel1.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 210, 280, 50));
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel6.setText("Order Type");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 240, -1, -1));
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 190, -1, -1));
+
+        lbl_timeshow1.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        lbl_timeshow1.setForeground(new java.awt.Color(204, 0, 0));
+        lbl_timeshow1.setText("11.07.00AM");
+        jPanel1.add(lbl_timeshow1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1320, 10, -1, 40));
+
+        rSButtonHover7.setBackground(new java.awt.Color(255, 255, 255));
+        rSButtonHover7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/selfordering/apllication/chef (2).png"))); // NOI18N
+        rSButtonHover7.setColorHover(new java.awt.Color(255, 255, 255));
+        rSButtonHover7.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/selfordering/apllication/chef (3).png"))); // NOI18N
+        rSButtonHover7.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/selfordering/apllication/chef (3).png"))); // NOI18N
+        jPanel1.add(rSButtonHover7, new org.netbeans.lib.awtextra.AbsoluteConstraints(1420, 10, 60, -1));
+
+        rSButtonHover9.setBackground(new java.awt.Color(255, 255, 255));
+        rSButtonHover9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/selfordering/apllication/setting (2).png"))); // NOI18N
+        rSButtonHover9.setColorHover(new java.awt.Color(255, 255, 255));
+        rSButtonHover9.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/selfordering/apllication/setting (3).png"))); // NOI18N
+        jPanel1.add(rSButtonHover9, new org.netbeans.lib.awtextra.AbsoluteConstraints(1470, 10, 60, -1));
+
+        jLabel24.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
+        jLabel24.setForeground(new java.awt.Color(156, 150, 150));
+        jLabel24.setText("copyright ©PDSA | Develop By Hirantha And Liviru");
+        jPanel1.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 800, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -331,13 +368,13 @@ public class HOME1 extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1920, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1540, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 12, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 820, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -438,6 +475,7 @@ public class HOME1 extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -451,14 +489,42 @@ public class HOME1 extends javax.swing.JFrame {
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JLabel lbl_netTotal;
     private java.awt.Label lbl_timeshow;
+    private java.awt.Label lbl_timeshow1;
     private rojeru_san.complementos.RSButtonHover rSButtonHover1;
     private rojeru_san.complementos.RSButtonHover rSButtonHover2;
     private rojeru_san.complementos.RSButtonHover rSButtonHover3;
     private rojeru_san.complementos.RSButtonHover rSButtonHover4;
     private rojeru_san.complementos.RSButtonHover rSButtonHover5;
     private rojeru_san.complementos.RSButtonHover rSButtonHover6;
+    private rojeru_san.complementos.RSButtonHover rSButtonHover7;
+    private rojeru_san.complementos.RSButtonHover rSButtonHover9;
     private javax.swing.JTable tbl_cart;
     private javax.swing.JTable tbl_showOrders1;
     private javax.swing.JTextField txt_cusTel;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void run() {
+         while (true)
+        {
+            Calendar cal=Calendar.getInstance();
+            hour=cal.get(Calendar.HOUR_OF_DAY);
+            minute=cal.get(Calendar.MINUTE);
+            second=cal.get(Calendar.SECOND);
+            
+            SimpleDateFormat sdf12 =new SimpleDateFormat("hh:mm:ss aa");
+            
+            Date dat =cal.getTime();
+            
+            
+            
+            String time12=sdf12.format(dat);
+            
+            
+            lbl_timeshow1.setText(time12);
+            
+            
+            
+        }
+    }
 }

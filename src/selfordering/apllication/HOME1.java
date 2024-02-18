@@ -7,8 +7,9 @@ package selfordering.apllication;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
-
+import menu_item_classes.*;
 /**
  *
  * @author Hirantha perera
@@ -17,7 +18,9 @@ public class HOME1 extends javax.swing.JFrame implements Runnable{
 
     // implement runneble to run didgital clock inside the program while proagm is running
     int hour,second,minute;
-    
+    MenuItemLinkedList original_menu_list = new MenuItemLinkedList();
+    MenuItemLinkedList menu_list = new MenuItemLinkedList();
+
     public HOME1() 
     {
         initComponents();
@@ -28,7 +31,9 @@ public class HOME1 extends javax.swing.JFrame implements Runnable{
         TableColumnModel columnMode2 = tbl_show_cart.getColumnModel();
         columnMode2.getColumn(0).setPreferredWidth(180); // First Name column
         columnMode2.getColumn(1).setPreferredWidth(10); // Last Name column
-          
+         
+        //INSERT MENU ITEM DETAILS
+        insertMenuDetails();
         // this codes for the digital clock
         Thread t=new Thread(this);
         t.start();
@@ -383,6 +388,7 @@ public class HOME1 extends javax.swing.JFrame implements Runnable{
 
     private void btn_beverageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_beverageActionPerformed
         // TODO add your handling code here:
+        addBeverageToTableOriginal();
     }//GEN-LAST:event_btn_beverageActionPerformed
 
     private void btn_paynowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_paynowActionPerformed
@@ -411,14 +417,17 @@ public class HOME1 extends javax.swing.JFrame implements Runnable{
 
     private void btn_pizzaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_pizzaActionPerformed
         // TODO add your handling code here:
+        addPizzaToTableOriginal();
     }//GEN-LAST:event_btn_pizzaActionPerformed
 
     private void btn_appetizerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_appetizerActionPerformed
         // TODO add your handling code here:
+        addAppetizerToTableOriginal();
     }//GEN-LAST:event_btn_appetizerActionPerformed
 
     private void btn_dessertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_dessertActionPerformed
         // TODO add your handling code here:
+        addDessertToTableOriginal();
     }//GEN-LAST:event_btn_dessertActionPerformed
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
@@ -516,6 +525,135 @@ public class HOME1 extends javax.swing.JFrame implements Runnable{
             Date dat =cal.getTime();
             String time12=sdf12.format(dat);
             lbl_timeshow1.setText(time12);
+        }
+    }
+    
+    //insert Pizza details
+    public void insertMenuDetails()
+    {
+        //insert 10 pizza details
+        menu_list.insertProducts("Chicken Pizza","Pizza", 1200.00, 32, 500);
+        menu_list.insertProducts("Beef Pepperoni Pizza", "Pizza", 1100.00, 35,200);
+        menu_list.insertProducts("Butter Chicken Pizza", "Pizza", 1600.00, 25, 50);
+        menu_list.insertProducts("Paneer Pizza", "Pizza", 990.00, 20, 450);
+        menu_list.insertProducts("Sausage Delight Pizza", "Pizza", 1350.00, 20, 350);
+        menu_list.insertProducts("Italian Pizza", "Pizza", 1450.00, 33, 650);
+        menu_list.insertProducts("Pork Pizza", "Pizza", 2200.00, 36, 100);
+        menu_list.insertProducts("Italian Veggie Pizza", "Pizza", 1000.00, 15, 1500);
+        menu_list.insertProducts("American Spicy Pizza", "Pizza", 1150.00, 16, 400);
+        menu_list.insertProducts("Dominoes Pizza", "Pizza", 1800.00, 21, 300);
+        
+        //insert 5 Appetizers
+        menu_list.insertProducts("French Fries", "Appetizer", 300.00, 1000, 35);
+        menu_list.insertProducts("Garlic Bread", "Appetizer", 350.00, 2000, 32);
+        menu_list.insertProducts("Chicken Nuggets", "Appetizer", 200.00, 1100, 20);
+        menu_list.insertProducts("Chicken Wings", "Appetizer", 150.00, 900, 18);
+        menu_list.insertProducts("Cheese and Chicken balls", "Appetizer", 220.00, 960, 17);
+        
+        //insert 10 beverages details
+        menu_list.insertProducts("Mineral Water", "Beverage", 300.00, 5400, 32);
+        menu_list.insertProducts("Coca Cola", "Beverage", 1100.00, 5000, 23);
+        menu_list.insertProducts("Cappuccino", "Beverage", 1200.00, 4500, 25);
+        menu_list.insertProducts("Iced Coffee", "Beverage", 900.00, 3050, 31);
+        menu_list.insertProducts("Strawberry Milkshake", "Beverage", 1350.00, 1350, 23);
+        
+        //insert 10 dessert details
+        menu_list.insertProducts("Raspberry Cheesecake", "Dessert", 700.00, 2000, 23);
+        menu_list.insertProducts("Lava Cake", "Dessert", 750.00, 2200, 33);
+        menu_list.insertProducts("English Custard", "Dessert", 900.00, 1150, 32);
+        menu_list.insertProducts("Chocolate Brownies", "Dessert", 850.00, 930, 21);
+        menu_list.insertProducts("Fruit Torte", "Dessert", 1020.00, 965, 22);
+        
+        // Store the original pizza list
+        original_menu_list.head = copyMenuItemLinkedList(menu_list.head);
+    }
+    public MenuItemNode copyMenuItemLinkedList(MenuItemNode head) 
+    {
+        MenuItemNode newHead = null;
+        MenuItemNode tail = null;
+        MenuItemNode current = head;
+        
+        while (current != null) 
+        {
+            MenuItemNode newNode = new MenuItemNode(current.getName(), current.getCategory(), current.getPrice(), current.getPopularity(), current.getPreparationTime());
+            if (newHead == null) 
+            {
+                newHead = newNode;
+                tail = newNode;
+            } 
+            else 
+            {
+                tail.next = newNode;
+                newNode.previous = tail;
+                tail = newNode;
+            }
+            current = current.next;
+        }
+        return newHead;
+    }
+    
+    //method to display the Pizza products when Pizza button is pressed
+    public void addPizzaToTableOriginal()
+    {
+        MenuItemNode current_product = original_menu_list.head;
+        DefaultTableModel tbl_items = (DefaultTableModel) tbl_show_menu_items.getModel();
+        tbl_items.setRowCount(0);
+        
+        while(current_product != null)
+        {
+            if(current_product.getCategory().equals("Pizza"))
+            {
+                tbl_items.addRow(new Object[]{current_product.getName(), current_product.getPrice()});
+            }
+            current_product = current_product.next;
+        }
+    }
+    //method to display the Appetizer products when appetizer button is pressed
+    public void addAppetizerToTableOriginal()
+    {
+        MenuItemNode current_product = original_menu_list.head;
+        DefaultTableModel tbl_items = (DefaultTableModel) tbl_show_menu_items.getModel();
+        tbl_items.setRowCount(0);
+        
+        while(current_product != null)
+        {
+            if(current_product.getCategory().equals("Appetizer"))
+            {
+                tbl_items.addRow(new Object[]{current_product.getName(), current_product.getPrice()});
+            }
+            current_product = current_product.next;
+        }
+    }
+    //method to display the Beverage products when beverage button is pressed
+    public void addBeverageToTableOriginal()
+    {
+        MenuItemNode current_product = original_menu_list.head;
+        DefaultTableModel tbl_items = (DefaultTableModel) tbl_show_menu_items.getModel();
+        tbl_items.setRowCount(0);
+        
+        while(current_product != null)
+        {
+            if(current_product.getCategory().equals("Beverage"))
+            {
+                tbl_items.addRow(new Object[]{current_product.getName(), current_product.getPrice()});
+            }
+            current_product = current_product.next;
+        }
+    }
+    //method to display the Dessert products when Dessert button is pressed
+    public void addDessertToTableOriginal()
+    {
+        MenuItemNode current_product = original_menu_list.head;
+        DefaultTableModel tbl_items = (DefaultTableModel) tbl_show_menu_items.getModel();
+        tbl_items.setRowCount(0);
+        
+        while(current_product != null)
+        {
+            if(current_product.getCategory().equals("Dessert"))
+            {
+                tbl_items.addRow(new Object[]{current_product.getName(), current_product.getPrice()});
+            }
+            current_product = current_product.next;
         }
     }
 }

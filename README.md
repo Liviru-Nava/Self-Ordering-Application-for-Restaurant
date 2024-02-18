@@ -2,7 +2,7 @@
 ### | Contributers: [Liviru-Nava](https://github.com/Liviru-Nava) & [MR.NHIP](https://github.com/8hirantha)
 
 # Table of Contents 📂
-- [Overview](https://github.com/Liviru-Nava/Self-Ordering-Application-for-Restaurant/blob/main/README.md#overview-of-the-project-)
+- [Overview](https://github.com/Liviru-Nava/Self-Ordering-Application-for-Restaurant?tab=readme-ov-file#overview-of-the-project-)
 - [Features of the project](https://github.com/Liviru-Nava/Self-Ordering-Application-for-Restaurant?tab=readme-ov-file#features-of-the-project-)
 - [Implementation](https://github.com/Liviru-Nava/Self-Ordering-Application-for-Restaurant?tab=readme-ov-file#implementation-details-)
 

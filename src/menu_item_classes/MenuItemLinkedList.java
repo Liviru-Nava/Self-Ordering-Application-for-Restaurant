@@ -34,6 +34,7 @@ public class MenuItemLinkedList
             tail = new_menu_list;
         }
     }
+    
     //perform merge sort from min to max
     public void mergeSortMinMax()
     {

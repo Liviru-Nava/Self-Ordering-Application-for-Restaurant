@@ -18,6 +18,10 @@ public class HOME1 extends javax.swing.JFrame implements Runnable{
 
     // implement runneble to run didgital clock inside the program while proagm is running
     int hour,second,minute;
+    boolean pizza_button_state=false;
+    boolean appetizer_button_state=false;
+    boolean beverage_button_state=false;
+    boolean dessert_button_state=false;
     MenuItemLinkedList original_menu_list = new MenuItemLinkedList();
     MenuItemLinkedList menu_list = new MenuItemLinkedList();
 
@@ -59,10 +63,10 @@ public class HOME1 extends javax.swing.JFrame implements Runnable{
         btn_paynow = new rojeru_san.complementos.RSButtonHover();
         jLabel12 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        rSButtonHover2 = new rojeru_san.complementos.RSButtonHover();
-        rSButtonHover3 = new rojeru_san.complementos.RSButtonHover();
-        rSButtonHover4 = new rojeru_san.complementos.RSButtonHover();
-        rSButtonHover6 = new rojeru_san.complementos.RSButtonHover();
+        btn_min_max_sort = new rojeru_san.complementos.RSButtonHover();
+        btn_max_min_sort = new rojeru_san.complementos.RSButtonHover();
+        btn_popularity_sort = new rojeru_san.complementos.RSButtonHover();
+        btn_alphabetical_sort = new rojeru_san.complementos.RSButtonHover();
         jLabel3 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -171,49 +175,49 @@ public class HOME1 extends javax.swing.JFrame implements Runnable{
         jPanel2.setBackground(new java.awt.Color(235, 232, 232));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        rSButtonHover2.setBackground(new java.awt.Color(0, 153, 0));
-        rSButtonHover2.setText("Min - Max");
-        rSButtonHover2.setColorHover(new java.awt.Color(204, 0, 0));
-        rSButtonHover2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        rSButtonHover2.addActionListener(new java.awt.event.ActionListener() {
+        btn_min_max_sort.setBackground(new java.awt.Color(0, 153, 0));
+        btn_min_max_sort.setText("Min - Max");
+        btn_min_max_sort.setColorHover(new java.awt.Color(204, 0, 0));
+        btn_min_max_sort.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btn_min_max_sort.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rSButtonHover2ActionPerformed(evt);
+                btn_min_max_sortActionPerformed(evt);
             }
         });
-        jPanel2.add(rSButtonHover2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 90, 120, 50));
+        jPanel2.add(btn_min_max_sort, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 90, 120, 50));
 
-        rSButtonHover3.setBackground(new java.awt.Color(0, 153, 0));
-        rSButtonHover3.setText("Max - Min");
-        rSButtonHover3.setColorHover(new java.awt.Color(204, 0, 51));
-        rSButtonHover3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        rSButtonHover3.addActionListener(new java.awt.event.ActionListener() {
+        btn_max_min_sort.setBackground(new java.awt.Color(0, 153, 0));
+        btn_max_min_sort.setText("Max - Min");
+        btn_max_min_sort.setColorHover(new java.awt.Color(204, 0, 51));
+        btn_max_min_sort.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btn_max_min_sort.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rSButtonHover3ActionPerformed(evt);
+                btn_max_min_sortActionPerformed(evt);
             }
         });
-        jPanel2.add(rSButtonHover3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 120, 50));
+        jPanel2.add(btn_max_min_sort, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 120, 50));
 
-        rSButtonHover4.setBackground(new java.awt.Color(0, 153, 0));
-        rSButtonHover4.setText("Popular");
-        rSButtonHover4.setColorHover(new java.awt.Color(204, 0, 0));
-        rSButtonHover4.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        rSButtonHover4.addActionListener(new java.awt.event.ActionListener() {
+        btn_popularity_sort.setBackground(new java.awt.Color(0, 153, 0));
+        btn_popularity_sort.setText("Popular");
+        btn_popularity_sort.setColorHover(new java.awt.Color(204, 0, 0));
+        btn_popularity_sort.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btn_popularity_sort.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rSButtonHover4ActionPerformed(evt);
+                btn_popularity_sortActionPerformed(evt);
             }
         });
-        jPanel2.add(rSButtonHover4, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 30, 120, 50));
+        jPanel2.add(btn_popularity_sort, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 30, 120, 50));
 
-        rSButtonHover6.setBackground(new java.awt.Color(0, 153, 0));
-        rSButtonHover6.setText("A - Z");
-        rSButtonHover6.setColorHover(new java.awt.Color(204, 0, 51));
-        rSButtonHover6.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        rSButtonHover6.addActionListener(new java.awt.event.ActionListener() {
+        btn_alphabetical_sort.setBackground(new java.awt.Color(0, 153, 0));
+        btn_alphabetical_sort.setText("A - Z");
+        btn_alphabetical_sort.setColorHover(new java.awt.Color(204, 0, 51));
+        btn_alphabetical_sort.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btn_alphabetical_sort.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rSButtonHover6ActionPerformed(evt);
+                btn_alphabetical_sortActionPerformed(evt);
             }
         });
-        jPanel2.add(rSButtonHover6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 120, 50));
+        jPanel2.add(btn_alphabetical_sort, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 120, 50));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel3.setText("Filter By");
@@ -389,27 +393,115 @@ public class HOME1 extends javax.swing.JFrame implements Runnable{
     private void btn_beverageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_beverageActionPerformed
         // TODO add your handling code here:
         addBeverageToTableOriginal();
+        pizza_button_state = false;
+        appetizer_button_state = false;
+        beverage_button_state = true;
+        dessert_button_state = false;
     }//GEN-LAST:event_btn_beverageActionPerformed
 
     private void btn_paynowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_paynowActionPerformed
 
     }//GEN-LAST:event_btn_paynowActionPerformed
 
-    private void rSButtonHover2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rSButtonHover2ActionPerformed
+    private void btn_min_max_sortActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_min_max_sortActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_rSButtonHover2ActionPerformed
+        if(pizza_button_state == true)  //if pizza button is clicked, sort the pizza details
+        {
+            // Reset the pizza list to its original state
+            menu_list.head = copyMenuItemLinkedList(original_menu_list.head);
+            menu_list.mergeSortMinMax();
+            addPizzaToTable();
+        }
+        else if(appetizer_button_state == true) //if appetizer button is clicked, sort the appetizer details
+        {
+            // Reset the pizza list to its original state
+            menu_list.head = copyMenuItemLinkedList(original_menu_list.head);
+            menu_list.mergeSortMinMax();
+            addAppetizerToTable();
+        }
+        else if(beverage_button_state == true)  //if the beverage button is clicked, sort the beverage details
+        {
+            // Reset the pizza list to its original state
+            menu_list.head = copyMenuItemLinkedList(original_menu_list.head);
+            menu_list.mergeSortMinMax();
+            addBeverageToTable();
+        }
+        else if(dessert_button_state == true)   //if the dessert button is clicked, sort the dessert details
+        {
+            // Reset the pizza list to its original state
+            menu_list.head = copyMenuItemLinkedList(original_menu_list.head);
+            menu_list.mergeSortMinMax();
+            addDessertToTable();
+        }
+    }//GEN-LAST:event_btn_min_max_sortActionPerformed
 
-    private void rSButtonHover3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rSButtonHover3ActionPerformed
+    private void btn_max_min_sortActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_max_min_sortActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_rSButtonHover3ActionPerformed
+        if(pizza_button_state == true)  //if pizza button is clicked, sort the pizza details
+        {
+            // Reset the pizza list to its original state
+            menu_list.head = copyMenuItemLinkedList(original_menu_list.head);
+            menu_list.mergeSortMaxMin();
+            addPizzaToTable();
+        }
+        else if(appetizer_button_state == true) //if appetizer button is clicked, sort the appetizer details
+        {
+            // Reset the pizza list to its original state
+            menu_list.head = copyMenuItemLinkedList(original_menu_list.head);
+            menu_list.mergeSortMaxMin();
+            addAppetizerToTable();
+        }
+        else if(beverage_button_state == true)  //if the beverage button is clicked, sort the beverage details
+        {
+            // Reset the pizza list to its original state
+            menu_list.head = copyMenuItemLinkedList(original_menu_list.head);
+            menu_list.mergeSortMaxMin();
+            addBeverageToTable();
+        }
+        else if(dessert_button_state == true)   //if the dessert button is clicked, sort the dessert details
+        {
+            // Reset the pizza list to its original state
+            menu_list.head = copyMenuItemLinkedList(original_menu_list.head);
+            menu_list.mergeSortMaxMin();
+            addDessertToTable();
+        }
+    }//GEN-LAST:event_btn_max_min_sortActionPerformed
 
-    private void rSButtonHover4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rSButtonHover4ActionPerformed
+    private void btn_popularity_sortActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_popularity_sortActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_rSButtonHover4ActionPerformed
+    }//GEN-LAST:event_btn_popularity_sortActionPerformed
 
-    private void rSButtonHover6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rSButtonHover6ActionPerformed
+    private void btn_alphabetical_sortActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_alphabetical_sortActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_rSButtonHover6ActionPerformed
+        if(pizza_button_state == true)  //if pizza button is clicked, sort the pizza details
+        {
+            // Reset the pizza list to its original state
+            menu_list.head = copyMenuItemLinkedList(original_menu_list.head);
+            menu_list.mergeSortAlphabetical();
+            addPizzaToTable();
+        }
+        else if(appetizer_button_state == true) //if appetizer button is clicked, sort the appetizer details
+        {
+            // Reset the pizza list to its original state
+            menu_list.head = copyMenuItemLinkedList(original_menu_list.head);
+            menu_list.mergeSortAlphabetical();
+            addAppetizerToTable();
+        }
+        else if(beverage_button_state == true)  //if the beverage button is clicked, sort the beverage details
+        {
+            // Reset the pizza list to its original state
+            menu_list.head = copyMenuItemLinkedList(original_menu_list.head);
+            menu_list.mergeSortAlphabetical();
+            addBeverageToTable();
+        }
+        else if(dessert_button_state == true)   //if the dessert button is clicked, sort the dessert details
+        {
+            // Reset the pizza list to its original state
+            menu_list.head = copyMenuItemLinkedList(original_menu_list.head);
+            menu_list.mergeSortAlphabetical();
+            addDessertToTable();
+        }
+    }//GEN-LAST:event_btn_alphabetical_sortActionPerformed
 
     private void txt_cusTelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_cusTelActionPerformed
         // TODO add your handling code here:
@@ -418,16 +510,28 @@ public class HOME1 extends javax.swing.JFrame implements Runnable{
     private void btn_pizzaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_pizzaActionPerformed
         // TODO add your handling code here:
         addPizzaToTableOriginal();
+        pizza_button_state = true;
+        appetizer_button_state = false;
+        beverage_button_state = false;
+        dessert_button_state = false;
     }//GEN-LAST:event_btn_pizzaActionPerformed
 
     private void btn_appetizerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_appetizerActionPerformed
         // TODO add your handling code here:
         addAppetizerToTableOriginal();
+        pizza_button_state = false;
+        appetizer_button_state = true;
+        beverage_button_state = false;
+        dessert_button_state = false;
     }//GEN-LAST:event_btn_appetizerActionPerformed
 
     private void btn_dessertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_dessertActionPerformed
         // TODO add your handling code here:
         addDessertToTableOriginal();
+        pizza_button_state = false;
+        appetizer_button_state = false;
+        beverage_button_state = false;
+        dessert_button_state = true;
     }//GEN-LAST:event_btn_dessertActionPerformed
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
@@ -472,11 +576,15 @@ public class HOME1 extends javax.swing.JFrame implements Runnable{
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel billvalue;
+    private rojeru_san.complementos.RSButtonHover btn_alphabetical_sort;
     private rojeru_san.complementos.RSButtonHover btn_appetizer;
     private rojeru_san.complementos.RSButtonHover btn_beverage;
     private rojeru_san.complementos.RSButtonHover btn_dessert;
+    private rojeru_san.complementos.RSButtonHover btn_max_min_sort;
+    private rojeru_san.complementos.RSButtonHover btn_min_max_sort;
     private rojeru_san.complementos.RSButtonHover btn_paynow;
     private rojeru_san.complementos.RSButtonHover btn_pizza;
+    private rojeru_san.complementos.RSButtonHover btn_popularity_sort;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
@@ -500,11 +608,7 @@ public class HOME1 extends javax.swing.JFrame implements Runnable{
     private java.awt.Label lbl_timeshow;
     private java.awt.Label lbl_timeshow1;
     private rojeru_san.complementos.RSButtonHover rSButtonHover1;
-    private rojeru_san.complementos.RSButtonHover rSButtonHover2;
-    private rojeru_san.complementos.RSButtonHover rSButtonHover3;
-    private rojeru_san.complementos.RSButtonHover rSButtonHover4;
     private rojeru_san.complementos.RSButtonHover rSButtonHover5;
-    private rojeru_san.complementos.RSButtonHover rSButtonHover6;
     private rojeru_san.complementos.RSButtonHover rSButtonHover7;
     private rojeru_san.complementos.RSButtonHover rSButtonHover9;
     private javax.swing.JTable tbl_show_cart;
@@ -646,6 +750,66 @@ public class HOME1 extends javax.swing.JFrame implements Runnable{
         MenuItemNode current_product = original_menu_list.head;
         DefaultTableModel tbl_items = (DefaultTableModel) tbl_show_menu_items.getModel();
         tbl_items.setRowCount(0);
+        
+        while(current_product != null)
+        {
+            if(current_product.getCategory().equals("Dessert"))
+            {
+                tbl_items.addRow(new Object[]{current_product.getName(), current_product.getPrice()});
+            }
+            current_product = current_product.next;
+        }
+    }
+    public void addPizzaToTable()
+    {
+        DefaultTableModel tbl_items = (DefaultTableModel) tbl_show_menu_items.getModel();
+        tbl_items.setRowCount(0);
+        MenuItemNode current_product = menu_list.head;
+        
+        while(current_product != null)
+        {
+            if(current_product.getCategory().equals("Pizza"))
+            {
+                tbl_items.addRow(new Object[]{current_product.getName(), current_product.getPrice()});
+            }
+            current_product = current_product.next;
+        }
+    }
+    public void addAppetizerToTable()
+    {
+        DefaultTableModel tbl_items = (DefaultTableModel) tbl_show_menu_items.getModel();
+        tbl_items.setRowCount(0);
+        MenuItemNode current_product = menu_list.head;
+        
+        while(current_product != null)
+        {
+            if(current_product.getCategory().equals("Appetizer"))
+            {
+                tbl_items.addRow(new Object[]{current_product.getName(), current_product.getPrice()});
+            }
+            current_product = current_product.next;
+        }
+    }
+    public void addBeverageToTable()
+    {
+        DefaultTableModel tbl_items = (DefaultTableModel) tbl_show_menu_items.getModel();
+        tbl_items.setRowCount(0);
+        MenuItemNode current_product = menu_list.head;
+        
+        while(current_product != null)
+        {
+            if(current_product.getCategory().equals("Beverage"))
+            {
+                tbl_items.addRow(new Object[]{current_product.getName(), current_product.getPrice()});
+            }
+            current_product = current_product.next;
+        }
+    }
+    public void addDessertToTable()
+    {
+        DefaultTableModel tbl_items = (DefaultTableModel) tbl_show_menu_items.getModel();
+        tbl_items.setRowCount(0);
+        MenuItemNode current_product = menu_list.head;
         
         while(current_product != null)
         {

@@ -10,7 +10,7 @@ import java.util.Date;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 import menu_item_classes.*;
-import heap_class.MaximumPreparationTimeHeap;
+import heap_classes.MaximumPreparationTimeHeap;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
@@ -72,13 +72,13 @@ public class HOME1 extends javax.swing.JFrame implements Runnable{
 
         jPanel1 = new javax.swing.JPanel();
         jLabel22 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        cmb_location = new javax.swing.JComboBox<>();
         btn_beverage = new rojeru_san.complementos.RSButtonHover();
         jScrollPane3 = new javax.swing.JScrollPane();
         tbl_show_cart = new javax.swing.JTable();
         billvalue = new javax.swing.JPanel();
         lbl_total = new javax.swing.JLabel();
-        btn_paynow = new rojeru_san.complementos.RSButtonHover();
+        btn_order_now = new rojeru_san.complementos.RSButtonHover();
         jLabel12 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         btn_min_max_sort = new rojeru_san.complementos.RSButtonHover();
@@ -90,7 +90,7 @@ public class HOME1 extends javax.swing.JFrame implements Runnable{
         jScrollPane1 = new javax.swing.JScrollPane();
         textarea_display = new javax.swing.JTextArea();
         jLabel1 = new javax.swing.JLabel();
-        txt_cusTel = new javax.swing.JTextField();
+        txt_customer_telephone = new javax.swing.JTextField();
         jScrollPane4 = new javax.swing.JScrollPane();
         tbl_show_menu_items = new javax.swing.JTable();
         lbl_timeshow = new java.awt.Label();
@@ -103,9 +103,9 @@ public class HOME1 extends javax.swing.JFrame implements Runnable{
         jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        cmb_order_type = new javax.swing.JComboBox<>();
         jLabel6 = new javax.swing.JLabel();
-        lbl_timeshow1 = new java.awt.Label();
+        lbl_time = new java.awt.Label();
         rSButtonHover7 = new rojeru_san.complementos.RSButtonHover();
         rSButtonHover9 = new rojeru_san.complementos.RSButtonHover();
         jLabel24 = new javax.swing.JLabel();
@@ -122,15 +122,15 @@ public class HOME1 extends javax.swing.JFrame implements Runnable{
         jLabel22.setText("copyright ©PDSA | Develop By Hirantha And Liviru");
         jPanel1.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 990, -1, -1));
 
-        jComboBox1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jComboBox1.setForeground(new java.awt.Color(204, 0, 0));
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nugegoda", "Wellampitiya" }));
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+        cmb_location.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        cmb_location.setForeground(new java.awt.Color(204, 0, 0));
+        cmb_location.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nugegoda", "Wellampitiya" }));
+        cmb_location.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
+                cmb_locationActionPerformed(evt);
             }
         });
-        jPanel1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 290, 280, 50));
+        jPanel1.add(cmb_location, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 290, 280, 50));
 
         btn_beverage.setBackground(new java.awt.Color(204, 0, 51));
         btn_beverage.setText("Beverage");
@@ -172,17 +172,17 @@ public class HOME1 extends javax.swing.JFrame implements Runnable{
         lbl_total.setText("0.00");
         billvalue.add(lbl_total, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 40, 120, -1));
 
-        btn_paynow.setBackground(new java.awt.Color(204, 0, 0));
-        btn_paynow.setText("Order Now");
-        btn_paynow.setColorHover(new java.awt.Color(0, 153, 0));
-        btn_paynow.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        btn_paynow.setIconTextGap(18);
-        btn_paynow.addActionListener(new java.awt.event.ActionListener() {
+        btn_order_now.setBackground(new java.awt.Color(204, 0, 0));
+        btn_order_now.setText("Order Now");
+        btn_order_now.setColorHover(new java.awt.Color(0, 153, 0));
+        btn_order_now.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btn_order_now.setIconTextGap(18);
+        btn_order_now.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_paynowActionPerformed(evt);
+                btn_order_nowActionPerformed(evt);
             }
         });
-        billvalue.add(btn_paynow, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 120, 240, 74));
+        billvalue.add(btn_order_now, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 120, 240, 74));
 
         jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 26)); // NOI18N
         jLabel12.setText("Total");
@@ -258,14 +258,14 @@ public class HOME1 extends javax.swing.JFrame implements Runnable{
 
         jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 520, 420, 280));
 
-        txt_cusTel.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        txt_cusTel.setText("+94");
-        txt_cusTel.addActionListener(new java.awt.event.ActionListener() {
+        txt_customer_telephone.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        txt_customer_telephone.setText("+94");
+        txt_customer_telephone.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txt_cusTelActionPerformed(evt);
+                txt_customer_telephoneActionPerformed(evt);
             }
         });
-        jPanel1.add(txt_cusTel, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 130, 320, 50));
+        jPanel1.add(txt_customer_telephone, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 130, 320, 50));
 
         tbl_show_menu_items.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         tbl_show_menu_items.setModel(new javax.swing.table.DefaultTableModel(
@@ -357,19 +357,19 @@ public class HOME1 extends javax.swing.JFrame implements Runnable{
         jLabel5.setText("Customer Telephone");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 110, -1, -1));
 
-        jComboBox2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jComboBox2.setForeground(new java.awt.Color(204, 0, 0));
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Dine In", "Take Away", "Delivery", " " }));
-        jPanel1.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 210, 280, 50));
+        cmb_order_type.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        cmb_order_type.setForeground(new java.awt.Color(204, 0, 0));
+        cmb_order_type.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Dine In", "Take Away", "Delivery", " " }));
+        jPanel1.add(cmb_order_type, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 210, 280, 50));
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel6.setText("Order Type");
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 190, -1, -1));
 
-        lbl_timeshow1.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
-        lbl_timeshow1.setForeground(new java.awt.Color(204, 0, 0));
-        lbl_timeshow1.setText("11.07.00AM");
-        jPanel1.add(lbl_timeshow1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1320, 10, -1, 40));
+        lbl_time.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        lbl_time.setForeground(new java.awt.Color(204, 0, 0));
+        lbl_time.setText("11.07.00AM");
+        jPanel1.add(lbl_time, new org.netbeans.lib.awtextra.AbsoluteConstraints(1320, 10, -1, 40));
 
         rSButtonHover7.setBackground(new java.awt.Color(255, 255, 255));
         rSButtonHover7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/selfordering/apllication/chef (2).png"))); // NOI18N
@@ -417,9 +417,9 @@ public class HOME1 extends javax.swing.JFrame implements Runnable{
         dessert_button_state = false;
     }//GEN-LAST:event_btn_beverageActionPerformed
 
-    private void btn_paynowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_paynowActionPerformed
+    private void btn_order_nowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_order_nowActionPerformed
 
-    }//GEN-LAST:event_btn_paynowActionPerformed
+    }//GEN-LAST:event_btn_order_nowActionPerformed
 
     private void btn_min_max_sortActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_min_max_sortActionPerformed
         // TODO add your handling code here:
@@ -521,9 +521,9 @@ public class HOME1 extends javax.swing.JFrame implements Runnable{
         }
     }//GEN-LAST:event_btn_alphabetical_sortActionPerformed
 
-    private void txt_cusTelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_cusTelActionPerformed
+    private void txt_customer_telephoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_customer_telephoneActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txt_cusTelActionPerformed
+    }//GEN-LAST:event_txt_customer_telephoneActionPerformed
 
     private void btn_pizzaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_pizzaActionPerformed
         // TODO add your handling code here:
@@ -552,10 +552,9 @@ public class HOME1 extends javax.swing.JFrame implements Runnable{
         dessert_button_state = true;
     }//GEN-LAST:event_btn_dessertActionPerformed
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+    private void cmb_locationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmb_locationActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1ActionPerformed
-
+    }//GEN-LAST:event_cmb_locationActionPerformed
     /**
      * @param args the command line arguments
      */
@@ -591,7 +590,6 @@ public class HOME1 extends javax.swing.JFrame implements Runnable{
             }
         });
     }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel billvalue;
     private rojeru_san.complementos.RSButtonHover btn_alphabetical_sort;
@@ -600,11 +598,11 @@ public class HOME1 extends javax.swing.JFrame implements Runnable{
     private rojeru_san.complementos.RSButtonHover btn_dessert;
     private rojeru_san.complementos.RSButtonHover btn_max_min_sort;
     private rojeru_san.complementos.RSButtonHover btn_min_max_sort;
-    private rojeru_san.complementos.RSButtonHover btn_paynow;
+    private rojeru_san.complementos.RSButtonHover btn_order_now;
     private rojeru_san.complementos.RSButtonHover btn_pizza;
     private rojeru_san.complementos.RSButtonHover btn_popularity_sort;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
+    private javax.swing.JComboBox<String> cmb_location;
+    private javax.swing.JComboBox<String> cmb_order_type;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
@@ -621,8 +619,8 @@ public class HOME1 extends javax.swing.JFrame implements Runnable{
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
+    private java.awt.Label lbl_time;
     private java.awt.Label lbl_timeshow;
-    private java.awt.Label lbl_timeshow1;
     private javax.swing.JLabel lbl_total;
     private rojeru_san.complementos.RSButtonHover rSButtonHover1;
     private rojeru_san.complementos.RSButtonHover rSButtonHover5;
@@ -631,9 +629,8 @@ public class HOME1 extends javax.swing.JFrame implements Runnable{
     private javax.swing.JTable tbl_show_cart;
     private javax.swing.JTable tbl_show_menu_items;
     private javax.swing.JTextArea textarea_display;
-    private javax.swing.JTextField txt_cusTel;
+    private javax.swing.JTextField txt_customer_telephone;
     // End of variables declaration//GEN-END:variables
-
     @Override
     public void run() 
     {
@@ -646,10 +643,9 @@ public class HOME1 extends javax.swing.JFrame implements Runnable{
             SimpleDateFormat sdf12 =new SimpleDateFormat("hh:mm:ss aa");
             Date dat =cal.getTime();
             String time12=sdf12.format(dat);
-            lbl_timeshow1.setText(time12);
+            lbl_time.setText(time12);
         }
     }
-    
     //method implementation at the bottom
     //insert Menu details
     public void insertMenuDetails()

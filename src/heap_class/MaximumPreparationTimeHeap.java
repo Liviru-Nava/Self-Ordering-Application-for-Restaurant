@@ -14,7 +14,7 @@ public class MaximumPreparationTimeHeap
     private int size;
     private int capacity;
     
-    public MaximumPreparationTimeHeap()
+    public MaximumPreparationTimeHeap(int capacity)
     {
         this.capacity = capacity;
         this.size = 0;

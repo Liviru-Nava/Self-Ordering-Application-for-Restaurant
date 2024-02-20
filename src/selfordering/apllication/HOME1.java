@@ -10,6 +10,9 @@ import java.util.Date;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 import menu_item_classes.*;
+import heap_class.MaximumPreparationTimeHeap;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 /**
  *
@@ -26,7 +29,9 @@ public class HOME1 extends javax.swing.JFrame implements Runnable{
     
     MenuItemLinkedList original_menu_list = new MenuItemLinkedList();
     MenuItemLinkedList menu_list = new MenuItemLinkedList();
+    MaximumPreparationTimeHeap max_heap = new MaximumPreparationTimeHeap(100);
 
+    DefaultTableModel tbl_cart;
     public HOME1() 
     {
         initComponents();
@@ -37,9 +42,19 @@ public class HOME1 extends javax.swing.JFrame implements Runnable{
         TableColumnModel columnMode2 = tbl_show_cart.getColumnModel();
         columnMode2.getColumn(0).setPreferredWidth(180); // First Name column
         columnMode2.getColumn(1).setPreferredWidth(10); // Last Name column
-        
+        tbl_cart = (DefaultTableModel) tbl_show_cart.getModel();
         //insert products to linkedlist
         insertMenuDetails();
+        
+        // Add selection listener to sourceTable
+        tbl_show_menu_items.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                if (!e.getValueIsAdjusting()) {
+                    updateTargetTable();
+                }
+            }
+        });
         
         // this codes for the digital clock
         Thread t=new Thread(this);
@@ -62,7 +77,7 @@ public class HOME1 extends javax.swing.JFrame implements Runnable{
         jScrollPane3 = new javax.swing.JScrollPane();
         tbl_show_cart = new javax.swing.JTable();
         billvalue = new javax.swing.JPanel();
-        lbl_netTotal = new javax.swing.JLabel();
+        lbl_total = new javax.swing.JLabel();
         btn_paynow = new rojeru_san.complementos.RSButtonHover();
         jLabel12 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
@@ -73,7 +88,7 @@ public class HOME1 extends javax.swing.JFrame implements Runnable{
         jLabel3 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        textarea_display = new javax.swing.JTextArea();
         jLabel1 = new javax.swing.JLabel();
         txt_cusTel = new javax.swing.JTextField();
         jScrollPane4 = new javax.swing.JScrollPane();
@@ -153,9 +168,9 @@ public class HOME1 extends javax.swing.JFrame implements Runnable{
         billvalue.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         billvalue.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        lbl_netTotal.setFont(new java.awt.Font("Segoe UI", 1, 26)); // NOI18N
-        lbl_netTotal.setText("0.00");
-        billvalue.add(lbl_netTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 40, 120, -1));
+        lbl_total.setFont(new java.awt.Font("Segoe UI", 1, 26)); // NOI18N
+        lbl_total.setText("0.00");
+        billvalue.add(lbl_total, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 40, 120, -1));
 
         btn_paynow.setBackground(new java.awt.Color(204, 0, 0));
         btn_paynow.setText("Order Now");
@@ -231,9 +246,9 @@ public class HOME1 extends javax.swing.JFrame implements Runnable{
         jPanel3.setBackground(new java.awt.Color(241, 237, 237));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        textarea_display.setColumns(20);
+        textarea_display.setRows(5);
+        jScrollPane1.setViewportView(textarea_display);
 
         jPanel3.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 400, 240));
 
@@ -606,16 +621,16 @@ public class HOME1 extends javax.swing.JFrame implements Runnable{
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JLabel lbl_netTotal;
     private java.awt.Label lbl_timeshow;
     private java.awt.Label lbl_timeshow1;
+    private javax.swing.JLabel lbl_total;
     private rojeru_san.complementos.RSButtonHover rSButtonHover1;
     private rojeru_san.complementos.RSButtonHover rSButtonHover5;
     private rojeru_san.complementos.RSButtonHover rSButtonHover7;
     private rojeru_san.complementos.RSButtonHover rSButtonHover9;
     private javax.swing.JTable tbl_show_cart;
     private javax.swing.JTable tbl_show_menu_items;
+    private javax.swing.JTextArea textarea_display;
     private javax.swing.JTextField txt_cusTel;
     // End of variables declaration//GEN-END:variables
 
@@ -640,16 +655,16 @@ public class HOME1 extends javax.swing.JFrame implements Runnable{
     public void insertMenuDetails()
     {
         //insert 10 pizza details
-        menu_list.insertProducts("Chicken Pizza","Pizza", 1200.00, 32, 500);
-        menu_list.insertProducts("Beef Pepperoni Pizza", "Pizza", 1100.00, 35,200);
-        menu_list.insertProducts("Butter Chicken Pizza", "Pizza", 1600.00, 25, 50);
-        menu_list.insertProducts("Paneer Pizza", "Pizza", 990.00, 20, 450);
-        menu_list.insertProducts("Sausage Delight Pizza", "Pizza", 1350.00, 20, 350);
-        menu_list.insertProducts("Italian Pizza", "Pizza", 1450.00, 33, 650);
-        menu_list.insertProducts("Pork Pizza", "Pizza", 2200.00, 36, 100);
-        menu_list.insertProducts("Italian Veggie Pizza", "Pizza", 1000.00, 15, 1500);
-        menu_list.insertProducts("American Spicy Pizza", "Pizza", 1150.00, 16, 400);
-        menu_list.insertProducts("Dominoes Pizza", "Pizza", 1800.00, 21, 300);
+        menu_list.insertProducts("Chicken Pizza","Pizza", 1200.00, 500, 32);
+        menu_list.insertProducts("Beef Pepperoni Pizza", "Pizza", 1100.00, 200,35);
+        menu_list.insertProducts("Butter Chicken Pizza", "Pizza", 1600.00, 1000, 20);
+        menu_list.insertProducts("Paneer Pizza", "Pizza", 990.00, 450, 25);
+        menu_list.insertProducts("Sausage Delight Pizza", "Pizza", 1350.00, 350, 20);
+        menu_list.insertProducts("Italian Pizza", "Pizza", 1450.00, 650, 33);
+        menu_list.insertProducts("Pork Pizza", "Pizza", 2200.00, 100, 36);
+        menu_list.insertProducts("Italian Veggie Pizza", "Pizza", 1000.00, 1500, 15);
+        menu_list.insertProducts("American Spicy Pizza", "Pizza", 1150.00, 4050, 16);
+        menu_list.insertProducts("Dominoes Pizza", "Pizza", 1800.00, 2100, 21);
         
         //insert 5 Appetizers
         menu_list.insertProducts("French Fries", "Appetizer", 300.00, 1000, 35);
@@ -821,6 +836,109 @@ public class HOME1 extends javax.swing.JFrame implements Runnable{
                 tbl_items.addRow(new Object[]{current_product.getName(), current_product.getPrice()});
             }
             current_product = current_product.next;
+        }
+    }
+    public void updateTargetTable()
+    {
+        int selectedRow = tbl_show_menu_items.getSelectedRow();
+        if (selectedRow != -1) 
+        {
+            if(pizza_button_state == true)
+            {
+                passPizzaPreparationTimeToHeap(selectedRow);
+            }
+            else if(appetizer_button_state == true)
+            {
+                passAppetizerPreparationTimeToHeap(selectedRow);
+            }
+            else if(beverage_button_state == true)
+            {
+                passBeveragePreparationTimeToHeap(selectedRow);
+            }
+            else if(dessert_button_state == true)
+            {
+                passDessertPreparationTimeToHeap(selectedRow);
+            }
+            //codes to pass the values from table 1 to table 2
+            String itemName = tbl_show_menu_items.getValueAt(selectedRow, 0).toString();
+            double price = Double.parseDouble(tbl_show_menu_items.getValueAt(selectedRow, 1).toString());
+
+            // Add selected row to target table
+            Object[] rowData = {itemName, price};
+            tbl_cart.addRow(rowData);
+            
+            //update the total 
+            updateTotalLabel();
+        }
+    }
+    //calculate and display the order total
+    public void updateTotalLabel() 
+    {
+        double total = 0.0;
+        for (int row = 0; row < tbl_cart.getRowCount(); row++) {
+            double price = Double.parseDouble(tbl_cart.getValueAt(row, 1).toString());
+            total += price;
+        }
+        lbl_total.setText(String.valueOf(total));
+    }
+    //pass the pizza preparation time to heap
+    public void passPizzaPreparationTimeToHeap(int selectedRow)
+    {
+        String pizza_name = String.valueOf(tbl_show_menu_items.getValueAt(selectedRow, 0));
+        MenuItemNode selected_pizza = original_menu_list.head;
+        while(selected_pizza != null)
+        {
+            if(pizza_name.equals(selected_pizza.getName()))
+            {
+                System.out.println("Pizza prep time: " + selected_pizza.getPreparationTime());
+                max_heap.insert(selected_pizza.getPreparationTime());
+            }
+            selected_pizza = selected_pizza.next;
+        }
+    }
+    //pass the appetizer preparation time to heap
+    public void passAppetizerPreparationTimeToHeap(int selectedRow)
+    {
+        String appetizer_name = String.valueOf(tbl_show_menu_items.getValueAt(selectedRow, 0));
+        MenuItemNode selected_appetizer = original_menu_list.head;
+        while(selected_appetizer != null)
+        {
+            if(appetizer_name.equals(selected_appetizer.getName()))
+            {
+                System.out.println("Appetizer prep time: " + selected_appetizer.getPreparationTime());
+                max_heap.insert(selected_appetizer.getPreparationTime());
+            }
+            selected_appetizer = selected_appetizer.next;
+        }
+    }
+    //pass the beverage preparation time to heap
+    public void passBeveragePreparationTimeToHeap(int selectedRow)
+    {
+        String beverage_name = String.valueOf(tbl_show_menu_items.getValueAt(selectedRow, 0));
+        MenuItemNode selected_beverage = original_menu_list.head;
+        while(selected_beverage != null)
+        {
+            if(beverage_name.equals(selected_beverage.getName()))
+            {
+                System.out.println("Beverage prep time: " + selected_beverage.getPreparationTime());
+                max_heap.insert(selected_beverage.getPreparationTime());
+            }
+            selected_beverage = selected_beverage.next;
+        }
+    }
+    //pass the beverage preparation time to heap
+    public void passDessertPreparationTimeToHeap(int selectedRow)
+    {
+        String dessert_name = String.valueOf(tbl_show_menu_items.getValueAt(selectedRow, 0));
+        MenuItemNode selected_dessert = original_menu_list.head;
+        while(selected_dessert != null)
+        {
+            if(dessert_name.equals(selected_dessert.getName()))
+            {
+                System.out.println("Dessert prep time: " + selected_dessert.getPreparationTime());
+                max_heap.insert(selected_dessert.getPreparationTime());
+            }
+            selected_dessert = selected_dessert.next;
         }
     }
 }

@@ -10,7 +10,9 @@ import java.util.Date;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 import menu_item_classes.*;
+import order_classes.*;
 import heap_classes.MaximumPreparationTimeHeap;
+import javax.swing.JOptionPane;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
@@ -30,6 +32,7 @@ public class HOME1 extends javax.swing.JFrame implements Runnable{
     MenuItemLinkedList original_menu_list = new MenuItemLinkedList();
     MenuItemLinkedList menu_list = new MenuItemLinkedList();
     MaximumPreparationTimeHeap max_heap = new MaximumPreparationTimeHeap(100);
+    OrderCircularQueue order_queue = new OrderCircularQueue();
 
     DefaultTableModel tbl_cart;
     public HOME1() 
@@ -418,7 +421,28 @@ public class HOME1 extends javax.swing.JFrame implements Runnable{
     }//GEN-LAST:event_btn_beverageActionPerformed
 
     private void btn_order_nowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_order_nowActionPerformed
-
+        String customer_telephone = txt_customer_telephone.getText();
+        double order_total = Double.parseDouble(lbl_total.getText());
+        String order_time = lbl_time.getText();
+        int row_count = tbl_cart.getRowCount();
+        OrderItem[] items = new OrderItem[row_count];
+        
+        for(int i=0; i< row_count; i++)
+        {
+            String item_name = String.valueOf(tbl_cart.getValueAt(i, 0));
+            double item_price = (double)tbl_cart.getValueAt(i, 1);
+            items[i] = new OrderItem(item_name, item_price);
+        }
+        Order new_order = new Order(customer_telephone, items, order_total, order_time);
+        order_queue.enqueueOrder(new_order);
+        JOptionPane.showMessageDialog(rootPane, "Your order has successfully been placed!");
+        System.out.println("Orders from the queue:");
+        displayOrders();
+        tbl_cart.setRowCount(0);  //reset the table
+        lbl_total.setText("0.00");      //reset the order total
+        System.out.println("Values at heap: ");
+        max_heap.printHeap();
+        textarea_display.setText("Your order will be ready in " + max_heap.extractMax() + " minutes");
     }//GEN-LAST:event_btn_order_nowActionPerformed
 
     private void btn_min_max_sortActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_min_max_sortActionPerformed
@@ -936,5 +960,22 @@ public class HOME1 extends javax.swing.JFrame implements Runnable{
             }
             selected_dessert = selected_dessert.next;
         }
+    }
+    private void displayOrders() 
+    {
+        // Dequeue and display orders until the queue is empty
+        while (!order_queue.isEmpty()) {
+            Order order = order_queue.dequeueOrder();
+            displayOrderDetails(order);
+        }
+    }
+    //display the items of that order
+    private void displayOrderDetails(Order order) 
+    {
+        // Get order details as a formatted string
+        String orderDetails = order.toString();
+
+        // Display order details in the terminal
+        System.out.println(orderDetails);
     }
 }

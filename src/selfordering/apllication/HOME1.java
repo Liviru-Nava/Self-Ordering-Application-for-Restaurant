@@ -511,6 +511,36 @@ public class HOME1 extends javax.swing.JFrame implements Runnable{
 
     private void btn_popularity_sortActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_popularity_sortActionPerformed
         // TODO add your handling code here:
+         if(pizza_button_state == true)  //if pizza button is clicked, sort the pizza details
+        {
+            // Reset the pizza list to its original state
+            menu_list.head = copyMenuItemLinkedList(original_menu_list.head);
+            menu_list.popoularSort();
+            addPizzaToTable();
+        }
+        else if(appetizer_button_state == true) //if appetizer button is clicked, sort the appetizer details
+        {
+            // Reset the pizza list to its original state
+            menu_list.head = copyMenuItemLinkedList(original_menu_list.head);
+            menu_list.popoularSort();
+            addAppetizerToTable();
+        }
+        else if(beverage_button_state == true)  //if the beverage button is clicked, sort the beverage details
+        {
+            // Reset the pizza list to its original state
+            menu_list.head = copyMenuItemLinkedList(original_menu_list.head);
+            menu_list.popoularSort();
+            addBeverageToTable();
+        }
+        else if(dessert_button_state == true)   //if the dessert button is clicked, sort the dessert details
+        {
+            // Reset the pizza list to its original state
+            menu_list.head = copyMenuItemLinkedList(original_menu_list.head);
+            menu_list.popoularSort();
+            addDessertToTable();
+        }
+        
+       
     }//GEN-LAST:event_btn_popularity_sortActionPerformed
 
     private void btn_alphabetical_sortActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_alphabetical_sortActionPerformed
@@ -675,37 +705,37 @@ public class HOME1 extends javax.swing.JFrame implements Runnable{
     public void insertMenuDetails()
     {
         //insert 10 pizza details
-        menu_list.insertProducts("Chicken Pizza","Pizza", 1200.00, 500, 32);
-        menu_list.insertProducts("Beef Pepperoni Pizza", "Pizza", 1100.00, 200,35);
-        menu_list.insertProducts("Butter Chicken Pizza", "Pizza", 1600.00, 1000, 20);
-        menu_list.insertProducts("Paneer Pizza", "Pizza", 990.00, 450, 25);
-        menu_list.insertProducts("Sausage Delight Pizza", "Pizza", 1350.00, 350, 20);
-        menu_list.insertProducts("Italian Pizza", "Pizza", 1450.00, 650, 33);
-        menu_list.insertProducts("Pork Pizza", "Pizza", 2200.00, 100, 36);
-        menu_list.insertProducts("Italian Veggie Pizza", "Pizza", 1000.00, 1500, 15);
-        menu_list.insertProducts("American Spicy Pizza", "Pizza", 1150.00, 4050, 16);
-        menu_list.insertProducts("Dominoes Pizza", "Pizza", 1800.00, 2100, 21);
+        menu_list.insertProducts("Chicken Pizza","Pizza", 1200.00, 50, 10);
+        menu_list.insertProducts("Beef Pepperoni Pizza", "Pizza", 1100.00, 12,11);
+        menu_list.insertProducts("Butter Chicken Pizza", "Pizza", 1600.00, 22, 20);
+        menu_list.insertProducts("Paneer Pizza", "Pizza", 990.00, 51, 15);
+        menu_list.insertProducts("Sausage Delight Pizza", "Pizza", 1350.00, 49, 18);
+        menu_list.insertProducts("Italian Pizza", "Pizza", 1450.00, 52, 13);
+        menu_list.insertProducts("Pork Pizza", "Pizza", 2200.00, 48, 10);
+        menu_list.insertProducts("Italian Veggie Pizza", "Pizza", 1000.00, 53, 14);
+        menu_list.insertProducts("American Spicy Pizza", "Pizza", 1150.00, 55, 16);
+        menu_list.insertProducts("Dominoes Pizza", "Pizza", 1800.00, 47, 19);
         
         //insert 5 Appetizers
-        menu_list.insertProducts("French Fries", "Appetizer", 300.00, 1000, 35);
-        menu_list.insertProducts("Garlic Bread", "Appetizer", 350.00, 2000, 32);
-        menu_list.insertProducts("Chicken Nuggets", "Appetizer", 200.00, 1100, 20);
-        menu_list.insertProducts("Chicken Wings", "Appetizer", 150.00, 900, 18);
-        menu_list.insertProducts("Cheese and Chicken balls", "Appetizer", 220.00, 960, 17);
+        menu_list.insertProducts("French Fries", "Appetizer", 300.00, 20, 5);
+        menu_list.insertProducts("Garlic Bread", "Appetizer", 350.00, 21, 8);
+        menu_list.insertProducts("Chicken Nuggets", "Appetizer", 200.00, 19, 12);
+        menu_list.insertProducts("Chicken Wings", "Appetizer", 150.00, 18, 18);
+        menu_list.insertProducts("Cheese and Chicken balls", "Appetizer", 220.00, 22, 11);
         
         //insert 10 beverages details
-        menu_list.insertProducts("Mineral Water", "Beverage", 300.00, 5400, 32);
-        menu_list.insertProducts("Coca Cola", "Beverage", 1100.00, 5000, 23);
-        menu_list.insertProducts("Cappuccino", "Beverage", 1200.00, 4500, 25);
-        menu_list.insertProducts("Iced Coffee", "Beverage", 900.00, 3050, 31);
-        menu_list.insertProducts("Strawberry Milkshake", "Beverage", 1350.00, 1350, 23);
+        menu_list.insertProducts("Mineral Water", "Beverage", 300.00, 60, 1);
+        menu_list.insertProducts("Coca Cola", "Beverage", 1100.00, 20, 1);
+        menu_list.insertProducts("Cappuccino", "Beverage", 1200.00, 59, 12);
+        menu_list.insertProducts("Iced Coffee", "Beverage", 900.00, 55, 13);
+        menu_list.insertProducts("Strawberry Milkshake", "Beverage", 1350.00, 54, 14);
         
         //insert 10 dessert details
-        menu_list.insertProducts("Raspberry Cheesecake", "Dessert", 700.00, 2000, 23);
-        menu_list.insertProducts("Lava Cake", "Dessert", 750.00, 2200, 33);
-        menu_list.insertProducts("English Custard", "Dessert", 900.00, 1150, 32);
-        menu_list.insertProducts("Chocolate Brownies", "Dessert", 850.00, 930, 21);
-        menu_list.insertProducts("Fruit Torte", "Dessert", 1020.00, 965, 22);
+        menu_list.insertProducts("Raspberry Cheesecake", "Dessert", 700.00, 25, 20);
+        menu_list.insertProducts("Lava Cake", "Dessert", 750.00, 26, 19);
+        menu_list.insertProducts("English Custard", "Dessert", 900.00, 27, 21);
+        menu_list.insertProducts("Chocolate Brownies", "Dessert", 850.00, 24, 21);
+        menu_list.insertProducts("Fruit Torte", "Dessert", 1020.00, 23, 22);
         
         // Store the original pizza list
         original_menu_list.head = copyMenuItemLinkedList(menu_list.head);
@@ -869,15 +899,15 @@ public class HOME1 extends javax.swing.JFrame implements Runnable{
             }
             else if(appetizer_button_state == true)
             {
-                passAppetizerPreparationTimeToHeap(selectedRow);
+                 passPizzaPreparationTimeToHeap(selectedRow);
             }
             else if(beverage_button_state == true)
             {
-                passBeveragePreparationTimeToHeap(selectedRow);
+                 passPizzaPreparationTimeToHeap(selectedRow);
             }
             else if(dessert_button_state == true)
             {
-                passDessertPreparationTimeToHeap(selectedRow);
+                passPizzaPreparationTimeToHeap(selectedRow);
             }
             //codes to pass the values from table 1 to table 2
             String itemName = tbl_show_menu_items.getValueAt(selectedRow, 0).toString();
@@ -912,55 +942,12 @@ public class HOME1 extends javax.swing.JFrame implements Runnable{
             {
                 System.out.println("Pizza prep time: " + selected_pizza.getPreparationTime());
                 max_heap.insert(selected_pizza.getPreparationTime());
+               
             }
             selected_pizza = selected_pizza.next;
         }
     }
-    //pass the appetizer preparation time to heap
-    public void passAppetizerPreparationTimeToHeap(int selectedRow)
-    {
-        String appetizer_name = String.valueOf(tbl_show_menu_items.getValueAt(selectedRow, 0));
-        MenuItemNode selected_appetizer = original_menu_list.head;
-        while(selected_appetizer != null)
-        {
-            if(appetizer_name.equals(selected_appetizer.getName()))
-            {
-                System.out.println("Appetizer prep time: " + selected_appetizer.getPreparationTime());
-                max_heap.insert(selected_appetizer.getPreparationTime());
-            }
-            selected_appetizer = selected_appetizer.next;
-        }
-    }
-    //pass the beverage preparation time to heap
-    public void passBeveragePreparationTimeToHeap(int selectedRow)
-    {
-        String beverage_name = String.valueOf(tbl_show_menu_items.getValueAt(selectedRow, 0));
-        MenuItemNode selected_beverage = original_menu_list.head;
-        while(selected_beverage != null)
-        {
-            if(beverage_name.equals(selected_beverage.getName()))
-            {
-                System.out.println("Beverage prep time: " + selected_beverage.getPreparationTime());
-                max_heap.insert(selected_beverage.getPreparationTime());
-            }
-            selected_beverage = selected_beverage.next;
-        }
-    }
-    //pass the beverage preparation time to heap
-    public void passDessertPreparationTimeToHeap(int selectedRow)
-    {
-        String dessert_name = String.valueOf(tbl_show_menu_items.getValueAt(selectedRow, 0));
-        MenuItemNode selected_dessert = original_menu_list.head;
-        while(selected_dessert != null)
-        {
-            if(dessert_name.equals(selected_dessert.getName()))
-            {
-                System.out.println("Dessert prep time: " + selected_dessert.getPreparationTime());
-                max_heap.insert(selected_dessert.getPreparationTime());
-            }
-            selected_dessert = selected_dessert.next;
-        }
-    }
+    
     private void displayOrders() 
     {
         // Dequeue and display orders until the queue is empty

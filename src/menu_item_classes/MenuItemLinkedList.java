@@ -218,4 +218,97 @@ public class MenuItemLinkedList
 
         return slow;
     }
+    
+    
+    
+    
+    //perform merge sort from popular
+    public void popoularSort()
+    {
+        head = mergeSortpopular(head);
+    }
+    private MenuItemNode mergeSortpopular(MenuItemNode listHead)
+    {
+        if (listHead == null || listHead.next == null) {
+            return listHead; // Already sorted or only one element
+        }
+        // Split the list into two halves
+        MenuItemNode middle = getMiddlepopular(listHead);
+        MenuItemNode nextOfMiddle = middle.next;
+        middle.next = null;
+
+        // Recursively sort the two halves
+        MenuItemNode left = mergeSortpopular(listHead);
+        MenuItemNode right = mergeSortpopular(nextOfMiddle);
+
+        // Merge the sorted halves
+        return mergepopoular(left, right);
+    }
+    // Merge two sorted linked lists
+    private MenuItemNode mergepopoular(MenuItemNode left, MenuItemNode right) {
+        MenuItemNode result = null;
+
+        if (left == null) {
+            return right;
+        }
+        if (right == null) {
+            return left;
+        }
+
+        // Compare prices and merge
+        if (left.getPopularity() >= right.getPopularity()) {
+            result = left;
+            result.next = mergepopoular(left.next, right);
+        } else {
+            result = right;
+            result.next = mergepopoular(left, right.next);
+        }
+
+        return result;
+    }
+    // Helper method to find the middle of the linked list
+    private MenuItemNode getMiddlepopular(MenuItemNode head) {
+        if (head == null) {
+            return head;
+        }
+
+        MenuItemNode slow = head, fast = head;
+
+        while (fast.next != null && fast.next.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        return slow;
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 }
+
+
+
+
+
+
+
+
+
+

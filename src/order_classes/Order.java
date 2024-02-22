@@ -43,4 +43,8 @@ public class Order
         }
         return result.toString();   
     }
+    public int getOrderNumber()
+    {
+        return order_number;
+    }
 }

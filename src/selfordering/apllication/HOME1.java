@@ -109,7 +109,7 @@ public class HOME1 extends javax.swing.JFrame implements Runnable{
         cmb_order_type = new javax.swing.JComboBox<>();
         jLabel6 = new javax.swing.JLabel();
         lbl_time = new java.awt.Label();
-        rSButtonHover7 = new rojeru_san.complementos.RSButtonHover();
+        btn_kitchen_view = new rojeru_san.complementos.RSButtonHover();
         rSButtonHover9 = new rojeru_san.complementos.RSButtonHover();
         jLabel24 = new javax.swing.JLabel();
 
@@ -374,12 +374,17 @@ public class HOME1 extends javax.swing.JFrame implements Runnable{
         lbl_time.setText("11.07.00AM");
         jPanel1.add(lbl_time, new org.netbeans.lib.awtextra.AbsoluteConstraints(1320, 10, -1, 40));
 
-        rSButtonHover7.setBackground(new java.awt.Color(255, 255, 255));
-        rSButtonHover7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/selfordering/apllication/chef (2).png"))); // NOI18N
-        rSButtonHover7.setColorHover(new java.awt.Color(255, 255, 255));
-        rSButtonHover7.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/selfordering/apllication/chef (3).png"))); // NOI18N
-        rSButtonHover7.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/selfordering/apllication/chef (3).png"))); // NOI18N
-        jPanel1.add(rSButtonHover7, new org.netbeans.lib.awtextra.AbsoluteConstraints(1420, 10, 60, -1));
+        btn_kitchen_view.setBackground(new java.awt.Color(255, 255, 255));
+        btn_kitchen_view.setIcon(new javax.swing.ImageIcon(getClass().getResource("/selfordering/apllication/chef (2).png"))); // NOI18N
+        btn_kitchen_view.setColorHover(new java.awt.Color(255, 255, 255));
+        btn_kitchen_view.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/selfordering/apllication/chef (3).png"))); // NOI18N
+        btn_kitchen_view.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/selfordering/apllication/chef (3).png"))); // NOI18N
+        btn_kitchen_view.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_kitchen_viewActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btn_kitchen_view, new org.netbeans.lib.awtextra.AbsoluteConstraints(1420, 10, 60, -1));
 
         rSButtonHover9.setBackground(new java.awt.Color(255, 255, 255));
         rSButtonHover9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/selfordering/apllication/setting (2).png"))); // NOI18N
@@ -609,6 +614,12 @@ public class HOME1 extends javax.swing.JFrame implements Runnable{
     private void cmb_locationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmb_locationActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cmb_locationActionPerformed
+
+    private void btn_kitchen_viewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_kitchen_viewActionPerformed
+        // TODO add your handling code here:
+        Kitchen kitchen_screen = new Kitchen(order_queue);
+        kitchen_screen.setVisible(true);
+    }//GEN-LAST:event_btn_kitchen_viewActionPerformed
     /**
      * @param args the command line arguments
      */
@@ -650,6 +661,7 @@ public class HOME1 extends javax.swing.JFrame implements Runnable{
     private rojeru_san.complementos.RSButtonHover btn_appetizer;
     private rojeru_san.complementos.RSButtonHover btn_beverage;
     private rojeru_san.complementos.RSButtonHover btn_dessert;
+    private rojeru_san.complementos.RSButtonHover btn_kitchen_view;
     private rojeru_san.complementos.RSButtonHover btn_max_min_sort;
     private rojeru_san.complementos.RSButtonHover btn_min_max_sort;
     private rojeru_san.complementos.RSButtonHover btn_order_now;
@@ -678,7 +690,6 @@ public class HOME1 extends javax.swing.JFrame implements Runnable{
     private javax.swing.JLabel lbl_total;
     private rojeru_san.complementos.RSButtonHover rSButtonHover1;
     private rojeru_san.complementos.RSButtonHover rSButtonHover5;
-    private rojeru_san.complementos.RSButtonHover rSButtonHover7;
     private rojeru_san.complementos.RSButtonHover rSButtonHover9;
     private javax.swing.JTable tbl_show_cart;
     private javax.swing.JTable tbl_show_menu_items;
@@ -953,7 +964,7 @@ public class HOME1 extends javax.swing.JFrame implements Runnable{
     }
     
     //INCREMNT  popular of select item
-     public void incremntPopular(int selectedRow)
+    public void incremntPopular(int selectedRow)
     {
         String item_name = String.valueOf(tbl_show_menu_items.getValueAt(selectedRow, 0));
         MenuItemNode selected_item = original_menu_list.head;

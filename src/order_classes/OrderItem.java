@@ -18,10 +18,12 @@ public class OrderItem
         this.item_name = item_name;
         this.price = price;
     }  
-    public String getItemName() {   //return item name for other methods to use
+    public String getItemName() 
+    {   //return item name for other methods to use
         return item_name;
     }
-    public double getPrice() {  //return the item price for other methods to use
+    public double getPrice() 
+    {  //return the item price for other methods to use
         return price;
     }
 }

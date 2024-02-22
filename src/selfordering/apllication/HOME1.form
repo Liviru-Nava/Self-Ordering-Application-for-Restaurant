@@ -715,7 +715,7 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="rojeru_san.complementos.RSButtonHover" name="rSButtonHover7">
+        <Component class="rojeru_san.complementos.RSButtonHover" name="btn_kitchen_view">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -733,6 +733,9 @@
               <Image iconType="3" name="/selfordering/apllication/chef (3).png"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_kitchen_viewActionPerformed"/>
+          </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
               <AbsoluteConstraints x="1420" y="10" width="60" height="-1"/>

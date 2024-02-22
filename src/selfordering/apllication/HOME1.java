@@ -4,6 +4,7 @@
  */
 package selfordering.apllication;
 
+import graph_classes.DijkstraAlgorithm;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -12,6 +13,8 @@ import javax.swing.table.TableColumnModel;
 import menu_item_classes.*;
 import order_classes.*;
 import heap_classes.MaximumPreparationTimeHeap;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import javax.swing.JOptionPane;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -28,6 +31,8 @@ public class HOME1 extends javax.swing.JFrame implements Runnable{
     boolean appetizer_button_state=false;
     boolean beverage_button_state=false;
     boolean dessert_button_state=false;
+    
+  
     
     MenuItemLinkedList original_menu_list = new MenuItemLinkedList();
     MenuItemLinkedList menu_list = new MenuItemLinkedList();
@@ -48,6 +53,7 @@ public class HOME1 extends javax.swing.JFrame implements Runnable{
         tbl_cart = (DefaultTableModel) tbl_show_cart.getModel();
         //insert products to linkedlist
         insertMenuDetails();
+        
         
         // Add selection listener to sourceTable
         tbl_show_menu_items.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
@@ -75,7 +81,7 @@ public class HOME1 extends javax.swing.JFrame implements Runnable{
 
         jPanel1 = new javax.swing.JPanel();
         jLabel22 = new javax.swing.JLabel();
-        cmb_location = new javax.swing.JComboBox<>();
+        com_location = new javax.swing.JComboBox<>();
         btn_beverage = new rojeru_san.complementos.RSButtonHover();
         jScrollPane3 = new javax.swing.JScrollPane();
         tbl_show_cart = new javax.swing.JTable();
@@ -93,6 +99,9 @@ public class HOME1 extends javax.swing.JFrame implements Runnable{
         jScrollPane1 = new javax.swing.JScrollPane();
         textarea_display = new javax.swing.JTextArea();
         jLabel1 = new javax.swing.JLabel();
+        txt_estimatedTime = new javax.swing.JTextField();
+        txt_preptime = new javax.swing.JTextField();
+        txt_deliverytime1 = new javax.swing.JTextField();
         txt_customer_telephone = new javax.swing.JTextField();
         jScrollPane4 = new javax.swing.JScrollPane();
         tbl_show_menu_items = new javax.swing.JTable();
@@ -125,15 +134,15 @@ public class HOME1 extends javax.swing.JFrame implements Runnable{
         jLabel22.setText("copyright ©PDSA | Develop By Hirantha And Liviru");
         jPanel1.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 990, -1, -1));
 
-        cmb_location.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        cmb_location.setForeground(new java.awt.Color(204, 0, 0));
-        cmb_location.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nugegoda", "Wellampitiya" }));
-        cmb_location.addActionListener(new java.awt.event.ActionListener() {
+        com_location.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        com_location.setForeground(new java.awt.Color(204, 0, 0));
+        com_location.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Gallface", "Townhall", "Kollupitiya", "Bambalapitya", "Dematagoda", "Wellawatte", "Havelock Road", "Maharagama", "Nugegoda", "Piliyandala", "Nawala", "Narahenpita", "Borella", "Ward Place" }));
+        com_location.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmb_locationActionPerformed(evt);
+                com_locationActionPerformed(evt);
             }
         });
-        jPanel1.add(cmb_location, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 290, 280, 50));
+        jPanel1.add(com_location, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 270, 280, 50));
 
         btn_beverage.setBackground(new java.awt.Color(204, 0, 51));
         btn_beverage.setText("Beverage");
@@ -244,22 +253,38 @@ public class HOME1 extends javax.swing.JFrame implements Runnable{
         jLabel3.setText("Filter By");
         jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 0, -1, -1));
 
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 360, 330, 150));
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 330, 330, 150));
 
         jPanel3.setBackground(new java.awt.Color(241, 237, 237));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         textarea_display.setColumns(20);
+        textarea_display.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         textarea_display.setRows(5);
         jScrollPane1.setViewportView(textarea_display);
 
-        jPanel3.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 400, 240));
+        jPanel3.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, 400, 150));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel1.setText("Display");
         jPanel3.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 0, -1, -1));
 
-        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 520, 420, 280));
+        txt_estimatedTime.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        txt_estimatedTime.setForeground(new java.awt.Color(204, 0, 0));
+        txt_estimatedTime.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        jPanel3.add(txt_estimatedTime, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 400, 60));
+
+        txt_preptime.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        txt_preptime.setForeground(new java.awt.Color(204, 0, 0));
+        txt_preptime.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        jPanel3.add(txt_preptime, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 400, 50));
+
+        txt_deliverytime1.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        txt_deliverytime1.setForeground(new java.awt.Color(204, 0, 0));
+        txt_deliverytime1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        jPanel3.add(txt_deliverytime1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 400, 50));
+
+        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 490, 420, 310));
 
         txt_customer_telephone.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         txt_customer_telephone.setText("+94");
@@ -354,7 +379,7 @@ public class HOME1 extends javax.swing.JFrame implements Runnable{
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel4.setText("Location");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 270, -1, -1));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 250, -1, -1));
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel5.setText("Customer Telephone");
@@ -363,16 +388,17 @@ public class HOME1 extends javax.swing.JFrame implements Runnable{
         cmb_order_type.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         cmb_order_type.setForeground(new java.awt.Color(204, 0, 0));
         cmb_order_type.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Dine In", "Take Away", "Delivery", " " }));
-        jPanel1.add(cmb_order_type, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 210, 280, 50));
+        jPanel1.add(cmb_order_type, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 200, 280, 50));
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel6.setText("Order Type");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 190, -1, -1));
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 180, -1, -1));
 
         lbl_time.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         lbl_time.setForeground(new java.awt.Color(204, 0, 0));
         lbl_time.setText("11.07.00AM");
         jPanel1.add(lbl_time, new org.netbeans.lib.awtextra.AbsoluteConstraints(1320, 10, -1, 40));
+        lbl_time.getAccessibleContext().setAccessibleName("");
 
         btn_kitchen_view.setBackground(new java.awt.Color(255, 255, 255));
         btn_kitchen_view.setIcon(new javax.swing.ImageIcon(getClass().getResource("/selfordering/apllication/chef (2).png"))); // NOI18N
@@ -416,6 +442,9 @@ public class HOME1 extends javax.swing.JFrame implements Runnable{
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    
+  
+    
     private void btn_beverageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_beverageActionPerformed
         // TODO add your handling code here:
         addBeverageToTableOriginal();
@@ -447,7 +476,17 @@ public class HOME1 extends javax.swing.JFrame implements Runnable{
         lbl_total.setText("0.00");      //reset the order total
         System.out.println("Values at heap: ");
         max_heap.printHeap();
-        textarea_display.setText("Your order will be ready in " + max_heap.extractMax() + " minutes");
+        
+        
+        int preptime=max_heap.extractMax();//get prep time
+         txt_preptime.setText("Your order will be ready in " + preptime+ " minutes");
+      
+        
+        
+        
+        
+        
+        
     }//GEN-LAST:event_btn_order_nowActionPerformed
 
     private void btn_min_max_sortActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_min_max_sortActionPerformed
@@ -611,9 +650,9 @@ public class HOME1 extends javax.swing.JFrame implements Runnable{
         dessert_button_state = true;
     }//GEN-LAST:event_btn_dessertActionPerformed
 
-    private void cmb_locationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmb_locationActionPerformed
+    private void com_locationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_com_locationActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_cmb_locationActionPerformed
+    }//GEN-LAST:event_com_locationActionPerformed
 
     private void btn_kitchen_viewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_kitchen_viewActionPerformed
         // TODO add your handling code here:
@@ -667,8 +706,8 @@ public class HOME1 extends javax.swing.JFrame implements Runnable{
     private rojeru_san.complementos.RSButtonHover btn_order_now;
     private rojeru_san.complementos.RSButtonHover btn_pizza;
     private rojeru_san.complementos.RSButtonHover btn_popularity_sort;
-    private javax.swing.JComboBox<String> cmb_location;
     private javax.swing.JComboBox<String> cmb_order_type;
+    private javax.swing.JComboBox<String> com_location;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
@@ -695,6 +734,9 @@ public class HOME1 extends javax.swing.JFrame implements Runnable{
     private javax.swing.JTable tbl_show_menu_items;
     private javax.swing.JTextArea textarea_display;
     private javax.swing.JTextField txt_customer_telephone;
+    private javax.swing.JTextField txt_deliverytime1;
+    private javax.swing.JTextField txt_estimatedTime;
+    private javax.swing.JTextField txt_preptime;
     // End of variables declaration//GEN-END:variables
     @Override
     public void run() 

@@ -10,10 +10,10 @@ package menu_item_classes;
  */
 public class MenuItemNode 
 {
-    private String item_name;
+    String item_name;
     private String item_category;
     private double item_price;
-    private int item_popularity;
+    int item_popularity;
     private int item_preparation_time;
  
     public MenuItemNode next;

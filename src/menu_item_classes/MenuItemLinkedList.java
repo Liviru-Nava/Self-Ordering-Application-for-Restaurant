@@ -35,6 +35,18 @@ public class MenuItemLinkedList
         }
     }
     
+    public void updatePopular(String name,int popularity)
+    {
+        MenuItemNode current=head;
+        while(current.item_name!=name)
+        {            
+            current=current.next;
+        }
+        current.item_popularity=popularity;
+        System.out.println(current.item_popularity);
+        
+    }
+
     //perform merge sort from min to max
     public void mergeSortMinMax()
     {
@@ -218,9 +230,6 @@ public class MenuItemLinkedList
 
         return slow;
     }
-    
-    
-    
     
     //perform merge sort from popular
     public void popoularSort()

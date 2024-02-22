@@ -895,19 +895,23 @@ public class HOME1 extends javax.swing.JFrame implements Runnable{
         {
             if(pizza_button_state == true)
             {
-                passPizzaPreparationTimeToHeap(selectedRow);
+                passPreparationTimeToHeap(selectedRow);
+                incremntPopular(selectedRow);
             }
             else if(appetizer_button_state == true)
             {
-                 passPizzaPreparationTimeToHeap(selectedRow);
+                 passPreparationTimeToHeap(selectedRow);
+                 incremntPopular(selectedRow);
             }
             else if(beverage_button_state == true)
             {
-                 passPizzaPreparationTimeToHeap(selectedRow);
+                 passPreparationTimeToHeap(selectedRow);
+                 incremntPopular(selectedRow);
             }
             else if(dessert_button_state == true)
             {
-                passPizzaPreparationTimeToHeap(selectedRow);
+                passPreparationTimeToHeap(selectedRow);
+                incremntPopular(selectedRow);
             }
             //codes to pass the values from table 1 to table 2
             String itemName = tbl_show_menu_items.getValueAt(selectedRow, 0).toString();
@@ -932,20 +936,43 @@ public class HOME1 extends javax.swing.JFrame implements Runnable{
         lbl_total.setText(String.valueOf(total));
     }
     //pass the pizza preparation time to heap
-    public void passPizzaPreparationTimeToHeap(int selectedRow)
+    public void passPreparationTimeToHeap(int selectedRow)
     {
-        String pizza_name = String.valueOf(tbl_show_menu_items.getValueAt(selectedRow, 0));
-        MenuItemNode selected_pizza = original_menu_list.head;
-        while(selected_pizza != null)
+        String item_name = String.valueOf(tbl_show_menu_items.getValueAt(selectedRow, 0));
+        MenuItemNode selected_item = original_menu_list.head;
+        while(selected_item != null)
         {
-            if(pizza_name.equals(selected_pizza.getName()))
+            if(item_name.equals(selected_item.getName()))
             {
-                System.out.println("Pizza prep time: " + selected_pizza.getPreparationTime());
-                max_heap.insert(selected_pizza.getPreparationTime());
+                System.out.println("Pizza prep time: " + selected_item.getPreparationTime());
+                max_heap.insert(selected_item.getPreparationTime());
                
             }
-            selected_pizza = selected_pizza.next;
+            selected_item = selected_item.next;
         }
+    }
+    
+    //INCREMNT  popular of select item
+     public void incremntPopular(int selectedRow)
+    {
+        String item_name = String.valueOf(tbl_show_menu_items.getValueAt(selectedRow, 0));
+        MenuItemNode selected_item = original_menu_list.head;
+         while(selected_item != null)
+        {
+            if(item_name.equals(selected_item.getName()))
+            {
+               int popular = selected_item.getPopularity();
+               String name=selected_item.getName();
+               popular++;
+               
+               menu_list.updatePopular(name, popular); 
+               original_menu_list.updatePopular(name, popular);
+                System.out.println(popular);
+               
+            }
+            selected_item = selected_item.next;
+        }
+        
     }
     
     private void displayOrders() 

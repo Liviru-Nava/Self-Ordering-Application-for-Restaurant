@@ -32,7 +32,9 @@ public class HOME1 extends javax.swing.JFrame implements Runnable{
     boolean beverage_button_state=false;
     boolean dessert_button_state=false;
     
-  
+    private int[][] graph;
+    private String[] locations;
+    
     
     MenuItemLinkedList original_menu_list = new MenuItemLinkedList();
     MenuItemLinkedList menu_list = new MenuItemLinkedList();
@@ -54,6 +56,30 @@ public class HOME1 extends javax.swing.JFrame implements Runnable{
         //insert products to linkedlist
         insertMenuDetails();
         
+        graph = new int[][] {
+         {0, 8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, // Vito Pizza
+         {8, 0, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, // Gallface
+         {0, 7, 0, 9, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, // Townhall
+         {0, 0, 9, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, // Kollupitiya
+         {0, 0, 3, 4, 0, 12, 5, 0, 0, 0, 0, 0, 0, 0, 0}, // Bambalapitya
+         {0, 0, 0, 0, 12, 0, 3, 3, 0, 0, 0, 0, 0, 0, 0}, // Dematagoda
+         {0, 0, 0, 0, 5, 3, 0, 5, 5, 0, 0, 0, 0, 0, 0}, // Wellawatte
+         {0, 0, 0, 0, 0, 3, 5, 0, 3, 0, 0, 0, 0, 0, 0}, // Havelock Road
+         {0, 0, 0, 0, 0, 0, 5, 3, 0, 10, 5, 0, 0, 0, 0}, // Maharagama
+         {0, 0, 0, 0, 0, 0, 0, 0, 10, 0, 3, 3, 0, 0, 0}, // Nugegoda
+         {0, 0, 0, 0, 0, 0, 0, 0, 5, 3, 0, 5, 3, 0, 0}, // Piliyandala
+         {0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 5, 0, 12, 0, 0}, // Nawala
+         {0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 3, 12, 0, 5, 0}, // Narahenpita
+         {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 3}, // Borella
+         {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 3, 0} //Â WardÂ Place
+        };
+
+        
+        // Array of location names
+        locations = new  String[]{"Vito Pizza", "Gallface", "Townhall", "Kollupitiya", "Bambalapitya", "Dematagoda", "Wellawatte", "Havelock Road", "Maharagama", "Nugegoda", "Piliyandala", "Nawala", "Narahenpita", "Borella", "Ward Place"};
+
+        
+     
         
         // Add selection listener to sourceTable
         tbl_show_menu_items.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
@@ -443,6 +469,26 @@ public class HOME1 extends javax.swing.JFrame implements Runnable{
     }// </editor-fold>//GEN-END:initComponents
 
     
+     public void findshorttime(int preptime)
+    {
+             
+        // Destination location for which shortest path is to be found
+       String destination =(String)com_location.getSelectedItem();
+
+        // Create an instance of DijkstraAlgorithm
+        DijkstraAlgorithm dijkstraAlgorithm = new DijkstraAlgorithm();
+
+
+        // Find shortest path from restaurant to the destination city
+           int deleveryTime = dijkstraAlgorithm.findShortestDistanceToLocation(graph, locations, destination);
+           String shortestPath = dijkstraAlgorithm.findShortestPathToLocation(graph, locations, destination);
+         
+           String currentTimeString =lbl_time.getText();
+         
+          
+
+    }
+    
   
     
     private void btn_beverageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_beverageActionPerformed
@@ -480,7 +526,9 @@ public class HOME1 extends javax.swing.JFrame implements Runnable{
         
         int preptime=max_heap.extractMax();//get prep time
          txt_preptime.setText("Your order will be ready in " + preptime+ " minutes");
-      
+        
+       
+        
         
         
         

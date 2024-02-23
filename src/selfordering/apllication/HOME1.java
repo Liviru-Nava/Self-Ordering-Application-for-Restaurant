@@ -485,7 +485,15 @@ public class HOME1 extends javax.swing.JFrame implements Runnable{
          
            String currentTimeString =lbl_time.getText();
          
-          
+           TimeEstimation estimation=new TimeEstimation();
+         
+          txt_preptime.setText("Your order will be ready in " + preptime+ " Minutes");
+          txt_deliverytime1.setText("Delivery Time : "+deleveryTime+" Minutes");
+          txt_estimatedTime.setText("Estimate Delivery Time : "+estimation.estimateTime( currentTimeString,deleveryTime+preptime));
+          textarea_display.setLineWrap(true);
+          textarea_display.setWrapStyleWord(true);
+
+          textarea_display.setText("Shortest path from Vito Pizza to " + destination + ": " + shortestPath);
 
     }
     
@@ -527,7 +535,15 @@ public class HOME1 extends javax.swing.JFrame implements Runnable{
         int preptime=max_heap.extractMax();//get prep time
          txt_preptime.setText("Your order will be ready in " + preptime+ " minutes");
         
-       
+         TimeEstimation estimate=new TimeEstimation();
+         txt_estimatedTime.setText("Estimate Delivery Time :"+estimate.estimateTime(lbl_time.getText(), preptime));
+         
+         if(cmb_order_type.getSelectedIndex()==2)//delivery
+        {
+             findshorttime(preptime);
+            
+            
+        }
         
         
         

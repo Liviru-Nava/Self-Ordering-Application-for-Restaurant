@@ -33,9 +33,8 @@ public class MenuItemLinkedList
             new_menu_list.previous = tail;
             tail = new_menu_list;
         }
-    }
-    
-    public void updatePopular(String name,int popularity)
+    }  
+public void updatePopular(String name,int popularity)
     {
         MenuItemNode current=head;
         while(current.item_name!=name)
@@ -50,20 +49,20 @@ public class MenuItemLinkedList
     //perform merge sort from min to max
     public void mergeSortMinMax()
     {
-        head = mergeSortMinMaxRec(head);
+        tail = mergeSortMinMaxRec(tail);
     }
-    private MenuItemNode mergeSortMinMaxRec(MenuItemNode listHead)
+    private MenuItemNode mergeSortMinMaxRec(MenuItemNode listTail)
     {
-        if (listHead == null || listHead.next == null) {
-            return listHead; // Already sorted or only one element
+        if (listTail == null || listTail.previous == null) {
+            return listTail; // Already sorted or only one element
         }
         // Split the list into two halves
-        MenuItemNode middle = getMiddleMinMax(listHead);
-        MenuItemNode nextOfMiddle = middle.next;
-        middle.next = null;
+        MenuItemNode middle = getMiddleMinMax(listTail);
+        MenuItemNode nextOfMiddle = middle.previous;
+        middle.previous = null;
 
         // Recursively sort the two halves
-        MenuItemNode left = mergeSortMinMaxRec(listHead);
+        MenuItemNode left = mergeSortMinMaxRec(listTail);
         MenuItemNode right = mergeSortMinMaxRec(nextOfMiddle);
 
         // Merge the sorted halves
@@ -83,10 +82,10 @@ public class MenuItemLinkedList
         // Compare prices and merge
         if (left.getPrice() <= right.getPrice()) {
             result = left;
-            result.next = mergeMinMax(left.next, right);
+            result.previous = mergeMinMax(left.previous, right);
         } else {
             result = right;
-            result.next = mergeMinMax(left, right.next);
+            result.previous = mergeMinMax(left, right.previous);
         }
 
         return result;
@@ -99,9 +98,9 @@ public class MenuItemLinkedList
 
         MenuItemNode slow = head, fast = head;
 
-        while (fast.next != null && fast.next.next != null) {
-            slow = slow.next;
-            fast = fast.next.next;
+        while (fast.previous != null && fast.previous.previous != null) {
+            slow = slow.previous;
+            fast = fast.previous.previous;
         }
         return slow;
     }
@@ -289,27 +288,15 @@ public class MenuItemLinkedList
         }
         return slow;
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+public  void display()
+{
+    MenuItemNode currItemNode=head;
+    while (currItemNode!= null) 
+    {
+        System.out.println(currItemNode.item_name);
+        currItemNode = currItemNode.next;
+    }
+}
 }
 
 

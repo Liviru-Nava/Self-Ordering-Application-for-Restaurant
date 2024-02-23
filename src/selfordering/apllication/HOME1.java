@@ -73,14 +73,9 @@ public class HOME1 extends javax.swing.JFrame implements Runnable{
          {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 3}, // Borella
          {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 3, 0} //Â WardÂ Place
         };
-
-        
         // Array of location names
         locations = new  String[]{"Vito Pizza", "Gallface", "Townhall", "Kollupitiya", "Bambalapitya", "Dematagoda", "Wellawatte", "Havelock Road", "Maharagama", "Nugegoda", "Piliyandala", "Nawala", "Narahenpita", "Borella", "Ward Place"};
 
-        
-     
-        
         // Add selection listener to sourceTable
         tbl_show_menu_items.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
             @Override
@@ -90,7 +85,6 @@ public class HOME1 extends javax.swing.JFrame implements Runnable{
                 }
             }
         });
-        
         // this codes for the digital clock
         Thread t=new Thread(this);
         t.start();
@@ -145,7 +139,7 @@ public class HOME1 extends javax.swing.JFrame implements Runnable{
         jLabel6 = new javax.swing.JLabel();
         lbl_time = new java.awt.Label();
         btn_kitchen_view = new rojeru_san.complementos.RSButtonHover();
-        rSButtonHover9 = new rojeru_san.complementos.RSButtonHover();
+        btn_admin = new rojeru_san.complementos.RSButtonHover();
         jLabel24 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -286,10 +280,11 @@ public class HOME1 extends javax.swing.JFrame implements Runnable{
 
         textarea_display.setColumns(20);
         textarea_display.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        textarea_display.setForeground(new java.awt.Color(204, 0, 0));
         textarea_display.setRows(5);
         jScrollPane1.setViewportView(textarea_display);
 
-        jPanel3.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, 400, 150));
+        jPanel3.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, 400, 150));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel1.setText("Display");
@@ -298,17 +293,17 @@ public class HOME1 extends javax.swing.JFrame implements Runnable{
         txt_estimatedTime.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         txt_estimatedTime.setForeground(new java.awt.Color(204, 0, 0));
         txt_estimatedTime.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        jPanel3.add(txt_estimatedTime, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 400, 60));
+        jPanel3.add(txt_estimatedTime, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 400, 40));
 
         txt_preptime.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         txt_preptime.setForeground(new java.awt.Color(204, 0, 0));
         txt_preptime.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        jPanel3.add(txt_preptime, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 400, 50));
+        jPanel3.add(txt_preptime, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 400, 40));
 
         txt_deliverytime1.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         txt_deliverytime1.setForeground(new java.awt.Color(204, 0, 0));
         txt_deliverytime1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        jPanel3.add(txt_deliverytime1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 400, 50));
+        jPanel3.add(txt_deliverytime1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 400, 40));
 
         jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 490, 420, 310));
 
@@ -438,11 +433,16 @@ public class HOME1 extends javax.swing.JFrame implements Runnable{
         });
         jPanel1.add(btn_kitchen_view, new org.netbeans.lib.awtextra.AbsoluteConstraints(1420, 10, 60, -1));
 
-        rSButtonHover9.setBackground(new java.awt.Color(255, 255, 255));
-        rSButtonHover9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/selfordering/apllication/setting (2).png"))); // NOI18N
-        rSButtonHover9.setColorHover(new java.awt.Color(255, 255, 255));
-        rSButtonHover9.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/selfordering/apllication/setting (3).png"))); // NOI18N
-        jPanel1.add(rSButtonHover9, new org.netbeans.lib.awtextra.AbsoluteConstraints(1470, 10, 60, -1));
+        btn_admin.setBackground(new java.awt.Color(255, 255, 255));
+        btn_admin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/selfordering/apllication/setting (2).png"))); // NOI18N
+        btn_admin.setColorHover(new java.awt.Color(255, 255, 255));
+        btn_admin.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/selfordering/apllication/setting (3).png"))); // NOI18N
+        btn_admin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_adminActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btn_admin, new org.netbeans.lib.awtextra.AbsoluteConstraints(1470, 10, 60, -1));
 
         jLabel24.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
         jLabel24.setForeground(new java.awt.Color(156, 150, 150));
@@ -468,37 +468,28 @@ public class HOME1 extends javax.swing.JFrame implements Runnable{
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    
      public void findshorttime(int preptime)
-    {
-             
+    {     
         // Destination location for which shortest path is to be found
-       String destination =(String)com_location.getSelectedItem();
+        String destination =(String)com_location.getSelectedItem();
 
         // Create an instance of DijkstraAlgorithm
         DijkstraAlgorithm dijkstraAlgorithm = new DijkstraAlgorithm();
-
-
+        
         // Find shortest path from restaurant to the destination city
-           int deleveryTime = dijkstraAlgorithm.findShortestDistanceToLocation(graph, locations, destination);
-           String shortestPath = dijkstraAlgorithm.findShortestPathToLocation(graph, locations, destination);
+        int deleveryTime = dijkstraAlgorithm.findShortestDistanceToLocation(graph, locations, destination);
+        String shortestPath = dijkstraAlgorithm.findShortestPathToLocation(graph, locations, destination);
          
-           String currentTimeString =lbl_time.getText();
+        String currentTimeString =lbl_time.getText(); 
+        TimeEstimation estimation=new TimeEstimation();
          
-           TimeEstimation estimation=new TimeEstimation();
-         
-          txt_preptime.setText("Your order will be ready in " + preptime+ " Minutes");
-          txt_deliverytime1.setText("Delivery Time : "+deleveryTime+" Minutes");
-          txt_estimatedTime.setText("Estimate Delivery Time : "+estimation.estimateTime( currentTimeString,deleveryTime+preptime));
-          textarea_display.setLineWrap(true);
-          textarea_display.setWrapStyleWord(true);
-
-          textarea_display.setText("Shortest path from Vito Pizza to " + destination + ": " + shortestPath);
-
-    }
-    
-  
-    
+        txt_preptime.setText("Your order will be ready in " + preptime+ " Minutes");
+        txt_deliverytime1.setText("Delivery Time : " + deleveryTime + " Minutes");
+        txt_estimatedTime.setText("Estimate Delivery Time : "+estimation.estimateTime( currentTimeString,deleveryTime+preptime));
+        textarea_display.setLineWrap(true);
+        textarea_display.setWrapStyleWord(true);
+        textarea_display.setText("Shortest path from Vito Pizza to " + destination + ": " + shortestPath);
+    }   
     private void btn_beverageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_beverageActionPerformed
         // TODO add your handling code here:
         addBeverageToTableOriginal();
@@ -531,26 +522,16 @@ public class HOME1 extends javax.swing.JFrame implements Runnable{
         System.out.println("Values at heap: ");
         max_heap.printHeap();
         
-        
         int preptime=max_heap.extractMax();//get prep time
-         txt_preptime.setText("Your order will be ready in " + preptime+ " minutes");
+        txt_preptime.setText("Your order will be ready in " + preptime+ " minutes");
         
-         TimeEstimation estimate=new TimeEstimation();
-         txt_estimatedTime.setText("Estimate Delivery Time :"+estimate.estimateTime(lbl_time.getText(), preptime));
+        TimeEstimation estimate=new TimeEstimation();
+        txt_estimatedTime.setText("Estimate Delivery Time :"+estimate.estimateTime(lbl_time.getText(), preptime));
          
-         if(cmb_order_type.getSelectedIndex()==2)//delivery
+        if(cmb_order_type.getSelectedIndex()==2)//delivery
         {
-             findshorttime(preptime);
-            
-            
-        }
-        
-        
-        
-        
-        
-        
-        
+            findshorttime(preptime);
+        }    
     }//GEN-LAST:event_btn_order_nowActionPerformed
 
     private void btn_min_max_sortActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_min_max_sortActionPerformed
@@ -558,28 +539,28 @@ public class HOME1 extends javax.swing.JFrame implements Runnable{
         if(pizza_button_state == true)  //if pizza button is clicked, sort the pizza details
         {
             // Reset the pizza list to its original state
-            menu_list.head = copyMenuItemLinkedList(original_menu_list.head);
+            menu_list.head = copyMenuItemLinkedList(original_menu_list.tail);
             menu_list.mergeSortMinMax();
             addPizzaToTable();
         }
         else if(appetizer_button_state == true) //if appetizer button is clicked, sort the appetizer details
         {
             // Reset the pizza list to its original state
-            menu_list.head = copyMenuItemLinkedList(original_menu_list.head);
+            menu_list.head = copyMenuItemLinkedList(original_menu_list.tail);
             menu_list.mergeSortMinMax();
             addAppetizerToTable();
         }
         else if(beverage_button_state == true)  //if the beverage button is clicked, sort the beverage details
         {
             // Reset the pizza list to its original state
-            menu_list.head = copyMenuItemLinkedList(original_menu_list.head);
+            menu_list.head = copyMenuItemLinkedList(original_menu_list.tail);
             menu_list.mergeSortMinMax();
             addBeverageToTable();
         }
         else if(dessert_button_state == true)   //if the dessert button is clicked, sort the dessert details
         {
             // Reset the pizza list to its original state
-            menu_list.head = copyMenuItemLinkedList(original_menu_list.head);
+            menu_list.head = copyMenuItemLinkedList(original_menu_list.tail);
             menu_list.mergeSortMinMax();
             addDessertToTable();
         }
@@ -590,28 +571,28 @@ public class HOME1 extends javax.swing.JFrame implements Runnable{
         if(pizza_button_state == true)  //if pizza button is clicked, sort the pizza details
         {
             // Reset the pizza list to its original state
-            menu_list.head = copyMenuItemLinkedList(original_menu_list.head);
+            menu_list.head = copyMenuItemLinkedList(original_menu_list.tail);
             menu_list.mergeSortMaxMin();
             addPizzaToTable();
         }
         else if(appetizer_button_state == true) //if appetizer button is clicked, sort the appetizer details
         {
             // Reset the pizza list to its original state
-            menu_list.head = copyMenuItemLinkedList(original_menu_list.head);
+            menu_list.head = copyMenuItemLinkedList(original_menu_list.tail);
             menu_list.mergeSortMaxMin();
             addAppetizerToTable();
         }
         else if(beverage_button_state == true)  //if the beverage button is clicked, sort the beverage details
         {
             // Reset the pizza list to its original state
-            menu_list.head = copyMenuItemLinkedList(original_menu_list.head);
+            menu_list.head = copyMenuItemLinkedList(original_menu_list.tail);
             menu_list.mergeSortMaxMin();
             addBeverageToTable();
         }
         else if(dessert_button_state == true)   //if the dessert button is clicked, sort the dessert details
         {
             // Reset the pizza list to its original state
-            menu_list.head = copyMenuItemLinkedList(original_menu_list.head);
+            menu_list.head = copyMenuItemLinkedList(original_menu_list.tail);
             menu_list.mergeSortMaxMin();
             addDessertToTable();
         }
@@ -622,33 +603,31 @@ public class HOME1 extends javax.swing.JFrame implements Runnable{
          if(pizza_button_state == true)  //if pizza button is clicked, sort the pizza details
         {
             // Reset the pizza list to its original state
-            menu_list.head = copyMenuItemLinkedList(original_menu_list.head);
+            menu_list.head = copyMenuItemLinkedList(original_menu_list.tail);
             menu_list.popoularSort();
             addPizzaToTable();
         }
         else if(appetizer_button_state == true) //if appetizer button is clicked, sort the appetizer details
         {
             // Reset the pizza list to its original state
-            menu_list.head = copyMenuItemLinkedList(original_menu_list.head);
+            menu_list.head = copyMenuItemLinkedList(original_menu_list.tail);
             menu_list.popoularSort();
             addAppetizerToTable();
         }
         else if(beverage_button_state == true)  //if the beverage button is clicked, sort the beverage details
         {
             // Reset the pizza list to its original state
-            menu_list.head = copyMenuItemLinkedList(original_menu_list.head);
+            menu_list.head = copyMenuItemLinkedList(original_menu_list.tail);
             menu_list.popoularSort();
             addBeverageToTable();
         }
         else if(dessert_button_state == true)   //if the dessert button is clicked, sort the dessert details
         {
             // Reset the pizza list to its original state
-            menu_list.head = copyMenuItemLinkedList(original_menu_list.head);
+            menu_list.head = copyMenuItemLinkedList(original_menu_list.tail);
             menu_list.popoularSort();
             addDessertToTable();
         }
-        
-       
     }//GEN-LAST:event_btn_popularity_sortActionPerformed
 
     private void btn_alphabetical_sortActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_alphabetical_sortActionPerformed
@@ -723,6 +702,12 @@ public class HOME1 extends javax.swing.JFrame implements Runnable{
         Kitchen kitchen_screen = new Kitchen(order_queue);
         kitchen_screen.setVisible(true);
     }//GEN-LAST:event_btn_kitchen_viewActionPerformed
+
+    private void btn_adminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_adminActionPerformed
+        // TODO add your handling code here:
+        Admin1 admin_screen = new Admin1(menu_list, original_menu_list);
+        admin_screen.setVisible(true);
+    }//GEN-LAST:event_btn_adminActionPerformed
     /**
      * @param args the command line arguments
      */
@@ -760,6 +745,7 @@ public class HOME1 extends javax.swing.JFrame implements Runnable{
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel billvalue;
+    private rojeru_san.complementos.RSButtonHover btn_admin;
     private rojeru_san.complementos.RSButtonHover btn_alphabetical_sort;
     private rojeru_san.complementos.RSButtonHover btn_appetizer;
     private rojeru_san.complementos.RSButtonHover btn_beverage;
@@ -793,7 +779,6 @@ public class HOME1 extends javax.swing.JFrame implements Runnable{
     private javax.swing.JLabel lbl_total;
     private rojeru_san.complementos.RSButtonHover rSButtonHover1;
     private rojeru_san.complementos.RSButtonHover rSButtonHover5;
-    private rojeru_san.complementos.RSButtonHover rSButtonHover9;
     private javax.swing.JTable tbl_show_cart;
     private javax.swing.JTable tbl_show_menu_items;
     private javax.swing.JTextArea textarea_display;
@@ -833,12 +818,29 @@ public class HOME1 extends javax.swing.JFrame implements Runnable{
         menu_list.insertProducts("American Spicy Pizza", "Pizza", 1150.00, 55, 16);
         menu_list.insertProducts("Dominoes Pizza", "Pizza", 1800.00, 47, 19);
         
+        original_menu_list.insertProducts("Chicken Pizza","Pizza", 1200.00, 50, 10);
+        original_menu_list.insertProducts("Beef Pepperoni Pizza", "Pizza", 1100.00, 12,11);
+        original_menu_list.insertProducts("Butter Chicken Pizza", "Pizza", 1600.00, 22, 20);
+        original_menu_list.insertProducts("Paneer Pizza", "Pizza", 990.00, 51, 15);
+        original_menu_list.insertProducts("Sausage Delight Pizza", "Pizza", 1350.00, 49, 18);
+        original_menu_list.insertProducts("Italian Pizza", "Pizza", 1450.00, 52, 13);
+        original_menu_list.insertProducts("Pork Pizza", "Pizza", 2200.00, 48, 10);
+        original_menu_list.insertProducts("Italian Veggie Pizza", "Pizza", 1000.00, 53, 14);
+        original_menu_list.insertProducts("American Spicy Pizza", "Pizza", 1150.00, 55, 16);
+        original_menu_list.insertProducts("Dominoes Pizza", "Pizza", 1800.00, 47, 19);
+        
         //insert 5 Appetizers
         menu_list.insertProducts("French Fries", "Appetizer", 300.00, 20, 5);
         menu_list.insertProducts("Garlic Bread", "Appetizer", 350.00, 21, 8);
         menu_list.insertProducts("Chicken Nuggets", "Appetizer", 200.00, 19, 12);
         menu_list.insertProducts("Chicken Wings", "Appetizer", 150.00, 18, 18);
         menu_list.insertProducts("Cheese and Chicken balls", "Appetizer", 220.00, 22, 11);
+        
+        original_menu_list.insertProducts("French Fries", "Appetizer", 300.00, 20, 5);
+        original_menu_list.insertProducts("Garlic Bread", "Appetizer", 350.00, 21, 8);
+        original_menu_list.insertProducts("Chicken Nuggets", "Appetizer", 200.00, 19, 12);
+        original_menu_list.insertProducts("Chicken Wings", "Appetizer", 150.00, 18, 18);
+        original_menu_list.insertProducts("Cheese and Chicken balls", "Appetizer", 220.00, 22, 11);
         
         //insert 10 beverages details
         menu_list.insertProducts("Mineral Water", "Beverage", 300.00, 60, 1);
@@ -847,6 +849,12 @@ public class HOME1 extends javax.swing.JFrame implements Runnable{
         menu_list.insertProducts("Iced Coffee", "Beverage", 900.00, 55, 13);
         menu_list.insertProducts("Strawberry Milkshake", "Beverage", 1350.00, 54, 14);
         
+        original_menu_list.insertProducts("Mineral Water", "Beverage", 300.00, 60, 1);
+        original_menu_list.insertProducts("Coca Cola", "Beverage", 1100.00, 20, 1);
+        original_menu_list.insertProducts("Cappuccino", "Beverage", 1200.00, 59, 12);
+        original_menu_list.insertProducts("Iced Coffee", "Beverage", 900.00, 55, 13);
+        original_menu_list.insertProducts("Strawberry Milkshake", "Beverage", 1350.00, 54, 14);
+        
         //insert 10 dessert details
         menu_list.insertProducts("Raspberry Cheesecake", "Dessert", 700.00, 25, 20);
         menu_list.insertProducts("Lava Cake", "Dessert", 750.00, 26, 19);
@@ -854,13 +862,18 @@ public class HOME1 extends javax.swing.JFrame implements Runnable{
         menu_list.insertProducts("Chocolate Brownies", "Dessert", 850.00, 24, 21);
         menu_list.insertProducts("Fruit Torte", "Dessert", 1020.00, 23, 22);
         
+        original_menu_list.insertProducts("Raspberry Cheesecake", "Dessert", 700.00, 25, 20);
+        original_menu_list.insertProducts("Lava Cake", "Dessert", 750.00, 26, 19);
+        original_menu_list.insertProducts("English Custard", "Dessert", 900.00, 27, 21);
+        original_menu_list.insertProducts("Chocolate Brownies", "Dessert", 850.00, 24, 21);
+        original_menu_list.insertProducts("Fruit Torte", "Dessert", 1020.00, 23, 22);
         // Store the original pizza list
-        original_menu_list.head = copyMenuItemLinkedList(menu_list.head);
+        //original_menu_list.head = copyMenuItemLinkedList(menu_list.head);
     }
     public MenuItemNode copyMenuItemLinkedList(MenuItemNode head) 
     {
         MenuItemNode newHead = null;
-        MenuItemNode tail = null;
+       MenuItemNode tail = null;
         MenuItemNode current = head;
         
         while (current != null) 
@@ -878,7 +891,7 @@ public class HOME1 extends javax.swing.JFrame implements Runnable{
                 tail = newNode;
             }
             current = current.next;
-        }
+        }   
         return newHead;
     }
     //method to display the Pizza products when Pizza button is pressed
@@ -886,7 +899,7 @@ public class HOME1 extends javax.swing.JFrame implements Runnable{
     {
         DefaultTableModel tbl_items = (DefaultTableModel) tbl_show_menu_items.getModel();
         tbl_items.setRowCount(0);
-        MenuItemNode current_product = menu_list.head;
+        MenuItemNode current_product = menu_list.tail;
         
         while(current_product != null)
         {
@@ -894,12 +907,12 @@ public class HOME1 extends javax.swing.JFrame implements Runnable{
             {
                 tbl_items.addRow(new Object[]{current_product.getName(), current_product.getPrice()});
             }
-            current_product = current_product.next;
+            current_product = current_product.previous;
         }
     }
     public void addPizzaToTableOriginal()
     {
-        MenuItemNode current_product = original_menu_list.head;
+        MenuItemNode current_product = original_menu_list.tail;
         DefaultTableModel tbl_items = (DefaultTableModel) tbl_show_menu_items.getModel();
         tbl_items.setRowCount(0);
         
@@ -909,7 +922,7 @@ public class HOME1 extends javax.swing.JFrame implements Runnable{
             {
                 tbl_items.addRow(new Object[]{current_product.getName(), current_product.getPrice()});
             }
-            current_product = current_product.next;
+            current_product = current_product.previous;
         }
     }
     //method to display the Appetizer products when appetizer button is pressed
@@ -949,7 +962,6 @@ public class HOME1 extends javax.swing.JFrame implements Runnable{
         DefaultTableModel tbl_items = (DefaultTableModel) tbl_show_menu_items.getModel();
         tbl_items.setRowCount(0);
         MenuItemNode current_product = menu_list.head;
-        
         while(current_product != null)
         {
             if(current_product.getCategory().equals("Beverage"))
@@ -1046,7 +1058,8 @@ public class HOME1 extends javax.swing.JFrame implements Runnable{
     public void updateTotalLabel() 
     {
         double total = 0.0;
-        for (int row = 0; row < tbl_cart.getRowCount(); row++) {
+        for (int row = 0; row < tbl_cart.getRowCount(); row++) 
+        {
             double price = Double.parseDouble(tbl_cart.getValueAt(row, 1).toString());
             total += price;
         }
@@ -1062,8 +1075,7 @@ public class HOME1 extends javax.swing.JFrame implements Runnable{
             if(item_name.equals(selected_item.getName()))
             {
                 System.out.println("Pizza prep time: " + selected_item.getPreparationTime());
-                max_heap.insert(selected_item.getPreparationTime());
-               
+                max_heap.insert(selected_item.getPreparationTime());   
             }
             selected_item = selected_item.next;
         }
@@ -1088,10 +1100,8 @@ public class HOME1 extends javax.swing.JFrame implements Runnable{
                
             }
             selected_item = selected_item.next;
-        }
-        
+        }  
     }
-    
     private void displayOrders() 
     {
         // Dequeue and display orders until the queue is empty

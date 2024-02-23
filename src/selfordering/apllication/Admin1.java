@@ -3,19 +3,33 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package selfordering.apllication;
+import javax.swing.JOptionPane;
+import menu_item_classes.*;
 
 /**
  *
  * @author Hirantha perera
  */
 public class Admin1 extends javax.swing.JFrame {
-
+    MenuItemLinkedList menu_list;
+    MenuItemLinkedList original_list;
     /**
      * Creates new form Admin1
      */
-    public Admin1() {
+    public Admin1(MenuItemLinkedList menu_list, MenuItemLinkedList original_list) 
+    {
+        this.menu_list = menu_list;
+        this.original_list = original_list;
         initComponents();
     }
+//    public Admin1(MenuItemLinkedList menu_list, MenuItemLinkedList original_list)
+//    {
+//        initComponents();
+//        menu_list = new MenuItemLinkedList();
+//        original_list = new MenuItemLinkedList();
+//        this.menu_list = menu_list;
+//        this.original_list = original_list;
+//    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -28,18 +42,21 @@ public class Admin1 extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
+        txt_search = new javax.swing.JTextField();
+        txt_item_name = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
-        rSButtonHover6 = new rojeru_san.complementos.RSButtonHover();
-        rSButtonHover7 = new rojeru_san.complementos.RSButtonHover();
-        rSButtonHover8 = new rojeru_san.complementos.RSButtonHover();
+        txt_preparation_time = new javax.swing.JTextField();
+        btn_save = new rojeru_san.complementos.RSButtonHover();
+        btn_update = new rojeru_san.complementos.RSButtonHover();
+        btn_delete = new rojeru_san.complementos.RSButtonHover();
         jLabel4 = new javax.swing.JLabel();
         jLabel27 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        cmb_category = new javax.swing.JComboBox<>();
         jLabel5 = new javax.swing.JLabel();
+        txt_item_price = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
         rSButtonHover2 = new rojeru_san.complementos.RSButtonHover();
         rSButtonHover9 = new rojeru_san.complementos.RSButtonHover();
         jLabel2 = new javax.swing.JLabel();
@@ -54,55 +71,78 @@ public class Admin1 extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(234, 234, 234));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jTextField1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        jPanel2.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 50, 450, 40));
-        jPanel2.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 280, 450, 40));
+        txt_search.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        jPanel2.add(txt_search, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 50, 450, 40));
+        jPanel2.add(txt_item_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 280, 450, 40));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel1.setText("Item Price");
-        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 360, -1, -1));
+        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel1.setText("Preparation time");
+        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 420, -1, -1));
 
+        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Search");
         jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 60, -1, -1));
-        jPanel2.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 350, 450, 40));
+        jPanel2.add(txt_preparation_time, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 410, 450, 40));
 
-        rSButtonHover6.setBackground(new java.awt.Color(0, 204, 0));
-        rSButtonHover6.setBorder(null);
-        rSButtonHover6.setText("Save");
-        rSButtonHover6.setColorHover(new java.awt.Color(0, 0, 0));
-        jPanel2.add(rSButtonHover6, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 500, 150, -1));
+        btn_save.setBackground(new java.awt.Color(0, 204, 0));
+        btn_save.setBorder(null);
+        btn_save.setText("Save");
+        btn_save.setColorHover(new java.awt.Color(0, 0, 0));
+        btn_save.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_saveActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btn_save, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 500, 150, -1));
 
-        rSButtonHover7.setBackground(new java.awt.Color(204, 102, 0));
-        rSButtonHover7.setBorder(null);
-        rSButtonHover7.setText("Update");
-        rSButtonHover7.setColorHover(new java.awt.Color(0, 0, 0));
-        jPanel2.add(rSButtonHover7, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 500, 150, -1));
+        btn_update.setBackground(new java.awt.Color(204, 102, 0));
+        btn_update.setBorder(null);
+        btn_update.setText("Update");
+        btn_update.setColorHover(new java.awt.Color(0, 0, 0));
+        jPanel2.add(btn_update, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 500, 150, -1));
 
-        rSButtonHover8.setBackground(new java.awt.Color(204, 0, 51));
-        rSButtonHover8.setBorder(null);
-        rSButtonHover8.setText("Delete");
-        rSButtonHover8.setColorHover(new java.awt.Color(0, 0, 0));
-        jPanel2.add(rSButtonHover8, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 500, 150, -1));
+        btn_delete.setBackground(new java.awt.Color(204, 0, 51));
+        btn_delete.setBorder(null);
+        btn_delete.setText("Delete");
+        btn_delete.setColorHover(new java.awt.Color(0, 0, 0));
+        jPanel2.add(btn_delete, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 500, 150, -1));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("Item Category");
-        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 220, -1, -1));
+        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 220, -1, -1));
 
         jLabel27.setIcon(new javax.swing.ImageIcon(getClass().getResource("/selfordering/apllication/search (2).png"))); // NOI18N
         jLabel27.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jPanel2.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 50, 40, 40));
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+        cmb_category.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pizza", "Appetizer", "Beverage", "Dessert" }));
+        cmb_category.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
+                cmb_categoryActionPerformed(evt);
             }
         });
-        jPanel2.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 210, 450, 40));
+        jPanel2.add(cmb_category, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 210, 450, 40));
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("Item Name");
-        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 290, -1, -1));
+        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 290, -1, -1));
+        jPanel2.add(txt_item_price, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 350, 450, 40));
+
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel6.setText("Item Price");
+        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 360, -1, -1));
+
+        jButton1.setText("jButton1");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 80, -1, -1));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 100, 1320, 640));
 
@@ -133,9 +173,27 @@ public class Admin1 extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+    private void cmb_categoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmb_categoryActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1ActionPerformed
+    }//GEN-LAST:event_cmb_categoryActionPerformed
+
+    private void btn_saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_saveActionPerformed
+        // TODO add your handling code here:
+        String item_category = cmb_category.getSelectedItem().toString();
+        String item_name = txt_item_name.getText();
+        double item_price = Double.parseDouble(txt_item_price.getText());
+        int preparation_time = Integer.parseInt(txt_preparation_time.getText());
+        
+        menu_list.insertProducts(item_name, item_category, item_price, 0, preparation_time);
+        original_list.insertProducts(item_name, item_category, item_price, 0, preparation_time);
+        JOptionPane.showMessageDialog(rootPane, "Item added successfully!");
+    }//GEN-LAST:event_btn_saveActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+       // menu_list.display();
+        original_list.display();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -167,13 +225,19 @@ public class Admin1 extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Admin1().setVisible(true);
+                MenuItemLinkedList menu_list = new MenuItemLinkedList();
+                MenuItemLinkedList original_list = new MenuItemLinkedList();
+                new Admin1(menu_list, original_list).setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> jComboBox1;
+    private rojeru_san.complementos.RSButtonHover btn_delete;
+    private rojeru_san.complementos.RSButtonHover btn_save;
+    private rojeru_san.complementos.RSButtonHover btn_update;
+    private javax.swing.JComboBox<String> cmb_category;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel22;
@@ -181,15 +245,14 @@ public class Admin1 extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
     private rojeru_san.complementos.RSButtonHover rSButtonHover2;
-    private rojeru_san.complementos.RSButtonHover rSButtonHover6;
-    private rojeru_san.complementos.RSButtonHover rSButtonHover7;
-    private rojeru_san.complementos.RSButtonHover rSButtonHover8;
     private rojeru_san.complementos.RSButtonHover rSButtonHover9;
+    private javax.swing.JTextField txt_item_name;
+    private javax.swing.JTextField txt_item_price;
+    private javax.swing.JTextField txt_preparation_time;
+    private javax.swing.JTextField txt_search;
     // End of variables declaration//GEN-END:variables
 }

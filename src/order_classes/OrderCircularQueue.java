@@ -12,7 +12,7 @@ public class OrderCircularQueue
 {
     private static final int MAX_SIZE = 10;
     public Order[] orders;
-    private int front, rear, size;
+    public int front, rear, size;
     
     public OrderCircularQueue()
     {

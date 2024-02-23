@@ -22,15 +22,6 @@ public class Admin1 extends javax.swing.JFrame {
         this.original_list = original_list;
         initComponents();
     }
-//    public Admin1(MenuItemLinkedList menu_list, MenuItemLinkedList original_list)
-//    {
-//        initComponents();
-//        menu_list = new MenuItemLinkedList();
-//        original_list = new MenuItemLinkedList();
-//        this.menu_list = menu_list;
-//        this.original_list = original_list;
-//    }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -56,7 +47,6 @@ public class Admin1 extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         txt_item_price = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
         rSButtonHover2 = new rojeru_san.complementos.RSButtonHover();
         rSButtonHover9 = new rojeru_san.complementos.RSButtonHover();
         jLabel2 = new javax.swing.JLabel();
@@ -76,11 +66,9 @@ public class Admin1 extends javax.swing.JFrame {
         jPanel2.add(txt_item_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 280, 450, 40));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Preparation time");
         jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 420, -1, -1));
 
-        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Search");
         jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 60, -1, -1));
         jPanel2.add(txt_preparation_time, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 410, 450, 40));
@@ -100,16 +88,25 @@ public class Admin1 extends javax.swing.JFrame {
         btn_update.setBorder(null);
         btn_update.setText("Update");
         btn_update.setColorHover(new java.awt.Color(0, 0, 0));
+        btn_update.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_updateActionPerformed(evt);
+            }
+        });
         jPanel2.add(btn_update, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 500, 150, -1));
 
         btn_delete.setBackground(new java.awt.Color(204, 0, 51));
         btn_delete.setBorder(null);
         btn_delete.setText("Delete");
         btn_delete.setColorHover(new java.awt.Color(0, 0, 0));
+        btn_delete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_deleteActionPerformed(evt);
+            }
+        });
         jPanel2.add(btn_delete, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 500, 150, -1));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("Item Category");
         jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 220, -1, -1));
 
@@ -126,23 +123,13 @@ public class Admin1 extends javax.swing.JFrame {
         jPanel2.add(cmb_category, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 210, 450, 40));
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("Item Name");
         jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 290, -1, -1));
         jPanel2.add(txt_item_price, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 350, 450, 40));
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setText("Item Price");
         jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 360, -1, -1));
-
-        jButton1.setText("jButton1");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 80, -1, -1));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 100, 1320, 640));
 
@@ -183,17 +170,26 @@ public class Admin1 extends javax.swing.JFrame {
         String item_name = txt_item_name.getText();
         double item_price = Double.parseDouble(txt_item_price.getText());
         int preparation_time = Integer.parseInt(txt_preparation_time.getText());
-        
         menu_list.insertProducts(item_name, item_category, item_price, 0, preparation_time);
         original_list.insertProducts(item_name, item_category, item_price, 0, preparation_time);
         JOptionPane.showMessageDialog(rootPane, "Item added successfully!");
     }//GEN-LAST:event_btn_saveActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btn_updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_updateActionPerformed
         // TODO add your handling code here:
-       // menu_list.display();
-        original_list.display();
-    }//GEN-LAST:event_jButton1ActionPerformed
+        String item_category = cmb_category.getSelectedItem().toString();
+        String item_name = txt_item_name.getText();
+        double item_price = Double.parseDouble(txt_item_price.getText());
+        int preparation_time = Integer.parseInt(txt_preparation_time.getText());
+        menu_list.updateinfo(item_name, item_category, item_price,  0, preparation_time);
+        original_list.updateinfo(item_name, item_category, item_price,  0, preparation_time);
+        JOptionPane.showMessageDialog(rootPane, "Item Update successfully!");
+        
+    }//GEN-LAST:event_btn_updateActionPerformed
+
+    private void btn_deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_deleteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_deleteActionPerformed
 
     /**
      * @param args the command line arguments
@@ -237,7 +233,6 @@ public class Admin1 extends javax.swing.JFrame {
     private rojeru_san.complementos.RSButtonHover btn_save;
     private rojeru_san.complementos.RSButtonHover btn_update;
     private javax.swing.JComboBox<String> cmb_category;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel22;

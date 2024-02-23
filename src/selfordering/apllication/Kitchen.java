@@ -7,6 +7,7 @@ package selfordering.apllication;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import javax.swing.JOptionPane;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
@@ -54,7 +55,7 @@ public class Kitchen extends javax.swing.JFrame implements Runnable{
     private void initComponents() {
 
         jPanel2 = new javax.swing.JPanel();
-        rSButtonHover2 = new rojeru_san.complementos.RSButtonHover();
+        btn_refresh = new rojeru_san.complementos.RSButtonHover();
         jLabel3 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -66,6 +67,7 @@ public class Kitchen extends javax.swing.JFrame implements Runnable{
         lbl_timeshow1 = new java.awt.Label();
         rSButtonHover7 = new rojeru_san.complementos.RSButtonHover();
         rSButtonHover9 = new rojeru_san.complementos.RSButtonHover();
+        btn_process_order1 = new rojeru_san.complementos.RSButtonHover();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Kitchen UI");
@@ -74,11 +76,16 @@ public class Kitchen extends javax.swing.JFrame implements Runnable{
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        rSButtonHover2.setBackground(new java.awt.Color(0, 153, 51));
-        rSButtonHover2.setText("View Orders");
-        rSButtonHover2.setColorHover(new java.awt.Color(204, 0, 51));
-        rSButtonHover2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jPanel2.add(rSButtonHover2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 140, 70));
+        btn_refresh.setBackground(new java.awt.Color(51, 51, 51));
+        btn_refresh.setText("Refresh");
+        btn_refresh.setColorHover(new java.awt.Color(204, 0, 51));
+        btn_refresh.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btn_refresh.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_refreshActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btn_refresh, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 30, 110, 50));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel3.setText("Order Item");
@@ -154,10 +161,31 @@ public class Kitchen extends javax.swing.JFrame implements Runnable{
         rSButtonHover9.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/selfordering/apllication/setting (3).png"))); // NOI18N
         jPanel2.add(rSButtonHover9, new org.netbeans.lib.awtextra.AbsoluteConstraints(1470, 10, 60, -1));
 
+        btn_process_order1.setBackground(new java.awt.Color(0, 153, 51));
+        btn_process_order1.setText("Process Orders");
+        btn_process_order1.setColorHover(new java.awt.Color(204, 0, 51));
+        btn_process_order1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btn_process_order1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_process_order1ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btn_process_order1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 170, 50));
+
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1540, 820));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btn_refreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_refreshActionPerformed
+        // TODO add your handling code here:
+        updateOrdersTable();
+    }//GEN-LAST:event_btn_refreshActionPerformed
+
+    private void btn_process_order1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_process_order1ActionPerformed
+        // TODO add your handling code here:
+        processOrder();
+    }//GEN-LAST:event_btn_process_order1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -197,6 +225,8 @@ public class Kitchen extends javax.swing.JFrame implements Runnable{
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private rojeru_san.complementos.RSButtonHover btn_process_order1;
+    private rojeru_san.complementos.RSButtonHover btn_refresh;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel3;
@@ -205,7 +235,6 @@ public class Kitchen extends javax.swing.JFrame implements Runnable{
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private java.awt.Label lbl_timeshow1;
-    private rojeru_san.complementos.RSButtonHover rSButtonHover2;
     private rojeru_san.complementos.RSButtonHover rSButtonHover7;
     private rojeru_san.complementos.RSButtonHover rSButtonHover9;
     private javax.swing.JTable tbl_display_order_items;
@@ -232,11 +261,13 @@ public class Kitchen extends javax.swing.JFrame implements Runnable{
         int selectedRow = tbl_display_orders.getSelectedRow();
         if (selectedRow != -1 && selectedRow < order_queue.orders.length) 
         {
-            Order order = order_queue.orders[selectedRow];
-            if (order != null) 
+            int selected_order_number = (int)tbl_display_orders.getValueAt(selectedRow,0);
+            Order selected_order = findOrderByNumber(selected_order_number);
+            if (selected_order != null && selected_order.isActive()) 
             {
-                System.out.println("Selected Order: " + order.toString());
-                OrderItem[] items = order.items;
+                // Clear the existing items in the second JTable
+                tbl_order_items.setRowCount(0);
+                OrderItem[] items = selected_order.items;
                 if (items != null) 
                 {
                     DefaultTableModel itemsTableModel = new DefaultTableModel(new Object[]{"Item Name", "Item Price"}, 0);
@@ -246,7 +277,7 @@ public class Kitchen extends javax.swing.JFrame implements Runnable{
                         {
                             itemsTableModel.addRow(new Object[]{item.getItemName(), item.getPrice()});
                         }
-                }
+                    }
                 tbl_display_order_items.setModel(itemsTableModel);
                 } 
                 else 
@@ -264,14 +295,14 @@ public class Kitchen extends javax.swing.JFrame implements Runnable{
             System.out.println("Invalid selected row index or orderQueue length.");
         }
      }
-    private void updateOrdersTable()   //this will update the tbl_display_orders from the queue when the user clicks the btn_view_orders button
+    private void updateOrdersTable()   //this will update the tbl_display_orders from the queue
      {
         DefaultTableModel ordersTableModel = new DefaultTableModel(
                 new Object[]{"Order Number", "Order Total", "Customer Telephone", "Order Time"}, 0);
 
         for (Order order : order_queue.orders) 
         {
-            if (order != null) 
+            if (order != null && order.isActive()) 
             {
                 ordersTableModel.addRow(new Object[]{
                         order.getOrderNumber(),
@@ -281,5 +312,57 @@ public class Kitchen extends javax.swing.JFrame implements Runnable{
             }
         }
         tbl_display_orders.setModel(ordersTableModel);
+        tbl_display_orders.repaint();
      }
+    public void processOrder()
+    {
+        int order_number=0;
+        try {
+            order_number = (int)tbl_display_orders.getValueAt(0,0);
+        } catch (ArrayIndexOutOfBoundsException e) {
+            JOptionPane.showMessageDialog(rootPane, "No orders to process");
+        }
+        // Dequeue the order
+        Order processed_order = order_queue.dequeueOrder();
+        System.out.println("REAR: " + order_queue.rear);
+        System.out.println("FRONT: " + order_queue.front);
+        // Optionally, update the items table or perform any other necessary actions
+        tbl_order_items.setRowCount(0);
+        // Print a message or perform any additional processing
+        if (processed_order != null) 
+        {
+            processed_order.setOrderStatus();
+            removeOrderFromTableModel(processed_order.getOrderNumber());
+            JOptionPane.showMessageDialog(rootPane, "Order number "+ order_number +" is processed!");
+        } 
+        else 
+        {
+            JOptionPane.showMessageDialog(rootPane, "No orders to process");
+        }
+        updateOrdersTable();
+    }
+    public void removeOrderFromTableModel(int order_number) 
+    {
+        DefaultTableModel model = (DefaultTableModel) tbl_display_orders.getModel();
+        for (int row = 0; row < model.getRowCount(); row++) 
+        {
+            int table_order_number = (int) model.getValueAt(row, 0);
+            if (table_order_number == order_number) 
+            {
+                model.removeRow(row);
+                break; // Assuming order numbers are unique, no need to continue searching
+            }
+        }
+    }
+    public Order findOrderByNumber(int selected_order_number)
+    {
+        for (Order order : order_queue.orders) 
+        {
+            if (order != null && order.getOrderNumber() == selected_order_number) 
+            {
+                return order;
+            }
+        }
+        return null; // Order not found
+    }
 }

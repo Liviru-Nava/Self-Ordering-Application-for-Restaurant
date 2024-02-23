@@ -18,6 +18,7 @@ public class Order
     public double order_total;
     public String order_time;
     private int order_number;
+    private boolean is_active = true;
     
     public Order(String customer_telephone, OrderItem[] items, double order_total, String time)
     {
@@ -46,5 +47,13 @@ public class Order
     public int getOrderNumber()
     {
         return order_number;
+    }
+    public void setOrderStatus()
+    {
+        this.is_active = false;
+    }
+    public boolean isActive()
+    {
+        return is_active;
     }
 }

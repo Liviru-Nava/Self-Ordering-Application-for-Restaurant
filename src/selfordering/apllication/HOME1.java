@@ -500,67 +500,30 @@ public class HOME1 extends javax.swing.JFrame implements Runnable{
     }//GEN-LAST:event_btn_beverageActionPerformed
 
     private void btn_order_nowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_order_nowActionPerformed
-        String customer_telephone = txt_customer_telephone.getText();
-        double order_total = Double.parseDouble(lbl_total.getText());
-        String order_time = lbl_time.getText();
-        int row_count = tbl_cart.getRowCount();
-        OrderItem[] items = new OrderItem[row_count];
-        
-        for(int i=0; i< row_count; i++)
-        {
-            String item_name = String.valueOf(tbl_cart.getValueAt(i, 0));
-            double item_price = (double)tbl_cart.getValueAt(i, 1);
-            items[i] = new OrderItem(item_name, item_price);
-        }
-        Order new_order = new Order(customer_telephone, items, order_total, order_time);
-        order_queue.enqueueOrder(new_order);
+        placeOrder();
         JOptionPane.showMessageDialog(rootPane, "Your order has successfully been placed!");
-        System.out.println("Orders from the queue:");
-        displayOrders();
-        tbl_cart.setRowCount(0);  //reset the table
-        lbl_total.setText("0.00");      //reset the order total
-        System.out.println("Values at heap: ");
-        max_heap.printHeap();
-        
-        int preptime=max_heap.extractMax();//get prep time
-        txt_preptime.setText("Your order will be ready in " + preptime+ " minutes");
-        
-        TimeEstimation estimate=new TimeEstimation();
-        txt_estimatedTime.setText("Estimate Delivery Time :"+estimate.estimateTime(lbl_time.getText(), preptime));
-         
-        if(cmb_order_type.getSelectedIndex()==2)//delivery
-        {
-            findshorttime(preptime);
-        }    
+        displayEstimationTime();
     }//GEN-LAST:event_btn_order_nowActionPerformed
 
     private void btn_min_max_sortActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_min_max_sortActionPerformed
         // TODO add your handling code here:
         if(pizza_button_state == true)  //if pizza button is clicked, sort the pizza details
         {
-            // Reset the pizza list to its original state
-            menu_list.head = copyMenuItemLinkedList(original_menu_list.tail);
             menu_list.mergeSortMinMax();
             addPizzaToTable();
         }
         else if(appetizer_button_state == true) //if appetizer button is clicked, sort the appetizer details
         {
-            // Reset the pizza list to its original state
-            menu_list.head = copyMenuItemLinkedList(original_menu_list.tail);
             menu_list.mergeSortMinMax();
             addAppetizerToTable();
         }
         else if(beverage_button_state == true)  //if the beverage button is clicked, sort the beverage details
         {
-            // Reset the pizza list to its original state
-            menu_list.head = copyMenuItemLinkedList(original_menu_list.tail);
             menu_list.mergeSortMinMax();
             addBeverageToTable();
         }
         else if(dessert_button_state == true)   //if the dessert button is clicked, sort the dessert details
         {
-            // Reset the pizza list to its original state
-            menu_list.head = copyMenuItemLinkedList(original_menu_list.tail);
             menu_list.mergeSortMinMax();
             addDessertToTable();
         }
@@ -570,29 +533,21 @@ public class HOME1 extends javax.swing.JFrame implements Runnable{
         // TODO add your handling code here:
         if(pizza_button_state == true)  //if pizza button is clicked, sort the pizza details
         {
-            // Reset the pizza list to its original state
-            menu_list.head = copyMenuItemLinkedList(original_menu_list.tail);
             menu_list.mergeSortMaxMin();
             addPizzaToTable();
         }
         else if(appetizer_button_state == true) //if appetizer button is clicked, sort the appetizer details
         {
-            // Reset the pizza list to its original state
-            menu_list.head = copyMenuItemLinkedList(original_menu_list.tail);
             menu_list.mergeSortMaxMin();
             addAppetizerToTable();
         }
         else if(beverage_button_state == true)  //if the beverage button is clicked, sort the beverage details
         {
-            // Reset the pizza list to its original state
-            menu_list.head = copyMenuItemLinkedList(original_menu_list.tail);
             menu_list.mergeSortMaxMin();
             addBeverageToTable();
         }
         else if(dessert_button_state == true)   //if the dessert button is clicked, sort the dessert details
         {
-            // Reset the pizza list to its original state
-            menu_list.head = copyMenuItemLinkedList(original_menu_list.tail);
             menu_list.mergeSortMaxMin();
             addDessertToTable();
         }
@@ -602,29 +557,21 @@ public class HOME1 extends javax.swing.JFrame implements Runnable{
         // TODO add your handling code here:
          if(pizza_button_state == true)  //if pizza button is clicked, sort the pizza details
         {
-            // Reset the pizza list to its original state
-            menu_list.head = copyMenuItemLinkedList(original_menu_list.tail);
             menu_list.mergeSortPopular();
             addPizzaToTable();
         }
         else if(appetizer_button_state == true) //if appetizer button is clicked, sort the appetizer details
         {
-            // Reset the pizza list to its original state
-            menu_list.head = copyMenuItemLinkedList(original_menu_list.tail);
             menu_list.mergeSortPopular();
             addAppetizerToTable();
         }
         else if(beverage_button_state == true)  //if the beverage button is clicked, sort the beverage details
         {
-            // Reset the pizza list to its original state
-            menu_list.head = copyMenuItemLinkedList(original_menu_list.tail);
             menu_list.mergeSortPopular();
             addBeverageToTable();
         }
         else if(dessert_button_state == true)   //if the dessert button is clicked, sort the dessert details
         {
-            // Reset the pizza list to its original state
-            menu_list.head = copyMenuItemLinkedList(original_menu_list.tail);
             menu_list.mergeSortPopular();
             addDessertToTable();
         }
@@ -634,29 +581,21 @@ public class HOME1 extends javax.swing.JFrame implements Runnable{
         // TODO add your handling code here:
         if(pizza_button_state == true)  //if pizza button is clicked, sort the pizza details
         {
-            // Reset the pizza list to its original state
-            menu_list.head = copyMenuItemLinkedList(original_menu_list.tail);
             menu_list.mergeSortAlphabetical();
             addPizzaToTable();
         }
         else if(appetizer_button_state == true) //if appetizer button is clicked, sort the appetizer details
         {
-            // Reset the pizza list to its original state
-            menu_list.head = copyMenuItemLinkedList(original_menu_list.tail);
             menu_list.mergeSortAlphabetical();
             addAppetizerToTable();
         }
         else if(beverage_button_state == true)  //if the beverage button is clicked, sort the beverage details
         {
-            // Reset the pizza list to its original state
-            menu_list.head = copyMenuItemLinkedList(original_menu_list.tail);
             menu_list.mergeSortAlphabetical();
             addBeverageToTable();
         }
         else if(dessert_button_state == true)   //if the dessert button is clicked, sort the dessert details
         {
-            // Reset the pizza list to its original state
-            menu_list.head = copyMenuItemLinkedList(original_menu_list.tail);
             menu_list.mergeSortAlphabetical();
             addDessertToTable();
         }
@@ -802,7 +741,7 @@ public class HOME1 extends javax.swing.JFrame implements Runnable{
             lbl_time.setText(time12);
         }
     }
-    //method implementation at the bottom
+    /*---------------------------------------method implementation at the bottom-----------------------------*/
     //insert Menu details
     public void insertMenuDetails()
     {
@@ -867,34 +806,8 @@ public class HOME1 extends javax.swing.JFrame implements Runnable{
         original_menu_list.insertProducts("English Custard", "Dessert", 900.00, 27, 21);
         original_menu_list.insertProducts("Chocolate Brownies", "Dessert", 850.00, 24, 21);
         original_menu_list.insertProducts("Fruit Torte", "Dessert", 1020.00, 23, 22);
-        // Store the original pizza list
-        //original_menu_list.head = copyMenuItemLinkedList(menu_list.head);
     }
-    public MenuItemNode copyMenuItemLinkedList(MenuItemNode head) 
-    {
-        MenuItemNode newHead = null;
-       MenuItemNode tail = null;
-        MenuItemNode current = head;
-        
-        while (current != null) 
-        {
-            MenuItemNode newNode = new MenuItemNode(current.getName(), current.getCategory(), current.getPrice(), current.getPopularity(), current.getPreparationTime());
-            if (newHead == null) 
-            {
-                newHead = newNode;
-                tail = newNode;
-            } 
-            else 
-            {
-                tail.next = newNode;
-                newNode.previous = tail;
-                tail = newNode;
-            }
-            current = current.next;
-        }   
-        return newHead;
-    }
-    //method to display the Pizza products when Pizza button is pressed
+    //method to display the Pizza products from reverse order when appetizer button is pressed
     public void addPizzaToTable()
     {
         DefaultTableModel tbl_items = (DefaultTableModel) tbl_show_menu_items.getModel();
@@ -910,6 +823,7 @@ public class HOME1 extends javax.swing.JFrame implements Runnable{
             current_product = current_product.previous;
         }
     }
+    //method to display the Pizza products from reverse order when appetizer button is pressed
     public void addPizzaToTableOriginal()
     {
         MenuItemNode current_product = original_menu_list.tail;
@@ -925,7 +839,7 @@ public class HOME1 extends javax.swing.JFrame implements Runnable{
             current_product = current_product.previous;
         }
     }
-    //method to display the Appetizer products when appetizer button is pressed
+    //method to display the Appetizer products from reverse order when appetizer button is pressed
     public void addAppetizerToTable()
     {
         DefaultTableModel tbl_items = (DefaultTableModel) tbl_show_menu_items.getModel();
@@ -941,6 +855,7 @@ public class HOME1 extends javax.swing.JFrame implements Runnable{
             current_product = current_product.previous;
         }
     }
+    //method to display the Appetizer products from reverse order when appetizer button is pressed
     public void addAppetizerToTableOriginal()
     {
         MenuItemNode current_product = original_menu_list.tail;
@@ -956,7 +871,7 @@ public class HOME1 extends javax.swing.JFrame implements Runnable{
             current_product = current_product.previous;
         }
     }
-    //method to display the Beverage products when beverage button is pressed
+    //method to display the Beverage products from reverse order when beverage button is pressed
     public void addBeverageToTable()
     {
         DefaultTableModel tbl_items = (DefaultTableModel) tbl_show_menu_items.getModel();
@@ -971,6 +886,7 @@ public class HOME1 extends javax.swing.JFrame implements Runnable{
             current_product = current_product.previous;
         }
     }
+    //method to display the Beverage products from reverse order when beverage button is pressed
     public void addBeverageToTableOriginal()
     {
         MenuItemNode current_product = original_menu_list.tail;
@@ -986,7 +902,7 @@ public class HOME1 extends javax.swing.JFrame implements Runnable{
             current_product = current_product.previous;
         }
     }
-    //method to display the Dessert products when Dessert button is pressed
+    //method to display the Dessert products from reverse order when Dessert button is pressed
     public void addDessertToTable()
     {
         DefaultTableModel tbl_items = (DefaultTableModel) tbl_show_menu_items.getModel();
@@ -1002,6 +918,7 @@ public class HOME1 extends javax.swing.JFrame implements Runnable{
             current_product = current_product.previous;
         }
     }
+    //method to display the Dessert products from reverse order when Dessert button is pressed
     public void addDessertToTableOriginal()
     {
         MenuItemNode current_product = original_menu_list.tail;
@@ -1017,38 +934,39 @@ public class HOME1 extends javax.swing.JFrame implements Runnable{
             current_product = current_product.previous;
         }
     }
+    //Update the cart table when a row is selected from the menu list table
     public void updateTargetTable()
     {
-        int selectedRow = tbl_show_menu_items.getSelectedRow();
-        if (selectedRow != -1) 
+        int selected_row = tbl_show_menu_items.getSelectedRow();
+        if (selected_row != -1) 
         {
-            if(pizza_button_state == true)
+            if(pizza_button_state == true)  //if pizza button is clicked
             {
-                passPreparationTimeToHeap(selectedRow);
-                incremntPopular(selectedRow);
+                passPreparationTimeToHeap(selected_row); //pass the preparation time of the selected item
+                incremntPopular(selected_row);   //increment the popularity of the selected item by 1
             }
-            else if(appetizer_button_state == true)
+            else if(appetizer_button_state == true) //if appetizer button is clicked
             {
-                 passPreparationTimeToHeap(selectedRow);
-                 incremntPopular(selectedRow);
+                 passPreparationTimeToHeap(selected_row);    //pass the preparation time of the selected item
+                 incremntPopular(selected_row);  //increment the popularity of the selected item by 1
             }
-            else if(beverage_button_state == true)
+            else if(beverage_button_state == true)  //if beverage button is clicked
             {
-                 passPreparationTimeToHeap(selectedRow);
-                 incremntPopular(selectedRow);
+                 passPreparationTimeToHeap(selected_row);   //pass the preparation time of the selected item   
+                 incremntPopular(selected_row);  //increment the popularity of the selected item by 1
             }
-            else if(dessert_button_state == true)
+            else if(dessert_button_state == true)   //if dessert button is clicked
             {
-                passPreparationTimeToHeap(selectedRow);
-                incremntPopular(selectedRow);
+                passPreparationTimeToHeap(selected_row); //pass the preparation time of the selected item
+                incremntPopular(selected_row);   //increment the popularity of the selected item by 1
             }
             //codes to pass the values from table 1 to table 2
-            String itemName = tbl_show_menu_items.getValueAt(selectedRow, 0).toString();
-            double price = Double.parseDouble(tbl_show_menu_items.getValueAt(selectedRow, 1).toString());
+            String item_name = tbl_show_menu_items.getValueAt(selected_row, 0).toString();
+            double price = Double.parseDouble(tbl_show_menu_items.getValueAt(selected_row, 1).toString());
 
             // Add selected row to target table
-            Object[] rowData = {itemName, price};
-            tbl_cart.addRow(rowData);
+            Object[] row_data = {item_name, price};
+            tbl_cart.addRow(row_data);
             
             //update the total 
             updateTotalLabel();
@@ -1074,13 +992,11 @@ public class HOME1 extends javax.swing.JFrame implements Runnable{
         {
             if(item_name.equals(selected_item.getName()))
             {
-                System.out.println("Pizza prep time: " + selected_item.getPreparationTime());
                 max_heap.insert(selected_item.getPreparationTime());   
             }
             selected_item = selected_item.previous;
         }
     }
-    
     //INCREMNT  popular of select item
     public void incremntPopular(int selectedRow)
     {
@@ -1095,12 +1011,44 @@ public class HOME1 extends javax.swing.JFrame implements Runnable{
                popular++;
                
                menu_list.updatePopular(name, popular); 
-               original_menu_list.updatePopular(name, popular);
-                System.out.println(popular);
-               
+               original_menu_list.updatePopular(name, popular); 
             }
             selected_item = selected_item.previous;
         }  
+    }
+    public void placeOrder()
+    {
+        String customer_telephone = txt_customer_telephone.getText();
+        double order_total = Double.parseDouble(lbl_total.getText());
+        String order_time = lbl_time.getText();
+        int row_count = tbl_cart.getRowCount();
+        OrderItem[] items = new OrderItem[row_count];
+        
+        for(int i=0; i< row_count; i++)
+        {
+            String item_name = String.valueOf(tbl_cart.getValueAt(i, 0));
+            double item_price = (double)tbl_cart.getValueAt(i, 1);
+            items[i] = new OrderItem(item_name, item_price);
+        }
+        Order new_order = new Order(customer_telephone, items, order_total, order_time);
+        order_queue.enqueueOrder(new_order);
+        //display the front and rear of the queue in the terminal
+        System.out.println("REAR: " + order_queue.rear);
+        System.out.println("FRONT: " + order_queue.front);
+    }
+    public void displayEstimationTime()
+    {
+        tbl_cart.setRowCount(0);  //reset the table
+        lbl_total.setText("0.00");      //reset the order total
+        
+        int preptime=max_heap.extractMax();//get prep time
+        txt_preptime.setText("Your order will be ready in " + preptime+ " minutes");
+        TimeEstimation estimate=new TimeEstimation();
+        txt_estimatedTime.setText("Estimate Delivery Time :"+estimate.estimateTime(lbl_time.getText(), preptime)); 
+        if(cmb_order_type.getSelectedIndex()==2)//delivery
+        {
+            findshorttime(preptime);
+        } 
     }
     private void displayOrders() 
     {

@@ -33,16 +33,27 @@ public class MenuItemLinkedList
             new_menu_list.previous = tail;
             tail = new_menu_list;
         }
-    }  
+    }
+    public void updateinfo(String name, String category, double price, int popularity, int time)
+    {
+        MenuItemNode current=tail;
+        while(!current.item_name.equals(name))
+        {            
+            current=current.previous;
+        }
+        current.item_name=name;
+        current.item_category=category;
+        current.item_price=price;
+        current.item_preparation_time=time;
+    }
     public void updatePopular(String name,int popularity)
     {
         MenuItemNode current=tail;
-        while(current.item_name!=name)
+        while(!current.item_name.equals(name))
         {            
             current=current.previous;
         }
         current.item_popularity=popularity;
-        System.out.println(current.item_popularity);
     }
 
     //perform merge sort from min to max
@@ -52,7 +63,8 @@ public class MenuItemLinkedList
     }
     private MenuItemNode mergeSortMinMaxRec(MenuItemNode listTail)
     {
-        if (listTail == null || listTail.previous == null) {
+        if (listTail == null || listTail.previous == null) 
+        {
             return listTail; // Already sorted or only one element
         }
         // Split the list into two halves
@@ -68,42 +80,45 @@ public class MenuItemLinkedList
         return mergeMinMax(left, right);
     }
     // Merge two sorted linked lists
-    private MenuItemNode mergeMinMax(MenuItemNode left, MenuItemNode right) {
+    private MenuItemNode mergeMinMax(MenuItemNode left, MenuItemNode right) 
+    {
         MenuItemNode result = null;
-
-        if (left == null) {
+        if (left == null) 
+        {
             return right;
         }
-        if (right == null) {
+        if (right == null) 
+        {
             return left;
         }
-
         // Compare prices and merge
-        if (left.getPrice() <= right.getPrice()) {
+        if (left.getPrice() <= right.getPrice()) 
+        {
             result = left;
             result.previous = mergeMinMax(left.previous, right);
-        } else {
+        } 
+        else 
+        {
             result = right;
             result.previous = mergeMinMax(left, right.previous);
         }
-
         return result;
     }
     // Helper method to find the middle of the linked list
-    private MenuItemNode getMiddleMinMax(MenuItemNode head) {
-        if (head == null) {
+    private MenuItemNode getMiddleMinMax(MenuItemNode head) 
+    {
+        if (head == null) 
+        {
             return head;
         }
-
         MenuItemNode slow = head, fast = head;
-
-        while (fast.previous != null && fast.previous.previous != null) {
+        while (fast.previous != null && fast.previous.previous != null) 
+        {
             slow = slow.previous;
             fast = fast.previous.previous;
         }
         return slow;
     }
-    
     //perform merge sort from min to max
     public void mergeSortMaxMin()
     {
@@ -111,57 +126,60 @@ public class MenuItemLinkedList
     }
     private MenuItemNode mergeSortMaxMinRec(MenuItemNode listTail)
     {
-        if (listTail == null || listTail.previous == null) {
+        if (listTail == null || listTail.previous == null) 
+        {
             return listTail; // Already sorted or only one element
         }
         // Split the list into two halves
         MenuItemNode middle = getMiddleMaxMin(listTail);
         MenuItemNode nextOfMiddle = middle.previous;
         middle.previous = null;
-
         // Recursively sort the two halves
         MenuItemNode left = mergeSortMaxMinRec(listTail);
         MenuItemNode right = mergeSortMaxMinRec(nextOfMiddle);
-
         // Merge the sorted halves
         return mergeMaxMin(left, right);
     }
     // Merge two sorted linked lists
-    private MenuItemNode mergeMaxMin(MenuItemNode left, MenuItemNode right) {
+    private MenuItemNode mergeMaxMin(MenuItemNode left, MenuItemNode right)
+    {
         MenuItemNode result = null;
-
-        if (left == null) {
+        if (left == null) 
+        {
             return right;
         }
-        if (right == null) {
+        if (right == null) 
+        {
             return left;
         }
         // Compare prices and merge
-        if (left.getPrice() >= right.getPrice()) {
+        if (left.getPrice() >= right.getPrice()) 
+        {
             result = left;
             result.previous = mergeMaxMin(left.previous, right);
-        } else {
+        } 
+        else 
+        {
             result = right;
             result.previous = mergeMaxMin(left, right.previous);
         }
-
         return result;
     }
     // Helper method to find the middle of the linked list
-    private MenuItemNode getMiddleMaxMin(MenuItemNode head) {
-        if (head == null) {
+    private MenuItemNode getMiddleMaxMin(MenuItemNode head) 
+    {
+        if (head == null) 
+        {
             return head;
         }
-
         MenuItemNode slow = head, fast = head;
-
-        while (fast.previous != null && fast.previous.previous != null) {
+        while (fast.previous != null && fast.previous.previous != null) 
+        {
             slow = slow.previous;
             fast = fast.previous.previous;
         }
         return slow;
     }
-    
     //perform merge sort from min to max
     public void mergeSortAlphabetical()
     {
@@ -169,51 +187,55 @@ public class MenuItemLinkedList
     }
     private MenuItemNode mergeSortAlphabeticalRec(MenuItemNode listTail)
     {
-        if (listTail == null || listTail.previous == null) {
+        if (listTail == null || listTail.previous == null) 
+        {
             return listTail; // Already sorted or only one element
         }
         // Split the list into two halves
         MenuItemNode middle = getMiddleAlphabetical(listTail);
         MenuItemNode nextOfMiddle = middle.previous;
         middle.previous = null;
-
         // Recursively sort the two halves
         MenuItemNode left = mergeSortAlphabeticalRec(listTail);
         MenuItemNode right = mergeSortAlphabeticalRec(nextOfMiddle);
-
         // Merge the sorted halves
         return mergeAlphabetical(left, right);
     }
     // Merge two sorted linked lists
-    private MenuItemNode mergeAlphabetical(MenuItemNode left, MenuItemNode right) {
+    private MenuItemNode mergeAlphabetical(MenuItemNode left, MenuItemNode right) 
+    {
         MenuItemNode result = null;
-
-        if (left == null) {
+        if (left == null) 
+        {
             return right;
         }
-        if (right == null) {
+        if (right == null) 
+        {
             return left;
         }
-
         // Compare prices and merge
-        if (left.getName().compareTo(right.getName())<= 0) {
+        if (left.getName().compareTo(right.getName())<= 0) 
+        {
             result = left;
             result.previous = mergeAlphabetical(left.previous, right);
-        } else {
+        } 
+        else 
+        {
             result = right;
             result.previous = mergeAlphabetical(left, right.previous);
         }
-
         return result;
     }
     // Helper method to find the middle of the linked list
-    private MenuItemNode getMiddleAlphabetical(MenuItemNode head) {
-        if (head == null) {
+    private MenuItemNode getMiddleAlphabetical(MenuItemNode head) 
+    {
+        if (head == null) 
+        {
             return head;
         }
         MenuItemNode slow = head, fast = head;
-
-        while (fast.previous != null && fast.previous.previous != null) {
+        while (fast.previous != null && fast.previous.previous != null) 
+        {
             slow = slow.previous;
             fast = fast.previous.previous;
         }
@@ -227,64 +249,69 @@ public class MenuItemLinkedList
     }
     private MenuItemNode mergeSortPopularRec(MenuItemNode listTail)
     {
-        if (listTail == null || listTail.previous == null) {
+        if (listTail == null || listTail.previous == null) 
+        {
             return listTail; // Already sorted or only one element
         }
         // Split the list into two halves
         MenuItemNode middle = getMiddlePopular(listTail);
         MenuItemNode nextOfMiddle = middle.previous;
         middle.previous = null;
-
         // Recursively sort the two halves
         MenuItemNode left = mergeSortPopularRec(listTail);
         MenuItemNode right = mergeSortPopularRec(nextOfMiddle);
-
         // Merge the sorted halves
         return mergePopular(left, right);
     }
     // Merge two sorted linked lists
-    private MenuItemNode mergePopular(MenuItemNode left, MenuItemNode right) {
+    private MenuItemNode mergePopular(MenuItemNode left, MenuItemNode right)
+    {
         MenuItemNode result = null;
-
-        if (left == null) {
+        if (left == null) 
+        {
             return right;
         }
-        if (right == null) {
+        if (right == null) 
+        {
             return left;
         }
         // Compare prices and merge
-        if (left.getPopularity()>= right.getPopularity()) {
+        if (left.getPopularity()>= right.getPopularity()) 
+        {
             result = left;
             result.previous = mergePopular(left.previous, right);
-        } else {
+        }
+        else 
+        {
             result = right;
             result.previous = mergePopular(left, right.previous);
         }
-
         return result;
     }
     // Helper method to find the middle of the linked list
-    private MenuItemNode getMiddlePopular(MenuItemNode head) {
-        if (head == null) {
+    private MenuItemNode getMiddlePopular(MenuItemNode head) 
+    {
+        if (head == null) 
+        {
             return head;
         }
         MenuItemNode slow = head, fast = head;
-
-        while (fast.previous != null && fast.previous.previous != null) {
+        while (fast.previous != null && fast.previous.previous != null) 
+        {
             slow = slow.previous;
             fast = fast.previous.previous;
         }
         return slow;
     }
-public  void display()
-{
-    MenuItemNode currItemNode=head;
-    while (currItemNode!= null) 
+    public void display()
     {
-        System.out.println(currItemNode.item_name);
-        currItemNode = currItemNode.next;
+        MenuItemNode currItemNode=head;
+        while (currItemNode!= null) 
+        {
+            System.out.println(currItemNode.item_name);
+            currItemNode = currItemNode.next;
+        }
     }
-}
 }
 
 

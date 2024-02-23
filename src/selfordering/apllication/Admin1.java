@@ -21,6 +21,7 @@ public class Admin1 extends javax.swing.JFrame {
         this.menu_list = menu_list;
         this.original_list = original_list;
         initComponents();
+        //searchItem();
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -33,20 +34,21 @@ public class Admin1 extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        txt_search = new javax.swing.JTextField();
         txt_item_name = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         txt_preparation_time = new javax.swing.JTextField();
         btn_save = new rojeru_san.complementos.RSButtonHover();
         btn_update = new rojeru_san.complementos.RSButtonHover();
-        btn_delete = new rojeru_san.complementos.RSButtonHover();
+        btn_DELETE = new rojeru_san.complementos.RSButtonHover();
         jLabel4 = new javax.swing.JLabel();
-        jLabel27 = new javax.swing.JLabel();
         cmb_category = new javax.swing.JComboBox<>();
         jLabel5 = new javax.swing.JLabel();
         txt_item_price = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
+        btn_search = new rojeru_san.complementos.RSButtonHover();
+        com_search = new javax.swing.JComboBox<>();
+        btn_CLEAR = new rojeru_san.complementos.RSButtonHover();
         rSButtonHover2 = new rojeru_san.complementos.RSButtonHover();
         rSButtonHover9 = new rojeru_san.complementos.RSButtonHover();
         jLabel2 = new javax.swing.JLabel();
@@ -61,16 +63,17 @@ public class Admin1 extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(234, 234, 234));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        txt_search.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        jPanel2.add(txt_search, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 50, 450, 40));
+        txt_item_name.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jPanel2.add(txt_item_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 280, 450, 40));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel1.setText("Preparation time");
-        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 420, -1, -1));
+        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 420, -1, -1));
 
         jLabel3.setText("Search");
         jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 60, -1, -1));
+
+        txt_preparation_time.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jPanel2.add(txt_preparation_time, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 410, 450, 40));
 
         btn_save.setBackground(new java.awt.Color(0, 204, 0));
@@ -82,7 +85,7 @@ public class Admin1 extends javax.swing.JFrame {
                 btn_saveActionPerformed(evt);
             }
         });
-        jPanel2.add(btn_save, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 500, 150, -1));
+        jPanel2.add(btn_save, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 500, 150, -1));
 
         btn_update.setBackground(new java.awt.Color(204, 102, 0));
         btn_update.setBorder(null);
@@ -93,27 +96,24 @@ public class Admin1 extends javax.swing.JFrame {
                 btn_updateActionPerformed(evt);
             }
         });
-        jPanel2.add(btn_update, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 500, 150, -1));
+        jPanel2.add(btn_update, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 500, 150, -1));
 
-        btn_delete.setBackground(new java.awt.Color(204, 0, 51));
-        btn_delete.setBorder(null);
-        btn_delete.setText("Delete");
-        btn_delete.setColorHover(new java.awt.Color(0, 0, 0));
-        btn_delete.addActionListener(new java.awt.event.ActionListener() {
+        btn_DELETE.setBackground(new java.awt.Color(204, 0, 0));
+        btn_DELETE.setBorder(null);
+        btn_DELETE.setText("Delete");
+        btn_DELETE.setColorHover(new java.awt.Color(0, 0, 0));
+        btn_DELETE.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_deleteActionPerformed(evt);
+                btn_DELETEActionPerformed(evt);
             }
         });
-        jPanel2.add(btn_delete, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 500, 150, -1));
+        jPanel2.add(btn_DELETE, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 500, 150, -1));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel4.setText("Item Category");
         jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 220, -1, -1));
 
-        jLabel27.setIcon(new javax.swing.ImageIcon(getClass().getResource("/selfordering/apllication/search (2).png"))); // NOI18N
-        jLabel27.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jPanel2.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 50, 40, 40));
-
+        cmb_category.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         cmb_category.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pizza", "Appetizer", "Beverage", "Dessert" }));
         cmb_category.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -124,12 +124,44 @@ public class Admin1 extends javax.swing.JFrame {
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel5.setText("Item Name");
-        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 290, -1, -1));
+        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 280, -1, -1));
+
+        txt_item_price.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jPanel2.add(txt_item_price, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 350, 450, 40));
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel6.setText("Item Price");
-        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 360, -1, -1));
+        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 360, -1, -1));
+
+        btn_search.setBackground(new java.awt.Color(234, 234, 234));
+        btn_search.setIcon(new javax.swing.ImageIcon(getClass().getResource("/selfordering/apllication/search (2).png"))); // NOI18N
+        btn_search.setColorHover(new java.awt.Color(255, 255, 255));
+        btn_search.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_searchActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btn_search, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 50, 40, -1));
+
+        com_search.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        com_search.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        com_search.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                com_searchActionPerformed(evt);
+            }
+        });
+        jPanel2.add(com_search, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 50, 450, 40));
+
+        btn_CLEAR.setBackground(new java.awt.Color(0, 153, 204));
+        btn_CLEAR.setBorder(null);
+        btn_CLEAR.setText("Clear");
+        btn_CLEAR.setColorHover(new java.awt.Color(0, 0, 0));
+        btn_CLEAR.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_CLEARActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btn_CLEAR, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 500, 150, -1));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 100, 1320, 640));
 
@@ -187,10 +219,71 @@ public class Admin1 extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btn_updateActionPerformed
 
-    private void btn_deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_deleteActionPerformed
+    private void btn_DELETEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_DELETEActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btn_deleteActionPerformed
+        String item_name = txt_item_name.getText();
+        menu_list.deletemiddle(item_name);
+        original_list.deletemiddle(item_name);
+        JOptionPane.showMessageDialog(rootPane, "Item Delete successfully!");
+    }//GEN-LAST:event_btn_DELETEActionPerformed
 
+    private void btn_searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_searchActionPerformed
+        // TODO add your handling code here:
+       searchItem(); 
+    }//GEN-LAST:event_btn_searchActionPerformed
+
+    private void com_searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_com_searchActionPerformed
+        // TODO add your handling code here:
+        String name=com_search.getSelectedItem().toString();
+        MenuItemNode current=menu_list.tail;
+    
+        
+        while(!current.getName().equals(name))
+        {
+         
+          current=current.previous;
+        
+        }
+        double price=current.getPrice();
+        String itemprice = Double.toString(price);
+        int time=current.getPreparationTime();
+        String iteprice = Integer.toString(time); 
+        
+        
+        txt_item_name.setText(current.getName());
+        txt_item_price.setText(itemprice);
+        txt_preparation_time.setText(iteprice);
+        cmb_category.setSelectedItem(current.getCategory());
+         
+    }//GEN-LAST:event_com_searchActionPerformed
+
+    private void btn_CLEARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_CLEARActionPerformed
+        // TODO add your handling code here:
+        txt_item_name.setText("");
+        txt_item_price.setText("");
+        txt_preparation_time.setText("");
+        cmb_category.setSelectedIndex(-1);
+        
+    }//GEN-LAST:event_btn_CLEARActionPerformed
+
+    // search item from linkedlist and add ito the combo box
+    
+    public void searchItem()
+    {
+        MenuItemNode current=menu_list.tail;
+    
+        
+        while(current!=null)
+        {
+              
+            String name=current.getName();
+            com_search.addItem(name);
+            current=current.previous;
+        
+        }
+   
+    }
+   
     /**
      * @param args the command line arguments
      */
@@ -229,14 +322,16 @@ public class Admin1 extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private rojeru_san.complementos.RSButtonHover btn_delete;
+    private rojeru_san.complementos.RSButtonHover btn_CLEAR;
+    private rojeru_san.complementos.RSButtonHover btn_DELETE;
     private rojeru_san.complementos.RSButtonHover btn_save;
+    private rojeru_san.complementos.RSButtonHover btn_search;
     private rojeru_san.complementos.RSButtonHover btn_update;
     private javax.swing.JComboBox<String> cmb_category;
+    public javax.swing.JComboBox<String> com_search;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel22;
-    private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -248,6 +343,5 @@ public class Admin1 extends javax.swing.JFrame {
     private javax.swing.JTextField txt_item_name;
     private javax.swing.JTextField txt_item_price;
     private javax.swing.JTextField txt_preparation_time;
-    private javax.swing.JTextField txt_search;
     // End of variables declaration//GEN-END:variables
 }

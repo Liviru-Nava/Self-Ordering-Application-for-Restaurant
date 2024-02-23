@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package menu_item_classes;
+import selfordering.apllication.Admin1;
 
 /**
  *
@@ -45,6 +46,33 @@ public class MenuItemLinkedList
         current.item_category=category;
         current.item_price=price;
         current.item_preparation_time=time;
+    }
+    public void deletemiddle(String name)
+    {
+        MenuItemNode current=tail;
+        while(!current.item_name.equals(name))
+        {            
+            current=current.previous;
+        }
+        // Check if the node with the specified name is found
+        if (current != null) 
+        {
+            // Update next pointer of the previous node
+            if (current.previous != null) 
+            {
+                current.previous.next = current.next;
+            }
+            // Update previous pointer of the next node
+            if (current.next != null) 
+            {
+                current.next.previous = current.previous;
+            }
+            //if the current is a tail
+            if (current == tail) 
+            {
+                tail = current.previous; // Update tail to the previous node
+            }
+        }
     }
     public void updatePopular(String name,int popularity)
     {

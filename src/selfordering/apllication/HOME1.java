@@ -604,28 +604,28 @@ public class HOME1 extends javax.swing.JFrame implements Runnable{
         {
             // Reset the pizza list to its original state
             menu_list.head = copyMenuItemLinkedList(original_menu_list.tail);
-            menu_list.popoularSort();
+            menu_list.mergeSortPopular();
             addPizzaToTable();
         }
         else if(appetizer_button_state == true) //if appetizer button is clicked, sort the appetizer details
         {
             // Reset the pizza list to its original state
             menu_list.head = copyMenuItemLinkedList(original_menu_list.tail);
-            menu_list.popoularSort();
+            menu_list.mergeSortPopular();
             addAppetizerToTable();
         }
         else if(beverage_button_state == true)  //if the beverage button is clicked, sort the beverage details
         {
             // Reset the pizza list to its original state
             menu_list.head = copyMenuItemLinkedList(original_menu_list.tail);
-            menu_list.popoularSort();
+            menu_list.mergeSortPopular();
             addBeverageToTable();
         }
         else if(dessert_button_state == true)   //if the dessert button is clicked, sort the dessert details
         {
             // Reset the pizza list to its original state
             menu_list.head = copyMenuItemLinkedList(original_menu_list.tail);
-            menu_list.popoularSort();
+            menu_list.mergeSortPopular();
             addDessertToTable();
         }
     }//GEN-LAST:event_btn_popularity_sortActionPerformed
@@ -635,28 +635,28 @@ public class HOME1 extends javax.swing.JFrame implements Runnable{
         if(pizza_button_state == true)  //if pizza button is clicked, sort the pizza details
         {
             // Reset the pizza list to its original state
-            menu_list.head = copyMenuItemLinkedList(original_menu_list.head);
+            menu_list.head = copyMenuItemLinkedList(original_menu_list.tail);
             menu_list.mergeSortAlphabetical();
             addPizzaToTable();
         }
         else if(appetizer_button_state == true) //if appetizer button is clicked, sort the appetizer details
         {
             // Reset the pizza list to its original state
-            menu_list.head = copyMenuItemLinkedList(original_menu_list.head);
+            menu_list.head = copyMenuItemLinkedList(original_menu_list.tail);
             menu_list.mergeSortAlphabetical();
             addAppetizerToTable();
         }
         else if(beverage_button_state == true)  //if the beverage button is clicked, sort the beverage details
         {
             // Reset the pizza list to its original state
-            menu_list.head = copyMenuItemLinkedList(original_menu_list.head);
+            menu_list.head = copyMenuItemLinkedList(original_menu_list.tail);
             menu_list.mergeSortAlphabetical();
             addBeverageToTable();
         }
         else if(dessert_button_state == true)   //if the dessert button is clicked, sort the dessert details
         {
             // Reset the pizza list to its original state
-            menu_list.head = copyMenuItemLinkedList(original_menu_list.head);
+            menu_list.head = copyMenuItemLinkedList(original_menu_list.tail);
             menu_list.mergeSortAlphabetical();
             addDessertToTable();
         }
@@ -930,7 +930,7 @@ public class HOME1 extends javax.swing.JFrame implements Runnable{
     {
         DefaultTableModel tbl_items = (DefaultTableModel) tbl_show_menu_items.getModel();
         tbl_items.setRowCount(0);
-        MenuItemNode current_product = menu_list.head;
+        MenuItemNode current_product = menu_list.tail;
         
         while(current_product != null)
         {
@@ -938,12 +938,12 @@ public class HOME1 extends javax.swing.JFrame implements Runnable{
             {
                 tbl_items.addRow(new Object[]{current_product.getName(), current_product.getPrice()});
             }
-            current_product = current_product.next;
+            current_product = current_product.previous;
         }
     }
     public void addAppetizerToTableOriginal()
     {
-        MenuItemNode current_product = original_menu_list.head;
+        MenuItemNode current_product = original_menu_list.tail;
         DefaultTableModel tbl_items = (DefaultTableModel) tbl_show_menu_items.getModel();
         tbl_items.setRowCount(0);
         
@@ -953,7 +953,7 @@ public class HOME1 extends javax.swing.JFrame implements Runnable{
             {
                 tbl_items.addRow(new Object[]{current_product.getName(), current_product.getPrice()});
             }
-            current_product = current_product.next;
+            current_product = current_product.previous;
         }
     }
     //method to display the Beverage products when beverage button is pressed
@@ -961,19 +961,19 @@ public class HOME1 extends javax.swing.JFrame implements Runnable{
     {
         DefaultTableModel tbl_items = (DefaultTableModel) tbl_show_menu_items.getModel();
         tbl_items.setRowCount(0);
-        MenuItemNode current_product = menu_list.head;
+        MenuItemNode current_product = menu_list.tail;
         while(current_product != null)
         {
             if(current_product.getCategory().equals("Beverage"))
             {
                 tbl_items.addRow(new Object[]{current_product.getName(), current_product.getPrice()});
             }
-            current_product = current_product.next;
+            current_product = current_product.previous;
         }
     }
     public void addBeverageToTableOriginal()
     {
-        MenuItemNode current_product = original_menu_list.head;
+        MenuItemNode current_product = original_menu_list.tail;
         DefaultTableModel tbl_items = (DefaultTableModel) tbl_show_menu_items.getModel();
         tbl_items.setRowCount(0);
         
@@ -983,7 +983,7 @@ public class HOME1 extends javax.swing.JFrame implements Runnable{
             {
                 tbl_items.addRow(new Object[]{current_product.getName(), current_product.getPrice()});
             }
-            current_product = current_product.next;
+            current_product = current_product.previous;
         }
     }
     //method to display the Dessert products when Dessert button is pressed
@@ -991,7 +991,7 @@ public class HOME1 extends javax.swing.JFrame implements Runnable{
     {
         DefaultTableModel tbl_items = (DefaultTableModel) tbl_show_menu_items.getModel();
         tbl_items.setRowCount(0);
-        MenuItemNode current_product = menu_list.head;
+        MenuItemNode current_product = menu_list.tail;
         
         while(current_product != null)
         {
@@ -999,12 +999,12 @@ public class HOME1 extends javax.swing.JFrame implements Runnable{
             {
                 tbl_items.addRow(new Object[]{current_product.getName(), current_product.getPrice()});
             }
-            current_product = current_product.next;
+            current_product = current_product.previous;
         }
     }
     public void addDessertToTableOriginal()
     {
-        MenuItemNode current_product = original_menu_list.head;
+        MenuItemNode current_product = original_menu_list.tail;
         DefaultTableModel tbl_items = (DefaultTableModel) tbl_show_menu_items.getModel();
         tbl_items.setRowCount(0);
         
@@ -1014,7 +1014,7 @@ public class HOME1 extends javax.swing.JFrame implements Runnable{
             {
                 tbl_items.addRow(new Object[]{current_product.getName(), current_product.getPrice()});
             }
-            current_product = current_product.next;
+            current_product = current_product.previous;
         }
     }
     public void updateTargetTable()
@@ -1069,7 +1069,7 @@ public class HOME1 extends javax.swing.JFrame implements Runnable{
     public void passPreparationTimeToHeap(int selectedRow)
     {
         String item_name = String.valueOf(tbl_show_menu_items.getValueAt(selectedRow, 0));
-        MenuItemNode selected_item = original_menu_list.head;
+        MenuItemNode selected_item = original_menu_list.tail;
         while(selected_item != null)
         {
             if(item_name.equals(selected_item.getName()))
@@ -1077,7 +1077,7 @@ public class HOME1 extends javax.swing.JFrame implements Runnable{
                 System.out.println("Pizza prep time: " + selected_item.getPreparationTime());
                 max_heap.insert(selected_item.getPreparationTime());   
             }
-            selected_item = selected_item.next;
+            selected_item = selected_item.previous;
         }
     }
     
@@ -1085,7 +1085,7 @@ public class HOME1 extends javax.swing.JFrame implements Runnable{
     public void incremntPopular(int selectedRow)
     {
         String item_name = String.valueOf(tbl_show_menu_items.getValueAt(selectedRow, 0));
-        MenuItemNode selected_item = original_menu_list.head;
+        MenuItemNode selected_item = original_menu_list.tail;
          while(selected_item != null)
         {
             if(item_name.equals(selected_item.getName()))
@@ -1099,7 +1099,7 @@ public class HOME1 extends javax.swing.JFrame implements Runnable{
                 System.out.println(popular);
                
             }
-            selected_item = selected_item.next;
+            selected_item = selected_item.previous;
         }  
     }
     private void displayOrders() 

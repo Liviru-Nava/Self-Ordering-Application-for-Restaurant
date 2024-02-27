@@ -266,6 +266,7 @@ public class Admin1 extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btn_CLEARActionPerformed
 
+    // search item from linkedlist and add ito the combo box
     
     public void searchItem()
     {
@@ -282,20 +283,7 @@ public class Admin1 extends javax.swing.JFrame {
         }
    
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+   
     /**
      * @param args the command line arguments
      */

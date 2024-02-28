@@ -87,22 +87,22 @@ public class MenuItemLinkedList
     //perform merge sort from min to max
     public void mergeSortMinMax()
     {
-        tail = mergeSortMinMaxRec(tail);
+        head = mergeSortMinMaxRec(head);
     }
-    private MenuItemNode mergeSortMinMaxRec(MenuItemNode listTail)
+    private MenuItemNode mergeSortMinMaxRec(MenuItemNode list_head)
     {
-        if (listTail == null || listTail.previous == null) 
+        if (list_head == null || list_head.next == null) 
         {
-            return listTail; // Already sorted or only one element
+            return list_head; // Already sorted or only one element
         }
         // Split the list into two halves
-        MenuItemNode middle = getMiddleMinMax(listTail);
-        MenuItemNode nextOfMiddle = middle.previous;
-        middle.previous = null;
+        MenuItemNode middle = getMiddleMinMax(list_head);
+        MenuItemNode nextOfMiddle = middle.next;
+        middle.next = null;
 
         // Recursively sort the two halves
-        MenuItemNode left = mergeSortMinMaxRec(listTail);
-        MenuItemNode right = mergeSortMinMaxRec(nextOfMiddle);
+        MenuItemNode left = mergeSortMinMaxRec(nextOfMiddle);
+        MenuItemNode right = mergeSortMinMaxRec(list_head);
 
         // Merge the sorted halves
         return mergeMinMax(left, right);
@@ -123,47 +123,47 @@ public class MenuItemLinkedList
         if (left.getPrice() <= right.getPrice()) 
         {
             result = left;
-            result.previous = mergeMinMax(left.previous, right);
+            result.next = mergeMinMax(left.next, right);
         } 
         else 
         {
             result = right;
-            result.previous = mergeMinMax(left, right.previous);
+            result.next = mergeMinMax(left, right.next);
         }
         return result;
     }
     // Helper method to find the middle of the linked list
-    private MenuItemNode getMiddleMinMax(MenuItemNode head) 
+    private MenuItemNode getMiddleMinMax(MenuItemNode list_head) 
     {
-        if (head == null) 
+        if (list_head == null) 
         {
-            return head;
+            return list_head;
         }
-        MenuItemNode slow = head, fast = head;
-        while (fast.previous != null && fast.previous.previous != null) 
+        MenuItemNode slow = list_head, fast = list_head;
+        while (fast.next != null && fast.next.next != null) 
         {
-            slow = slow.previous;
-            fast = fast.previous.previous;
+            slow = slow.next;
+            fast = fast.next.next;
         }
         return slow;
     }
     //perform merge sort from min to max
     public void mergeSortMaxMin()
     {
-        tail = mergeSortMaxMinRec(tail);
+        head = mergeSortMaxMinRec(head);
     }
-    private MenuItemNode mergeSortMaxMinRec(MenuItemNode listTail)
+    private MenuItemNode mergeSortMaxMinRec(MenuItemNode list_head)
     {
-        if (listTail == null || listTail.previous == null) 
+        if (list_head == null || list_head.next == null) 
         {
-            return listTail; // Already sorted or only one element
+            return list_head; // Already sorted or only one element
         }
         // Split the list into two halves
-        MenuItemNode middle = getMiddleMaxMin(listTail);
-        MenuItemNode nextOfMiddle = middle.previous;
-        middle.previous = null;
+        MenuItemNode middle = getMiddleMaxMin(list_head);
+        MenuItemNode nextOfMiddle = middle.next;
+        middle.next = null;
         // Recursively sort the two halves
-        MenuItemNode left = mergeSortMaxMinRec(listTail);
+        MenuItemNode left = mergeSortMaxMinRec(list_head);
         MenuItemNode right = mergeSortMaxMinRec(nextOfMiddle);
         // Merge the sorted halves
         return mergeMaxMin(left, right);
@@ -184,47 +184,47 @@ public class MenuItemLinkedList
         if (left.getPrice() >= right.getPrice()) 
         {
             result = left;
-            result.previous = mergeMaxMin(left.previous, right);
+            result.next = mergeMaxMin(left.next, right);
         } 
         else 
         {
             result = right;
-            result.previous = mergeMaxMin(left, right.previous);
+            result.next = mergeMaxMin(left, right.next);
         }
         return result;
     }
     // Helper method to find the middle of the linked list
-    private MenuItemNode getMiddleMaxMin(MenuItemNode head) 
+    private MenuItemNode getMiddleMaxMin(MenuItemNode list_head) 
     {
-        if (head == null) 
+        if (list_head == null) 
         {
-            return head;
+            return list_head;
         }
-        MenuItemNode slow = head, fast = head;
-        while (fast.previous != null && fast.previous.previous != null) 
+        MenuItemNode slow = list_head, fast = list_head;
+        while (fast.next != null && fast.next.next != null) 
         {
-            slow = slow.previous;
-            fast = fast.previous.previous;
+            slow = slow.next;
+            fast = fast.next.next;
         }
         return slow;
     }
     //perform merge sort from min to max
     public void mergeSortAlphabetical()
     {
-        tail = mergeSortAlphabeticalRec(tail);
+        head = mergeSortAlphabeticalRec(head);
     }
-    private MenuItemNode mergeSortAlphabeticalRec(MenuItemNode listTail)
+    private MenuItemNode mergeSortAlphabeticalRec(MenuItemNode list_head)
     {
-        if (listTail == null || listTail.previous == null) 
+        if (list_head == null || list_head.next == null) 
         {
-            return listTail; // Already sorted or only one element
+            return list_head; // Already sorted or only one element
         }
         // Split the list into two halves
-        MenuItemNode middle = getMiddleAlphabetical(listTail);
-        MenuItemNode nextOfMiddle = middle.previous;
-        middle.previous = null;
+        MenuItemNode middle = getMiddleAlphabetical(list_head);
+        MenuItemNode nextOfMiddle = middle.next;
+        middle.next = null;
         // Recursively sort the two halves
-        MenuItemNode left = mergeSortAlphabeticalRec(listTail);
+        MenuItemNode left = mergeSortAlphabeticalRec(list_head);
         MenuItemNode right = mergeSortAlphabeticalRec(nextOfMiddle);
         // Merge the sorted halves
         return mergeAlphabetical(left, right);
@@ -245,27 +245,27 @@ public class MenuItemLinkedList
         if (left.getName().compareTo(right.getName())<= 0) 
         {
             result = left;
-            result.previous = mergeAlphabetical(left.previous, right);
+            result.next = mergeAlphabetical(left.next, right);
         } 
         else 
         {
             result = right;
-            result.previous = mergeAlphabetical(left, right.previous);
+            result.next = mergeAlphabetical(left, right.next);
         }
         return result;
     }
     // Helper method to find the middle of the linked list
-    private MenuItemNode getMiddleAlphabetical(MenuItemNode head) 
+    private MenuItemNode getMiddleAlphabetical(MenuItemNode list_head) 
     {
-        if (head == null) 
+        if (list_head == null) 
         {
-            return head;
+            return list_head;
         }
-        MenuItemNode slow = head, fast = head;
-        while (fast.previous != null && fast.previous.previous != null) 
+        MenuItemNode slow = list_head, fast = list_head;
+        while (fast.next != null && fast.next.next != null) 
         {
-            slow = slow.previous;
-            fast = fast.previous.previous;
+            slow = slow.next;
+            fast = fast.next.next;
         }
         return slow;
     }
@@ -273,20 +273,20 @@ public class MenuItemLinkedList
     //perform merge sort from min to max
     public void mergeSortPopular()
     {
-        tail = mergeSortPopularRec(tail);
+        head = mergeSortPopularRec(head);
     }
-    private MenuItemNode mergeSortPopularRec(MenuItemNode listTail)
+    private MenuItemNode mergeSortPopularRec(MenuItemNode list_head)
     {
-        if (listTail == null || listTail.previous == null) 
+        if (list_head == null || list_head.next == null) 
         {
-            return listTail; // Already sorted or only one element
+            return list_head; // Already sorted or only one element
         }
         // Split the list into two halves
-        MenuItemNode middle = getMiddlePopular(listTail);
-        MenuItemNode nextOfMiddle = middle.previous;
-        middle.previous = null;
+        MenuItemNode middle = getMiddlePopular(list_head);
+        MenuItemNode nextOfMiddle = middle.next;
+        middle.next = null;
         // Recursively sort the two halves
-        MenuItemNode left = mergeSortPopularRec(listTail);
+        MenuItemNode left = mergeSortPopularRec(list_head);
         MenuItemNode right = mergeSortPopularRec(nextOfMiddle);
         // Merge the sorted halves
         return mergePopular(left, right);
@@ -307,27 +307,27 @@ public class MenuItemLinkedList
         if (left.getPopularity()>= right.getPopularity()) 
         {
             result = left;
-            result.previous = mergePopular(left.previous, right);
+            result.next = mergePopular(left.next, right);
         }
         else 
         {
             result = right;
-            result.previous = mergePopular(left, right.previous);
+            result.next = mergePopular(left, right.next);
         }
         return result;
     }
     // Helper method to find the middle of the linked list
-    private MenuItemNode getMiddlePopular(MenuItemNode head) 
+    private MenuItemNode getMiddlePopular(MenuItemNode list_head) 
     {
-        if (head == null) 
+        if (list_head == null) 
         {
-            return head;
+            return list_head;
         }
-        MenuItemNode slow = head, fast = head;
-        while (fast.previous != null && fast.previous.previous != null) 
+        MenuItemNode slow = list_head, fast = list_head;
+        while (fast.next != null && fast.next.next != null) 
         {
-            slow = slow.previous;
-            fast = fast.previous.previous;
+            slow = slow.next;
+            fast = fast.next.next;
         }
         return slow;
     }

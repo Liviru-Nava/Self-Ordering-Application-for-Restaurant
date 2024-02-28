@@ -35,7 +35,7 @@ public class HOME1 extends javax.swing.JFrame implements Runnable{
     private int[][] graph;
     private String[] locations;
     
-    
+    //create objects for the LinkedList, Max-Heap and Circular Queue
     MenuItemLinkedList original_menu_list = new MenuItemLinkedList();
     MenuItemLinkedList menu_list = new MenuItemLinkedList();
     MaximumPreparationTimeHeap max_heap = new MaximumPreparationTimeHeap(100);
@@ -45,6 +45,7 @@ public class HOME1 extends javax.swing.JFrame implements Runnable{
     public HOME1() 
     {
         initComponents();
+        neworderPanal.setVisible(false);
         // these code for adjest coloum width
         TableColumnModel columnModel = tbl_show_menu_items.getColumnModel();
         columnModel.getColumn(0).setPreferredWidth(200); // First Name column
@@ -55,7 +56,7 @@ public class HOME1 extends javax.swing.JFrame implements Runnable{
         tbl_cart = (DefaultTableModel) tbl_show_cart.getModel();
         //insert products to linkedlist
         insertMenuDetails();
-        
+        //graph initialization
         graph = new int[][] {
          {0, 8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, // Vito Pizza
          {8, 0, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, // Gallface
@@ -100,6 +101,9 @@ public class HOME1 extends javax.swing.JFrame implements Runnable{
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        neworderPanal = new javax.swing.JPanel();
+        btn_neworder = new rojeru_san.complementos.RSButtonHover();
         jLabel22 = new javax.swing.JLabel();
         com_location = new javax.swing.JComboBox<>();
         btn_beverage = new rojeru_san.complementos.RSButtonHover();
@@ -109,12 +113,6 @@ public class HOME1 extends javax.swing.JFrame implements Runnable{
         lbl_total = new javax.swing.JLabel();
         btn_order_now = new rojeru_san.complementos.RSButtonHover();
         jLabel12 = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
-        btn_min_max_sort = new rojeru_san.complementos.RSButtonHover();
-        btn_max_min_sort = new rojeru_san.complementos.RSButtonHover();
-        btn_popularity_sort = new rojeru_san.complementos.RSButtonHover();
-        btn_alphabetical_sort = new rojeru_san.complementos.RSButtonHover();
-        jLabel3 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         textarea_display = new javax.swing.JTextArea();
@@ -123,6 +121,12 @@ public class HOME1 extends javax.swing.JFrame implements Runnable{
         txt_preptime = new javax.swing.JTextField();
         txt_deliverytime1 = new javax.swing.JTextField();
         txt_customer_telephone = new javax.swing.JTextField();
+        jPanel2 = new javax.swing.JPanel();
+        btn_min_max_sort = new rojeru_san.complementos.RSButtonHover();
+        btn_max_min_sort = new rojeru_san.complementos.RSButtonHover();
+        btn_popularity_sort = new rojeru_san.complementos.RSButtonHover();
+        btn_alphabetical_sort = new rojeru_san.complementos.RSButtonHover();
+        jLabel3 = new javax.swing.JLabel();
         jScrollPane4 = new javax.swing.JScrollPane();
         tbl_show_menu_items = new javax.swing.JTable();
         lbl_timeshow = new java.awt.Label();
@@ -132,7 +136,6 @@ public class HOME1 extends javax.swing.JFrame implements Runnable{
         btn_appetizer = new rojeru_san.complementos.RSButtonHover();
         btn_dessert = new rojeru_san.complementos.RSButtonHover();
         jLabel23 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         cmb_order_type = new javax.swing.JComboBox<>();
@@ -148,6 +151,38 @@ public class HOME1 extends javax.swing.JFrame implements Runnable{
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setPreferredSize(new java.awt.Dimension(1080, 1080));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/selfordering/apllication/output-onlinepngtools.png"))); // NOI18N
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 0, 210, 100));
+
+        neworderPanal.setBackground(new java.awt.Color(239, 233, 233));
+
+        btn_neworder.setBackground(new java.awt.Color(0, 102, 0));
+        btn_neworder.setText("New Order");
+        btn_neworder.setColorHover(new java.awt.Color(204, 0, 0));
+        btn_neworder.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        btn_neworder.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_neworderActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout neworderPanalLayout = new javax.swing.GroupLayout(neworderPanal);
+        neworderPanal.setLayout(neworderPanalLayout);
+        neworderPanalLayout.setHorizontalGroup(
+            neworderPanalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(neworderPanalLayout.createSequentialGroup()
+                .addGap(470, 470, 470)
+                .addComponent(btn_neworder, javax.swing.GroupLayout.PREFERRED_SIZE, 615, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        neworderPanalLayout.setVerticalGroup(
+            neworderPanalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(neworderPanalLayout.createSequentialGroup()
+                .addGap(140, 140, 140)
+                .addComponent(btn_neworder, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        jPanel1.add(neworderPanal, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 1500, 470));
 
         jLabel22.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
         jLabel22.setForeground(new java.awt.Color(156, 150, 150));
@@ -222,59 +257,6 @@ public class HOME1 extends javax.swing.JFrame implements Runnable{
 
         jPanel1.add(billvalue, new org.netbeans.lib.awtextra.AbsoluteConstraints(1050, 580, 460, 220));
 
-        jPanel2.setBackground(new java.awt.Color(235, 232, 232));
-        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        btn_min_max_sort.setBackground(new java.awt.Color(0, 153, 0));
-        btn_min_max_sort.setText("Min - Max");
-        btn_min_max_sort.setColorHover(new java.awt.Color(204, 0, 0));
-        btn_min_max_sort.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        btn_min_max_sort.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_min_max_sortActionPerformed(evt);
-            }
-        });
-        jPanel2.add(btn_min_max_sort, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 90, 120, 50));
-
-        btn_max_min_sort.setBackground(new java.awt.Color(0, 153, 0));
-        btn_max_min_sort.setText("Max - Min");
-        btn_max_min_sort.setColorHover(new java.awt.Color(204, 0, 51));
-        btn_max_min_sort.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        btn_max_min_sort.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_max_min_sortActionPerformed(evt);
-            }
-        });
-        jPanel2.add(btn_max_min_sort, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 120, 50));
-
-        btn_popularity_sort.setBackground(new java.awt.Color(0, 153, 0));
-        btn_popularity_sort.setText("Popular");
-        btn_popularity_sort.setColorHover(new java.awt.Color(204, 0, 0));
-        btn_popularity_sort.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        btn_popularity_sort.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_popularity_sortActionPerformed(evt);
-            }
-        });
-        jPanel2.add(btn_popularity_sort, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 30, 120, 50));
-
-        btn_alphabetical_sort.setBackground(new java.awt.Color(0, 153, 0));
-        btn_alphabetical_sort.setText("A - Z");
-        btn_alphabetical_sort.setColorHover(new java.awt.Color(204, 0, 51));
-        btn_alphabetical_sort.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        btn_alphabetical_sort.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_alphabetical_sortActionPerformed(evt);
-            }
-        });
-        jPanel2.add(btn_alphabetical_sort, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 120, 50));
-
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel3.setText("Filter By");
-        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 0, -1, -1));
-
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 330, 330, 150));
-
         jPanel3.setBackground(new java.awt.Color(241, 237, 237));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -315,6 +297,85 @@ public class HOME1 extends javax.swing.JFrame implements Runnable{
             }
         });
         jPanel1.add(txt_customer_telephone, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 130, 320, 50));
+
+        jPanel2.setBackground(new java.awt.Color(235, 232, 232));
+
+        btn_min_max_sort.setBackground(new java.awt.Color(0, 153, 0));
+        btn_min_max_sort.setText("Min - Max");
+        btn_min_max_sort.setColorHover(new java.awt.Color(204, 0, 0));
+        btn_min_max_sort.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btn_min_max_sort.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_min_max_sortActionPerformed(evt);
+            }
+        });
+
+        btn_max_min_sort.setBackground(new java.awt.Color(0, 153, 0));
+        btn_max_min_sort.setText("Max - Min");
+        btn_max_min_sort.setColorHover(new java.awt.Color(204, 0, 51));
+        btn_max_min_sort.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btn_max_min_sort.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_max_min_sortActionPerformed(evt);
+            }
+        });
+
+        btn_popularity_sort.setBackground(new java.awt.Color(0, 153, 0));
+        btn_popularity_sort.setText("Popular");
+        btn_popularity_sort.setColorHover(new java.awt.Color(204, 0, 0));
+        btn_popularity_sort.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btn_popularity_sort.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_popularity_sortActionPerformed(evt);
+            }
+        });
+
+        btn_alphabetical_sort.setBackground(new java.awt.Color(0, 153, 0));
+        btn_alphabetical_sort.setText("A - Z");
+        btn_alphabetical_sort.setColorHover(new java.awt.Color(204, 0, 51));
+        btn_alphabetical_sort.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btn_alphabetical_sort.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_alphabetical_sortActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel3.setText("Filter By");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(130, 130, 130)
+                .addComponent(jLabel3))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(btn_alphabetical_sort, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(40, 40, 40)
+                .addComponent(btn_popularity_sort, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(btn_max_min_sort, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(40, 40, 40)
+                .addComponent(btn_min_max_sort, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addComponent(jLabel3)
+                .addGap(5, 5, 5)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btn_alphabetical_sort, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_popularity_sort, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(10, 10, 10)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btn_max_min_sort, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_min_max_sort, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
+        );
+
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 330, 330, 150));
 
         tbl_show_menu_items.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         tbl_show_menu_items.setModel(new javax.swing.table.DefaultTableModel(
@@ -395,9 +456,6 @@ public class HOME1 extends javax.swing.JFrame implements Runnable{
         jLabel23.setText("copyright ©PDSA | Develop By Hirantha And Liviru");
         jPanel1.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 1060, -1, -1));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/selfordering/apllication/output-onlinepngtools.png"))); // NOI18N
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 0, 210, 100));
-
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel4.setText("Location");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 250, -1, -1));
@@ -409,6 +467,11 @@ public class HOME1 extends javax.swing.JFrame implements Runnable{
         cmb_order_type.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         cmb_order_type.setForeground(new java.awt.Color(204, 0, 0));
         cmb_order_type.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Dine In", "Take Away", "Delivery", " " }));
+        cmb_order_type.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmb_order_typeActionPerformed(evt);
+            }
+        });
         jPanel1.add(cmb_order_type, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 200, 280, 50));
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -467,29 +530,7 @@ public class HOME1 extends javax.swing.JFrame implements Runnable{
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-     public void findshorttime(int preptime)
-    {     
-        // Destination location for which shortest path is to be found
-        String destination =(String)com_location.getSelectedItem();
-
-        // Create an instance of DijkstraAlgorithm
-        DijkstraAlgorithm dijkstraAlgorithm = new DijkstraAlgorithm();
-        
-        // Find shortest path from restaurant to the destination city
-        int deleveryTime = dijkstraAlgorithm.findShortestDistanceToLocation(graph, locations, destination);
-        String shortestPath = dijkstraAlgorithm.findShortestPathToLocation(graph, locations, destination);
-         
-        String currentTimeString =lbl_time.getText(); 
-        TimeEstimation estimation=new TimeEstimation();
-         
-        txt_preptime.setText("Your order will be ready in " + preptime+ " Minutes");
-        txt_deliverytime1.setText("Delivery Time : " + deleveryTime + " Minutes");
-        txt_estimatedTime.setText("Estimate Delivery Time : "+estimation.estimateTime( currentTimeString,deleveryTime+preptime));
-        textarea_display.setLineWrap(true);
-        textarea_display.setWrapStyleWord(true);
-        textarea_display.setText("Shortest path from Vito Pizza to " + destination + ": " + shortestPath);
-    }   
+   
     private void btn_beverageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_beverageActionPerformed
         // TODO add your handling code here:
         addBeverageToTableOriginal();
@@ -503,6 +544,8 @@ public class HOME1 extends javax.swing.JFrame implements Runnable{
         placeOrder();
         JOptionPane.showMessageDialog(rootPane, "Your order has successfully been placed!");
         displayEstimationTime();
+         neworderPanal.setVisible(true);
+          lbl_total.setText("0.00");  
     }//GEN-LAST:event_btn_order_nowActionPerformed
 
     private void btn_min_max_sortActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_min_max_sortActionPerformed
@@ -647,6 +690,34 @@ public class HOME1 extends javax.swing.JFrame implements Runnable{
         Admin1 admin_screen = new Admin1(menu_list, original_menu_list);
         admin_screen.setVisible(true);
     }//GEN-LAST:event_btn_adminActionPerformed
+
+    private void btn_neworderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_neworderActionPerformed
+        // TODO add your handling code here:
+       txt_preptime.setText(null);
+       txt_deliverytime1.setText(null);
+       txt_estimatedTime.setText(null);
+       textarea_display.setText(null);
+       txt_customer_telephone.setText("+94");
+       
+       
+       
+        neworderPanal.setVisible(false);
+    }//GEN-LAST:event_btn_neworderActionPerformed
+
+    private void cmb_order_typeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmb_order_typeActionPerformed
+        // TODO add your handling code here:
+         String selectvalue=cmb_order_type.getSelectedItem().toString();
+        if("Delivery".equals(selectvalue))
+        {
+            
+              com_location.setEnabled(true);  
+            
+            
+        }
+        else{
+             com_location.setEnabled(false);  
+        }
+    }//GEN-LAST:event_cmb_order_typeActionPerformed
     /**
      * @param args the command line arguments
      */
@@ -692,6 +763,7 @@ public class HOME1 extends javax.swing.JFrame implements Runnable{
     private rojeru_san.complementos.RSButtonHover btn_kitchen_view;
     private rojeru_san.complementos.RSButtonHover btn_max_min_sort;
     private rojeru_san.complementos.RSButtonHover btn_min_max_sort;
+    private rojeru_san.complementos.RSButtonHover btn_neworder;
     private rojeru_san.complementos.RSButtonHover btn_order_now;
     private rojeru_san.complementos.RSButtonHover btn_pizza;
     private rojeru_san.complementos.RSButtonHover btn_popularity_sort;
@@ -716,6 +788,7 @@ public class HOME1 extends javax.swing.JFrame implements Runnable{
     private java.awt.Label lbl_time;
     private java.awt.Label lbl_timeshow;
     private javax.swing.JLabel lbl_total;
+    private javax.swing.JPanel neworderPanal;
     private rojeru_san.complementos.RSButtonHover rSButtonHover1;
     private rojeru_san.complementos.RSButtonHover rSButtonHover5;
     private javax.swing.JTable tbl_show_cart;
@@ -812,16 +885,18 @@ public class HOME1 extends javax.swing.JFrame implements Runnable{
     {
         DefaultTableModel tbl_items = (DefaultTableModel) tbl_show_menu_items.getModel();
         tbl_items.setRowCount(0);
-        MenuItemNode current_product = menu_list.tail;
-        
+        MenuItemNode current_product = menu_list.head;
+        System.out.println("\nHEAD----->: " + menu_list.head.getName());
         while(current_product != null)
         {
             if(current_product.getCategory().equals("Pizza"))
             {
                 tbl_items.addRow(new Object[]{current_product.getName(), current_product.getPrice()});
             }
-            current_product = current_product.previous;
+            System.out.println("Items: " + current_product.getName());
+            current_product = current_product.next;
         }
+        System.out.println("TAIL---->: " + menu_list.tail.getName());
     }
     //method to display the Pizza products from reverse order when appetizer button is pressed
     public void addPizzaToTableOriginal()
@@ -829,31 +904,35 @@ public class HOME1 extends javax.swing.JFrame implements Runnable{
         MenuItemNode current_product = original_menu_list.tail;
         DefaultTableModel tbl_items = (DefaultTableModel) tbl_show_menu_items.getModel();
         tbl_items.setRowCount(0);
-        
+        System.out.println("TAIL---->: " + original_menu_list.tail.getName());
         while(current_product != null)
         {
             if(current_product.getCategory().equals("Pizza"))
             {
                 tbl_items.addRow(new Object[]{current_product.getName(), current_product.getPrice()});
             }
+            System.out.println("Items: " + current_product.getName());
             current_product = current_product.previous;
         }
+        System.out.println("HEAD---->: " + original_menu_list.head.getName());
     }
     //method to display the Appetizer products from reverse order when appetizer button is pressed
     public void addAppetizerToTable()
     {
         DefaultTableModel tbl_items = (DefaultTableModel) tbl_show_menu_items.getModel();
         tbl_items.setRowCount(0);
-        MenuItemNode current_product = menu_list.tail;
-        
+        MenuItemNode current_product = menu_list.head;
+        System.out.println("\nHEAD----->: " + menu_list.head.getName());
         while(current_product != null)
         {
             if(current_product.getCategory().equals("Appetizer"))
             {
                 tbl_items.addRow(new Object[]{current_product.getName(), current_product.getPrice()});
             }
-            current_product = current_product.previous;
+            System.out.println("Items: " + current_product.getName());
+            current_product = current_product.next;
         }
+        System.out.println("TAIL---->: " + menu_list.tail.getName());
     }
     //method to display the Appetizer products from reverse order when appetizer button is pressed
     public void addAppetizerToTableOriginal()
@@ -861,30 +940,35 @@ public class HOME1 extends javax.swing.JFrame implements Runnable{
         MenuItemNode current_product = original_menu_list.tail;
         DefaultTableModel tbl_items = (DefaultTableModel) tbl_show_menu_items.getModel();
         tbl_items.setRowCount(0);
-        
+        System.out.println("TAIL---->: " + original_menu_list.tail.getName());
         while(current_product != null)
         {
             if(current_product.getCategory().equals("Appetizer"))
             {
                 tbl_items.addRow(new Object[]{current_product.getName(), current_product.getPrice()});
             }
+            System.out.println("Items: " + current_product.getName());
             current_product = current_product.previous;
         }
+        System.out.println("HEAD---->: " + original_menu_list.head.getName());
     }
     //method to display the Beverage products from reverse order when beverage button is pressed
     public void addBeverageToTable()
     {
         DefaultTableModel tbl_items = (DefaultTableModel) tbl_show_menu_items.getModel();
         tbl_items.setRowCount(0);
-        MenuItemNode current_product = menu_list.tail;
+        MenuItemNode current_product = menu_list.head;
+        System.out.println("\nHEAD----->: " + menu_list.head.getName());
         while(current_product != null)
         {
             if(current_product.getCategory().equals("Beverage"))
             {
                 tbl_items.addRow(new Object[]{current_product.getName(), current_product.getPrice()});
             }
-            current_product = current_product.previous;
+            System.out.println("Items: " + current_product.getName());
+            current_product = current_product.next;
         }
+        System.out.println("TAIL----->: " + menu_list.tail.getName());
     }
     //method to display the Beverage products from reverse order when beverage button is pressed
     public void addBeverageToTableOriginal()
@@ -892,7 +976,7 @@ public class HOME1 extends javax.swing.JFrame implements Runnable{
         MenuItemNode current_product = original_menu_list.tail;
         DefaultTableModel tbl_items = (DefaultTableModel) tbl_show_menu_items.getModel();
         tbl_items.setRowCount(0);
-        
+        System.out.println("TAIL---->: " + original_menu_list.tail.getName());
         while(current_product != null)
         {
             if(current_product.getCategory().equals("Beverage"))
@@ -901,22 +985,30 @@ public class HOME1 extends javax.swing.JFrame implements Runnable{
             }
             current_product = current_product.previous;
         }
+        System.out.println("HEAD---->: " + original_menu_list.head.getName());
     }
     //method to display the Dessert products from reverse order when Dessert button is pressed
     public void addDessertToTable()
     {
         DefaultTableModel tbl_items = (DefaultTableModel) tbl_show_menu_items.getModel();
         tbl_items.setRowCount(0);
-        MenuItemNode current_product = menu_list.tail;
-        
+        MenuItemNode current_product = menu_list.head;
+        System.out.println("\nHEAD----->: " + menu_list.head.getName());
         while(current_product != null)
         {
             if(current_product.getCategory().equals("Dessert"))
             {
                 tbl_items.addRow(new Object[]{current_product.getName(), current_product.getPrice()});
             }
-            current_product = current_product.previous;
+            System.out.println("Items: " + current_product.getName());
+            if (current_product.next == null) 
+            {
+                // This is the last node, update menu_list.tail
+                 menu_list.tail = current_product;
+            }
+            current_product = current_product.next;
         }
+        System.out.println("TAIL----->: " + menu_list.head.getName());
     }
     //method to display the Dessert products from reverse order when Dessert button is pressed
     public void addDessertToTableOriginal()
@@ -924,15 +1016,17 @@ public class HOME1 extends javax.swing.JFrame implements Runnable{
         MenuItemNode current_product = original_menu_list.tail;
         DefaultTableModel tbl_items = (DefaultTableModel) tbl_show_menu_items.getModel();
         tbl_items.setRowCount(0);
-        
+        System.out.println("TAIL---->: " + original_menu_list.tail.getName());
         while(current_product != null)
         {
             if(current_product.getCategory().equals("Dessert"))
             {
                 tbl_items.addRow(new Object[]{current_product.getName(), current_product.getPrice()});
             }
+            System.out.println("Items: " + current_product.getName());
             current_product = current_product.previous;
         }
+        System.out.println("HEAD---->: " + original_menu_list.head.getName());
     }
     //Update the cart table when a row is selected from the menu list table
     public void updateTargetTable()
@@ -1036,15 +1130,50 @@ public class HOME1 extends javax.swing.JFrame implements Runnable{
         System.out.println("REAR: " + order_queue.rear);
         System.out.println("FRONT: " + order_queue.front);
     }
+    public void findshorttime(int preptime)
+    {     
+        // Destination location for which shortest path is to be found
+        String destination =(String)com_location.getSelectedItem();
+
+        // Create an object of DijkstraAlgorithm
+        DijkstraAlgorithm dijkstraAlgorithm = new DijkstraAlgorithm();
+        
+        // Find shortest path from restaurant to the destination city
+        int deleveryTime = dijkstraAlgorithm.findShortestDistanceToLocation(graph, locations, destination);
+        String shortestPath = dijkstraAlgorithm.findShortestPathToLocation(graph, locations, destination);
+         
+        String currentTimeString =lbl_time.getText(); 
+        TimeEstimation estimation=new TimeEstimation();
+         
+        txt_preptime.setText("Your order will be ready in " + preptime+ " Minutes");
+        txt_deliverytime1.setText("Delivery Time : " + deleveryTime + " Minutes");
+        txt_estimatedTime.setText("Estimate Delivery Time : "+estimation.estimateTime( currentTimeString,deleveryTime+preptime));
+        textarea_display.setLineWrap(true);
+        textarea_display.setWrapStyleWord(true);
+        textarea_display.setText("Shortest path from Vito Pizza to " + destination + ": " + shortestPath);
+        
+        
+        //sms function calling
+        
+         String deliverytime="0.00";
+        String number=txt_customer_telephone.getText();
+        double billvalue=Double.parseDouble(lbl_total.getText());
+        String estimatetime=txt_estimatedTime.getText();
+        
+        
+        
+        SmsAPI sms=new SmsAPI();
+        sms.sendSMS(number, billvalue, estimatetime, preptime, deleveryTime);
+    }
     public void displayEstimationTime()
     {
         tbl_cart.setRowCount(0);  //reset the table
-        lbl_total.setText("0.00");      //reset the order total
+           //reset the order total
         
         int preptime=max_heap.extractMax();//get prep time
         txt_preptime.setText("Your order will be ready in " + preptime+ " minutes");
         TimeEstimation estimate=new TimeEstimation();
-        txt_estimatedTime.setText("Estimate Delivery Time :"+estimate.estimateTime(lbl_time.getText(), preptime)); 
+        txt_estimatedTime.setText("Order Reserving Time :"+estimate.estimateTime(lbl_time.getText(), preptime)); 
         if(cmb_order_type.getSelectedIndex()==2)//delivery
         {
             findshorttime(preptime);

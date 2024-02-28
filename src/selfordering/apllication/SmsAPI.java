@@ -10,20 +10,22 @@ import java.net.URLEncoder;
 
 
 public class SmsAPI {
-    public String sendSMS(String billID,String phoneno,String Cusname,double billvalue,double remain)
+    public String sendSMS(String phoneno,double billvalue,String estimatetime,int preptime,int deliverytime)
     {
-        String smsmessage=null;
+       String smsmessage=null;
     // Get values from input fields or other sources
-        String apiKey = "abdfghjdswgfghdhsj";
-        String user_id = "4154646";
-        String numbers = phoneno; // Replace with the telephone number
+        String apiKey = "";
+        String user_id = "";
         String sender_id = "NotifyDEMO";
-        String name = Cusname; // Replace with the name obtained from input
-        String bill=billID;
-        double total=billvalue;
-        double balanace=remain;
+        String numbers = phoneno; // Replace with the telephone number
+        String esttime = estimatetime;
+        int prep = preptime; // Replace with the name obtained from input
+        int delivery=deliverytime;
+        double bill=billvalue;
+        
         // Message composition
-        String message = "Hi " + name + ",\r\n\r\nYour order #"+bill+" has been confirmed! Ready within 12 mins.\r\nYour Bill: Rs "+total+" Balance: Rs "+balanace+"\r\nThank you for choosing us.\r\nEnjoy your meal!\r\n\r\n-Arthur's Pizza-\r\nHotline:011-3108746. ";
+        String message = "Dear Customer ,\r\n\r\nYour Order Will be Ready in " +prep+" Minutes.and order will deliver within" +deliverytime+ " Minutes "+estimatetime+"\r\nYour Bill: Rs "+bill+" \r\nThank you for choosing us.";
+        
 
         // API URL
                 String urlString = "https://app.notify.lk/api/v1/send" +
@@ -48,7 +50,7 @@ public class SmsAPI {
             rd.close();
 
             // Handle the response data as needed
-             System.out.println("SMS Sent Successfully!");
+              System.out.println("SMS Sent Successfully!"+numbers);
               smsmessage="SMS Sent Successfully!";
              
         } catch (IOException e) {

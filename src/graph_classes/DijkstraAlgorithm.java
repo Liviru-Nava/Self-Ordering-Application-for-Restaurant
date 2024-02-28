@@ -5,7 +5,7 @@ package graph_classes;
 public class DijkstraAlgorithm {
      
     
-       // Number of cities
+    // Number of cities
     private static final int V = 15;
 
     // Method to find the vertex with the minimum distance value
@@ -21,7 +21,7 @@ public class DijkstraAlgorithm {
     }
     
     
-       // Method to find index of a city in the cities array
+    // Method to find index of a city in the cities array
     private int getIndex(String city, String[] cities) {
         for (int i = 0; i < cities.length; i++) {
             if (cities[i].equals(city)) {
@@ -32,7 +32,7 @@ public class DijkstraAlgorithm {
     }
     
     
-       // Method to find the shortest path to the given location from Vito Pizza (restaurant)
+    // Method to find the shortest path to the given location from Vito Pizza (restaurant)
     public int findShortestDistanceToLocation(int[][] graph, String[] locations, String destination) {
         int[] dist = new int[V]; // Array to store shortest distance from restaurant to each location
         boolean[] visited = new boolean[V]; // Array to track visited locations
